@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CS2340Game">
         <activity
-            android:name=".GameActivity"
+            android:name=".WelcomeView"
             android:exported="true"
             >
                 <intent-filter>
@@ -21,6 +21,9 @@
                     <category android:name="android.intent.category.LAUNCHER"/>
                </intent-filter>
         </activity>
+        <activity
+            android:name=".InitialConfigView"
+            />
     </application>
 
 </manifest>
