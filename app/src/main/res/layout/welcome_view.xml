@@ -28,7 +28,7 @@
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
         android:id="@+id/startBtn"
-        android:onClick="configScreen"
+        android:onClick="exit"
         />
     <Button
         android:layout_width="wrap_content"

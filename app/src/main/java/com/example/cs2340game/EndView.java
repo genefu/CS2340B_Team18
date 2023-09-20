@@ -6,14 +6,15 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class GameActivity extends AppCompatActivity {
+public class EndView extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_view);
+        setContentView(R.layout.end_view);
     }
 
-    public void endScreen(View view) {
-        startActivity(new Intent(GameActivity.this, EndView.class));
+    public void welcomeScreen(View view) {
+        startActivity(new Intent(EndView.this, WelcomeView.class));
     }
 }

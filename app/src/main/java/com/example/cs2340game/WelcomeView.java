@@ -16,4 +16,9 @@ public class WelcomeView extends AppCompatActivity {
     public void configScreen(View view) {
         startActivity(new Intent(WelcomeView.this, InitialConfigView.class));
     }
+
+    public void exit(View view) {
+        finish();
+        System.exit(0);
+    }
 }
