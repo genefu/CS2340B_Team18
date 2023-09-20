@@ -21,9 +21,9 @@
                     <category android:name="android.intent.category.LAUNCHER"/>
                </intent-filter>
         </activity>
-        <activity
-            android:name=".InitialConfigView"
-            />
+        <activity android:name=".InitialConfigView" />
+        <activity android:name=".GameActivity"/>
+        <activity android:name=".EndView"/>
     </application>
 
 </manifest>
