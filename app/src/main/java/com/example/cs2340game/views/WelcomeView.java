@@ -1,10 +1,12 @@
-package com.example.cs2340game;
+package com.example.cs2340game.views;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cs2340game.R;
 
 public class WelcomeView extends AppCompatActivity {
     @Override
