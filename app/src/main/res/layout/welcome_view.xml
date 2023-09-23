@@ -1,52 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#aaaaaa"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".WelcomeView">
+    android:background="#AAFFFFFF"
+    tools:context=".views.WelcomeView">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="[Dungeon Game]"
-        android:textSize="50dp"
-        android:textColor="#700000"
-        android:id="@+id/title"
-        app:layout_constraintBottom_toTopOf="@id/midLine"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:textColor="@color/white"
-        android:backgroundTint="#700000"
-        app:layout_constraintTop_toBottomOf="@id/midLine"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        android:id="@+id/startBtn"
-        android:onClick="configScreen"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EXIT"
-        android:textColor="@color/white"
-        android:backgroundTint="#700000"
-        app:layout_constraintTop_toBottomOf="@id/startBtn"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        android:onClick="exit"
-        />
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5"
-        android:id="@+id/midLine"
-        />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="viewModel"
+            type="com.example.cs2340game.viewmodels.WelcomeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_game_title"
+            android:textColor="#700000"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toTopOf="@id/midLine"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
+            android:id="@+id/startBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700000"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="toConfigurationView"
+            android:text="@string/start_button"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/midLine"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700000"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="exitApplication"
+            android:text="@string/exit_button"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/startBtn" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/midLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+    </LinearLayout>
+
+</layout>

@@ -1,3 +1,26 @@
 <resources>
+    <!--Template: <string name=""></string> -->
+
+    <!--App Strings-->
     <string name="app_name">CS2340 Game</string>
+    <string name="start_button">Start</string>
+    <string name="next_button">NEXT</string>
+    <string name="exit_button">EXIT</string>
+    <string name="quit_button">Quit</string>
+
+    <!--Welcome View Strings-->
+    <string name="welcome_game_title">[Dungeon Game]</string>
+
+    <!--Config View Strings-->
+    <string name="config_name_hint">Enter Your Name:</string>
+
+    <string name="config_triangle_sprite">Green Triangle</string>
+    <string name="config_square_sprite">Blue Square</string>
+    <string name="config_circle_sprite">Yellow Circle</string>
+
+    <!--Game View Strings-->
+
+    <!--End View Strings-->
+    <string name="end_leaderboard_players">Players</string>
+    <string name="end_leaderboard_scores">Scores</string>
 </resources>
