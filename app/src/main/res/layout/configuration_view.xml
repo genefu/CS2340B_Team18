@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="40dp"
-            android:text="Enter Your Name:"
+            android:text="@string/config_name_hint"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@id/leftGuideline"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,14 +36,16 @@
                 android:id="@+id/triangle_sprite"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:contentDescription="@string/config_triangle_sprite"
                 app:layout_constraintRight_toLeftOf="@id/rightGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
-                app:srcCompat="@drawable/triangle_sprite" />
+                app:srcCompat="@drawable/triangle_sprite"/>
 
             <ImageView
                 android:id="@+id/square_sprite"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:contentDescription="@string/config_square_sprite"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintRight_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
@@ -53,6 +55,7 @@
                 android:id="@+id/circle_sprite"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:contentDescription="@string/config_circle_sprite"
                 app:layout_constraintLeft_toRightOf="@id/leftGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 app:srcCompat="@drawable/circle_sprite" />
@@ -63,7 +66,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#700000"
             android:onClick="toGameScreen"
-            android:text="NEXT"
+            android:text="@string/config_next_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/rightGuideline"
             app:layout_constraintTop_toBottomOf="@id/bottomGuideline" />

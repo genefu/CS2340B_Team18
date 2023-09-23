@@ -15,7 +15,6 @@ public class Model {
         this.playerName = playerName;
         this.difficulty = 0;
         this.score = 0;
-
     }
 
     //TODO make getters and setters

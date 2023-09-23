@@ -23,9 +23,9 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="[Dungeon Game]"
+            android:text="@string/welcome_game_title"
             android:textColor="#700000"
-            android:textSize="50dp"
+            android:textSize="50sp"
             app:layout_constraintBottom_toTopOf="@id/midLine"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -36,20 +36,23 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#700000"
             android:clickable="true"
+            android:focusable="true"
             android:onClick="configScreen"
-            android:text="Start"
+            android:text="@string/welcome_start_button"
             android:textColor="@color/white"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/midLine" />
+            app:layout_constraintTop_toBottomOf="@id/midLine"
+            />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#700000"
             android:clickable="true"
+            android:focusable="true"
             android:onClick="exit"
-            android:text="EXIT"
+            android:text="@string/welcome_exit_button"
             android:textColor="@color/white"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toLeftOf="parent"
