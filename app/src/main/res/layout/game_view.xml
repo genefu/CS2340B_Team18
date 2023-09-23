@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#700000"
             android:onClick="toEndView"
-            android:text="@string/game_quit_button"
+            android:text="@string/quit_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
     </LinearLayout>

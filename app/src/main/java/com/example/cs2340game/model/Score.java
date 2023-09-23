@@ -10,10 +10,25 @@ public class Score implements Comparable<Score> {
         this.score = score;
     }
 
+    //Setter for playerName
+    public String getPlayerName() { return playerName; }
+
+    //Getter for playerName
+    public void setPlayerName(String playerName) { this.playerName = playerName; }
+
+    //Setter for score
+    public int getScore() { return score; }
+
+    //Getter for score
+    public void setScore(int score) { this.score = score; }
+
     //Compare for sorted leaderboard list
     //outputs negative if larger due to treesets sorting in ascending order by default
     @Override
     public int compareTo(Score score) {
         return score.score - this.score;
     }
+
+    @Override
+    public String toString() { return "(" + playerName + ", " + score + ")"; }
 }
