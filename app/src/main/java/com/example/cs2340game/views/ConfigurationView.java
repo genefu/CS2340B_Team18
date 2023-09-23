@@ -17,7 +17,7 @@ public class ConfigurationView extends AppCompatActivity {
     }
 
     //Switches view to GameView
-    public void toGameScreen(View view) {
-        startActivity(new Intent(ConfigurationView.this, GameVIew.class));
+    public void toGameView(View view) {
+        startActivity(new Intent(ConfigurationView.this, GameView.class));
     }
 }

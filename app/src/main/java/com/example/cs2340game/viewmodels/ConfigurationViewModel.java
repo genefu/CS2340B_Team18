@@ -1,26 +1,22 @@
 package com.example.cs2340game.viewmodels;
 
 import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
 
 import com.example.cs2340game.model.Model;
 
-public class InitialConfigViewModel extends BaseObservable {
-    private Model model;
-
+//View Model for Configuration Screen
+public class ConfigurationViewModel extends BaseObservable {
     //Setter for playerName in Model
     public void setPlayerName(String playerName) {
-        model.setPlayerName(playerName);
+        Model.setPlayerName(playerName);
         //notifyPropertyChanged(BR.playerName); TODO FIX, updates the view using binded data
         //TODO connect to text input
     }
 
 
     //Constructor
-    public InitialConfigViewModel() {
-        // instantiating object of
-        // model class
-        model = new Model("");
+    public ConfigurationViewModel() {
+
     }
 
     // actions to be performed

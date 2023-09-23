@@ -6,16 +6,13 @@ import androidx.databinding.library.baseAdapters.BR;
 
 import com.example.cs2340game.model.Model;
 
+//View Model for Welcome Screen
 public class WelcomeViewModel extends BaseObservable {
-
-    // creating object of Model class
-    private Model model;
 
     // constructor of ViewModel class
     public WelcomeViewModel() {
-        // instantiating object of
-        // model class
-        model = new Model("");
+        // instantiating model
+        Model.initializeModel();
     }
 
     // actions to be performed

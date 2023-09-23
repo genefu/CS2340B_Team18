@@ -9,7 +9,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.cs2340game.viewmodels.InitialConfigViewModel" />
+            type="com.example.cs2340game.viewmodels.ConfigurationViewModel" />
     </data>
 
     <LinearLayout

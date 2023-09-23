@@ -4,12 +4,11 @@ import androidx.databinding.BaseObservable;
 
 import com.example.cs2340game.model.Model;
 
+//View Model for Game Screen
 public class GameViewModel extends BaseObservable {
-    private Model model;
-
     //Constructor
     public GameViewModel() {
-        model = new Model("");
+
     }
 
     // actions to be performed

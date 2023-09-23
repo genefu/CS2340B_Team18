@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
 
-public class GameVIew extends AppCompatActivity {
+public class GameView extends AppCompatActivity {
     //Displays the view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,6 @@ public class GameVIew extends AppCompatActivity {
 
     //Switches view to EndView
     public void toEndView(View view) {
-        startActivity(new Intent(GameVIew.this, EndView.class));
+        startActivity(new Intent(GameView.this, EndView.class));
     }
 }
