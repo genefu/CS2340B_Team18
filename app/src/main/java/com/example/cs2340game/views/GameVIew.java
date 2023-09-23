@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
 
-public class GameActivity extends AppCompatActivity {
+public class GameVIew extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +16,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void endScreen(View view) {
-        startActivity(new Intent(GameActivity.this, EndView.class));
+        startActivity(new Intent(GameVIew.this, EndView.class));
     }
 }

@@ -15,7 +15,7 @@ public class InitialConfigView extends AppCompatActivity {
         setContentView(R.layout.configuration_view);
     }
 
-    public void gameScreen(View view) {
-        startActivity(new Intent(InitialConfigView.this, GameActivity.class));
+    public void toGameScreen(View view) {
+        startActivity(new Intent(InitialConfigView.this, GameVIew.class));
     }
 }
