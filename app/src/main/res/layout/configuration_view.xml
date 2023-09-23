@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#aaaaaa"
-    tools:context=".views.InitialConfigView">
+    tools:context=".views.ConfigurationView">
 
     <data>
         <variable
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#700000"
-            android:onClick="toGameScreen"
+            android:onClick="toGameView"
             android:text="@string/config_next_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/rightGuideline"

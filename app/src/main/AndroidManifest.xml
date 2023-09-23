@@ -21,7 +21,7 @@
                     <category android:name="android.intent.category.LAUNCHER"/>
                </intent-filter>
         </activity>
-        <activity android:name=".views.InitialConfigView" />
+        <activity android:name=".views.ConfigurationView" />
         <activity android:name=".views.GameVIew"/>
         <activity android:name=".views.EndView"/>
     </application>

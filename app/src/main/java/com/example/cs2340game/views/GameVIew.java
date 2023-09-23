@@ -9,13 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cs2340game.R;
 
 public class GameVIew extends AppCompatActivity {
+    //Displays the view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
     }
 
-    public void endScreen(View view) {
+    //Switches view to EndView
+    public void toEndView(View view) {
         startActivity(new Intent(GameVIew.this, EndView.class));
     }
 }

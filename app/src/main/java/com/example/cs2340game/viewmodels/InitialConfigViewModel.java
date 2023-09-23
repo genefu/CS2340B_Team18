@@ -6,24 +6,17 @@ import androidx.databinding.Bindable;
 import com.example.cs2340game.model.Model;
 
 public class InitialConfigViewModel extends BaseObservable {
-
-    // creating object of Model class
     private Model model;
 
-    // getter and setter methods
-    // for playerName variable
-    @Bindable
-    public String getPlayerName() {
-        return model.getPlayerName();
-    }
-
+    //Setter for playerName in Model
     public void setPlayerName(String playerName) {
         model.setPlayerName(playerName);
-        //notifyPropertyChanged(BR.userEmail); FIX
+        //notifyPropertyChanged(BR.playerName); TODO FIX, updates the view using binded data
+        //TODO connect to text input
     }
 
 
-    // constructor of ViewModel class
+    //Constructor
     public InitialConfigViewModel() {
         // instantiating object of
         // model class
@@ -33,6 +26,6 @@ public class InitialConfigViewModel extends BaseObservable {
     // actions to be performed
     // when user clicks a button
     public void onButtonClicked() {
-        //TODO
+        //TODO implement if button added
     }
 }

@@ -8,18 +8,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
 
-public class WelcomeView extends AppCompatActivity {
+public class WelcomeView extends AppCompatActivity { //added comments and standardized variable names
+    //Displays the view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_view);
     }
-    //
-    public void configScreen(View view) {
-        startActivity(new Intent(WelcomeView.this, InitialConfigView.class));
+    //Switches view to ConfigurationView
+    public void toConfigurationView(View view) {
+        startActivity(new Intent(WelcomeView.this, ConfigurationView.class));
     }
 
-    public void exit(View view) {
+    //Exits the app
+    public void exitApplication(View view) {
         finish();
         System.exit(0);
     }

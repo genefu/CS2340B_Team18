@@ -21,6 +21,6 @@ public class WelcomeViewModel extends BaseObservable {
     // actions to be performed
     // when user clicks a button
     public void onButtonClicked() {
-        //TODO
+        //TODO implement if button added
     }
 }

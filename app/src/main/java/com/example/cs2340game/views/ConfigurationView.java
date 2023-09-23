@@ -8,14 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
 
-public class InitialConfigView extends AppCompatActivity {
+public class ConfigurationView extends AppCompatActivity {
+    //Displays the view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configuration_view);
     }
 
+    //Switches view to GameView
     public void toGameScreen(View view) {
-        startActivity(new Intent(InitialConfigView.this, GameVIew.class));
+        startActivity(new Intent(ConfigurationView.this, GameVIew.class));
     }
 }
