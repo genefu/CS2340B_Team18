@@ -13,15 +13,13 @@ public class ConfigurationViewModel extends BaseObservable {
         //TODO connect to text input
     }
 
-
     //Constructor
     public ConfigurationViewModel() {
 
     }
 
-    // actions to be performed
-    // when user clicks a button
-    public void onButtonClicked() {
-        //TODO implement if button added
+    // Sets the difficulty based on character sprite choice
+    public void onButtonClicked(int difficulty) {
+        Model.setDifficulty(difficulty);
     }
 }

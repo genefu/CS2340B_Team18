@@ -23,4 +23,7 @@
     <!--End View Strings-->
     <string name="end_leaderboard_players">Players</string>
     <string name="end_leaderboard_scores">Scores</string>
+    <string name="hard">Hard</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
 </resources>

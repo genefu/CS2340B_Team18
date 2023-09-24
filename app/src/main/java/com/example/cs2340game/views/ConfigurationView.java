@@ -25,4 +25,20 @@ public class ConfigurationView extends AppCompatActivity {
     public void toGameView(View view) {
         startActivity(new Intent(ConfigurationView.this, GameView.class));
     }
+
+    //registers a click on triangle
+    public void onClickTriangle() {
+        viewModel.onButtonClicked(0);
+    }
+
+    //registers a click on square
+    public void onClickSquare() {
+        viewModel.onButtonClicked(1);
+    }
+
+    //registers a click on circle
+    public void onClickCircle() {
+        viewModel.onButtonClicked(2);
+    }
+
 }

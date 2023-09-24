@@ -32,16 +32,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/triangle_sprite"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:contentDescription="@string/config_triangle_sprite"
-                app:layout_constraintRight_toLeftOf="@id/rightGuideline"
-                app:layout_constraintTop_toBottomOf="@id/topGuideline"
-                app:srcCompat="@drawable/triangle_sprite"/>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/easy" />
 
-            <ImageView
+                <ImageButton
+                    android:id="@+id/triangle_sprite"
+                    android:text="@string/easy"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:contentDescription="@string/config_triangle_sprite"
+                    android:src="@drawable/triangle_sprite"
+                    app:layout_constraintRight_toLeftOf="@id/rightGuideline"
+                    app:layout_constraintTop_toBottomOf="@id/topGuideline"
+                    android:scaleType="fitCenter"
+                    android:background=""
+                    android:onClick="onClickTriangle"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/medium" />
+
+            <ImageButton
                 android:id="@+id/square_sprite"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -49,27 +65,31 @@
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintRight_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
-                app:srcCompat="@drawable/square_sprite" />
+                android:src="@drawable/square_sprite"
+                android:scaleType="fitCenter"
+                android:background=""
+                android:onClick="onClickSquare" />
 
-            <ImageView
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/hard" />
+
+            <ImageButton
                 android:id="@+id/circle_sprite"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:background=""
                 android:contentDescription="@string/config_circle_sprite"
+                android:onClick="onClickCircle"
+                android:scaleType="fitCenter"
+                android:src="@drawable/circle_sprite"
                 app:layout_constraintLeft_toRightOf="@id/leftGuideline"
-                app:layout_constraintTop_toBottomOf="@id/topGuideline"
-                app:srcCompat="@drawable/circle_sprite" />
-        </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@id/topGuideline" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#700000"
-            android:onClick="toGameView"
-            android:text="@string/next_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/rightGuideline"
-            app:layout_constraintTop_toBottomOf="@id/bottomGuideline" />
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/topGuideline"
@@ -98,6 +118,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.90" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#700000"
+            android:onClick="toGameView"
+            android:text="@string/next_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/rightGuideline"
+            app:layout_constraintTop_toBottomOf="@id/bottomGuideline" />
     </LinearLayout>
 
 </layout>
