@@ -18,7 +18,8 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
+            android:id="@+id/nameTextField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="40dp"
