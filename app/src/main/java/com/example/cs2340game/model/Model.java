@@ -57,6 +57,11 @@ public class Model {
     }
 
     //TODO make getters and setters
+
+    //Getter for difficulty
+    public static int getDifficulty() {
+        return difficulty;
+    }
     //Getter for playerName
     public static String getPlayerName() {
         return playerName;
