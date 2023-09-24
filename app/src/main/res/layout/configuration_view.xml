@@ -22,8 +22,8 @@
             android:id="@+id/nameTextField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="40dp"
-            android:text="@string/config_name_hint"
+            android:paddingTop="40sp"
+            android:hint="@string/config_name_hint"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@id/leftGuideline"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,8 +35,8 @@
 
             <ImageView
                 android:id="@+id/triangle_sprite"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
                 android:contentDescription="@string/config_triangle_sprite"
                 app:layout_constraintRight_toLeftOf="@id/rightGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"

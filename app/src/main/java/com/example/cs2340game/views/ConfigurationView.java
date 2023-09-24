@@ -24,8 +24,8 @@ public class ConfigurationView extends AppCompatActivity {
 
     //Switches view to GameView
     public void toGameView(View view) {
-        Intent sendIntent = new Intent(this, GameView.class);
-        sendIntent.putExtra("nameSend",nameSender.getText().toString());
-        startActivity(sendIntent);
+        viewModel.setPlayerName(nameSender.getText().toString());
+        //sendIntent.putExtra("nameSend",nameSender.getText().toString()); Obsolete
+        startActivity(new Intent(this, GameView.class));
     }
 }

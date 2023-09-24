@@ -10,6 +10,9 @@
         <variable
             name="viewModel"
             type="com.example.cs2340game.viewmodels.GameViewModel" />
+        <variable
+            name="model"
+            type="com.example.cs2340game.model.Model"/>
     </data>
 
     <LinearLayout
@@ -28,9 +31,10 @@
 
         <TextView
             android:id="@+id/nameReceiver"
-            android:layout_width="133dp"
+            android:layout_width="133sp"
             android:layout_height="wrap_content"
-            android:textSize="50dp"
+            android:text="{model.getPlayerName()}"
+            android:textSize="50sp"
             android:textColor="#FF0000"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
