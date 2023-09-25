@@ -45,22 +45,7 @@ public class ConfigurationView extends AppCompatActivity implements View.OnClick
         startActivity(new Intent(this, GameView.class));
     }
 
-    //registers a click on triangle
-    public void onClickTriangle(View view) {
-        Log.d("iwantdeath", "trangle clicked");
-        viewModel.onDifficultyClicked(0);
-    }
-
-    //registers a click on square
-    public void onClickSquare(View view) {
-        viewModel.onDifficultyClicked(1);
-    }
-
-    //registers a click on circle
-    public void onClickCircle(View view) {
-        viewModel.onDifficultyClicked(2);
-    }
-
+    //registers a click in general (difficulty or sprite) and sets corresponding value
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.easy_button) {
