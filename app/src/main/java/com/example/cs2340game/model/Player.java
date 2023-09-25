@@ -4,8 +4,11 @@ public class Player {
     private int health;
     private int defense;
     private int strength;
-    private String name;
+    private static String name;
     private int speed;
+
+    private static String avatar;
+
 
     public Player() {
         switch (Model.getDifficulty()) {
@@ -23,6 +26,8 @@ public class Player {
                      break;
         }
         speed = 100;
+        name = Model.getPlayerName();
+        avatar = "sprite1";
 
 
     }
@@ -32,6 +37,10 @@ public class Player {
 
     public int getStrength() {
         return strength;
+    }
+
+    public static void setAvatar(String avatar) {
+        Player.avatar = avatar;
     }
 
 }
