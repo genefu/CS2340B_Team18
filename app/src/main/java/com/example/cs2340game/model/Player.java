@@ -9,7 +9,7 @@ public class Player {
     private String sprite;
 
     public Player(int defense, int strength, String name, int speed) {
-        if (Model.getDifficulty() == 0 ) {
+        if (Model.getDifficulty() == 0) {
             this.health = 10;
         } else if (Model.getDifficulty() == 1) {
             this.health = 5;
@@ -21,9 +21,6 @@ public class Player {
         this.strength = strength;
         this.name = Model.getPlayerName();
         this.speed = speed;
-
-
-
-
+    }
 
 }
