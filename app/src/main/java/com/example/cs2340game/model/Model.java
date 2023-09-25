@@ -62,6 +62,7 @@ public class Model {
     //TODO make getters and setters
     public static Player getPlayer() {
         return player;
+    }
 
     //Getter for difficulty
     public static int getDifficulty() {
@@ -82,10 +83,6 @@ public class Model {
     public static void setDifficulty(int difficulty) {
         Model.difficulty = difficulty;
         Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
-    }
-
-    public static int getDifficulty() {
-        return Model.difficulty;
     }
 
     //Getter for leaderboard
