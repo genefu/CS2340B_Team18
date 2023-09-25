@@ -67,6 +67,11 @@ public class Model {
         Model.playerName = playerName;
     }
 
+    //Setter for difficulty
+    public static void setDifficulty(int difficulty) {
+        Model.difficulty = difficulty;
+    }
+
     //Getter for leaderboard
     public static TreeSet<Score> getLeaderboard() { return leaderboard; }
 }

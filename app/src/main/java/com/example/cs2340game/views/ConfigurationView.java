@@ -28,4 +28,20 @@ public class ConfigurationView extends AppCompatActivity {
         //sendIntent.putExtra("nameSend",nameSender.getText().toString()); Obsolete
         startActivity(new Intent(this, GameView.class));
     }
+
+    //registers a click on triangle
+    public void onClickTriangle() {
+        viewModel.onButtonClicked(0);
+    }
+
+    //registers a click on square
+    public void onClickSquare() {
+        viewModel.onButtonClicked(1);
+    }
+
+    //registers a click on circle
+    public void onClickCircle() {
+        viewModel.onButtonClicked(2);
+    }
+
 }
