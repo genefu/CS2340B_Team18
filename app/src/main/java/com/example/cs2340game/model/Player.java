@@ -6,7 +6,7 @@ public class Player {
     private int strength;
     private String name;
     private int speed;
-
+    private String sprite;
     private String avatar;
 
 
