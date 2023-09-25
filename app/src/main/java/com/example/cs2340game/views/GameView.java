@@ -3,6 +3,7 @@ package com.example.cs2340game.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +11,7 @@ import com.example.cs2340game.R;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity {
+    TextView nameTextView;
     private GameViewModel viewModel;
 
     //Displays the view
@@ -19,6 +21,10 @@ public class GameView extends AppCompatActivity {
         setContentView(R.layout.game_view);
 
         viewModel = new GameViewModel();
+        nameTextView = (TextView) findViewById(R.id.nameReceiver);
+        Intent receiveIntent = getIntent();
+        String nameReceive = receiveIntent.getStringExtra("nameSend");
+        nameTextView.setText(nameReceive);
     }
 
     //Switches view to EndView

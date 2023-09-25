@@ -10,6 +10,9 @@
         <variable
             name="viewModel"
             type="com.example.cs2340game.viewmodels.GameViewModel" />
+        <variable
+            name="model"
+            type="com.example.cs2340game.model.Model"/>
     </data>
 
     <LinearLayout
@@ -25,6 +28,17 @@
             android:text="@string/quit_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/nameReceiver"
+            android:layout_width="133sp"
+            android:layout_height="wrap_content"
+            android:text="{model.getPlayerName()}"
+            android:textSize="50sp"
+            android:textColor="#FF0000"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
     </LinearLayout>
 
 </layout>

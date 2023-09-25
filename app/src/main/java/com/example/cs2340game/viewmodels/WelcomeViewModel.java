@@ -1,10 +1,9 @@
 package com.example.cs2340game.viewmodels;
 
 import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
-import androidx.databinding.library.baseAdapters.BR;
 
 import com.example.cs2340game.model.Model;
+
 
 //View Model for Welcome Screen
 public class WelcomeViewModel extends BaseObservable {
