@@ -92,12 +92,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose your avatar:"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/triangle_sprite"
+                android:id="@+id/sprite1"
                 android:text="@string/easy"
                 android:layout_width="70sp"
                 android:layout_height="70sp"
@@ -106,10 +107,10 @@
                 app:layout_constraintRight_toLeftOf="@id/rightGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 android:scaleType="fitCenter"
-                android:onClick="onClickTriangle"/>
+                android:onClick="onClickTriangleAvatar"/>
 
             <ImageButton
-                android:id="@+id/square_sprite"
+                android:id="@+id/sprite2"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:contentDescription="@string/config_square_sprite"
@@ -118,14 +119,14 @@
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 android:src="@drawable/square_sprite"
                 android:scaleType="fitCenter"
-                android:onClick="onClickSquare" />
+                android:onClick="onClickSquareAvatar" />
 
             <ImageButton
-                android:id="@+id/circle_sprite"
+                android:id="@+id/sprite3"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:contentDescription="@string/config_circle_sprite"
-                android:onClick="onClickCircle"
+                android:onClick="onClickCircleAvatar"
                 android:scaleType="fitCenter"
                 android:src="@drawable/circle_sprite"
                 app:layout_constraintLeft_toRightOf="@id/leftGuideline"

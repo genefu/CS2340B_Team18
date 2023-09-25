@@ -4,11 +4,19 @@ public class Player {
     private int health;
     private int defense;
     private int strength;
-    private String name;
+    private static String name;
     private int speed;
 
-    public Player() {
+    private static String avatar;
 
+
+    public Player() {
+        name = Model.getPlayerName();
+        avatar = "triangle_sprite";
+    }
+
+    public static void setAvatar(String avatar) {
+        Player.avatar = avatar;
     }
 
 }

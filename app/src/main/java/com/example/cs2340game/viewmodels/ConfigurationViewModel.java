@@ -7,6 +7,7 @@ import androidx.databinding.Bindable;
 
 import com.example.cs2340game.BR;
 import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.Player;
 
 //View Model for Configuration Screen
 public class ConfigurationViewModel extends BaseObservable {
@@ -31,8 +32,12 @@ public class ConfigurationViewModel extends BaseObservable {
     }
 
     // Sets the difficulty based on character sprite choice
-    public void onButtonClicked(int difficulty) {
+    public void onDifficultyClicked(int difficulty) {
         Log.d("iwantdeath", "view model triangle clicked");
         Model.setDifficulty(difficulty);
+    }
+
+    public void onSpriteClicked(String avatar) {
+        Player.setAvatar(avatar);
     }
 }
