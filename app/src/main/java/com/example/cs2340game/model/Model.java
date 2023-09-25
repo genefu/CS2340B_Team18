@@ -75,6 +75,10 @@ public class Model {
         Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
     }
 
+    public static int getDifficulty() {
+        return Model.difficulty;
+    }
+
     //Getter for leaderboard
     public static TreeSet<Score> getLeaderboard() { return leaderboard; }
 }
