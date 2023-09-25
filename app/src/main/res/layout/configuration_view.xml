@@ -40,7 +40,7 @@
                 android:text="@string/easy" />
 
                 <ImageButton
-                    android:id="@+id/triangle"
+                    android:id="@+id/easy_button"
                     android:text="@string/easy"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
@@ -49,7 +49,6 @@
                     app:layout_constraintRight_toLeftOf="@id/rightGuideline"
                     app:layout_constraintTop_toBottomOf="@id/topGuideline"
                     android:scaleType="fitCenter"
-                    android:background=""
                     android:onClick="onClickTriangle"/>
 
             <TextView
@@ -59,7 +58,7 @@
                 android:text="@string/medium" />
 
             <ImageButton
-                android:id="@+id/square"
+                android:id="@+id/medium_button"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:contentDescription="@string/config_square_sprite"
@@ -68,7 +67,6 @@
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 android:src="@drawable/square_sprite"
                 android:scaleType="fitCenter"
-                android:background=""
                 android:onClick="onClickSquare" />
 
             <TextView
@@ -79,10 +77,9 @@
                 android:text="@string/hard" />
 
             <ImageButton
-                android:id="@+id/circle"
+                android:id="@+id/hard_button"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background=""
                 android:contentDescription="@string/config_circle_sprite"
                 android:onClick="onClickCircle"
                 android:scaleType="fitCenter"
@@ -109,7 +106,6 @@
                 app:layout_constraintRight_toLeftOf="@id/rightGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 android:scaleType="fitCenter"
-                android:background=""
                 android:onClick="onClickTriangle"/>
 
             <ImageButton
@@ -122,14 +118,12 @@
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 android:src="@drawable/square_sprite"
                 android:scaleType="fitCenter"
-                android:background=""
                 android:onClick="onClickSquare" />
 
             <ImageButton
                 android:id="@+id/circle_sprite"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background=""
                 android:contentDescription="@string/config_circle_sprite"
                 android:onClick="onClickCircle"
                 android:scaleType="fitCenter"

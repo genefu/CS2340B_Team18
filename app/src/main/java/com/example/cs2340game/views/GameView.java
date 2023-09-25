@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
+import com.example.cs2340game.model.Model;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity {
@@ -22,9 +23,7 @@ public class GameView extends AppCompatActivity {
 
         viewModel = new GameViewModel();
         nameTextView = (TextView) findViewById(R.id.nameReceiver);
-        Intent receiveIntent = getIntent();
-        String nameReceive = receiveIntent.getStringExtra("nameSend");
-        nameTextView.setText(nameReceive);
+        nameTextView.setText(Model.getPlayerName());
     }
 
     //Switches view to EndView

@@ -2,6 +2,7 @@ package com.example.cs2340game.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -30,17 +31,18 @@ public class ConfigurationView extends AppCompatActivity {
     }
 
     //registers a click on triangle
-    public void onClickTriangle() {
+    public void onClickTriangle(View view) {
+        Log.d("iwantdeath", "trangle clicked");
         viewModel.onButtonClicked(0);
     }
 
     //registers a click on square
-    public void onClickSquare() {
+    public void onClickSquare(View view) {
         viewModel.onButtonClicked(1);
     }
 
     //registers a click on circle
-    public void onClickCircle() {
+    public void onClickCircle(View view) {
         viewModel.onButtonClicked(2);
     }
 

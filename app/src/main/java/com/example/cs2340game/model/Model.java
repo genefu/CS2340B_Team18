@@ -1,5 +1,7 @@
 package com.example.cs2340game.model;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import java.util.Set;
@@ -21,7 +23,7 @@ public class Model {
     //Constructor
     public static void initializeModel() {
         Model.playerName = "TESTNAME";
-        Model.difficulty = WIN_THRESHOLD;
+        Model.difficulty = -1;
         Model.score = 0;
         //leaderboard in descending order
         Model.leaderboard = new TreeSet<>();
@@ -70,6 +72,7 @@ public class Model {
     //Setter for difficulty
     public static void setDifficulty(int difficulty) {
         Model.difficulty = difficulty;
+        Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
     }
 
     //Getter for leaderboard

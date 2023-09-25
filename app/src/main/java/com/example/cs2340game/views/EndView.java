@@ -22,7 +22,6 @@ public class EndView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_view);
 
-
         leaderboardPlayers = new TextView[10];
         leaderboardScores = new TextView[10];
         winStatus = (TextView) findViewById(R.id.win_status);

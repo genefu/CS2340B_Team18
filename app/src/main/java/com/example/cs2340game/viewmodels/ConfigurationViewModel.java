@@ -1,5 +1,7 @@
 package com.example.cs2340game.viewmodels;
 
+import android.util.Log;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
@@ -30,6 +32,7 @@ public class ConfigurationViewModel extends BaseObservable {
 
     // Sets the difficulty based on character sprite choice
     public void onButtonClicked(int difficulty) {
+        Log.d("iwantdeath", "view model triangle clicked");
         Model.setDifficulty(difficulty);
     }
 }
