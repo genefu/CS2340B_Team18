@@ -18,6 +18,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/nameRequirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
         <EditText
             android:id="@+id/nameTextField"
             android:layout_width="wrap_content"
@@ -26,7 +32,9 @@
             android:hint="@string/config_name_hint"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@id/leftGuideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="username"
+            android:inputType="text" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,7 +57,7 @@
                     app:layout_constraintRight_toLeftOf="@id/rightGuideline"
                     app:layout_constraintTop_toBottomOf="@id/topGuideline"
                     android:scaleType="fitCenter"
-                    android:onClick="onClickTriangle"/>
+                    android:onClick="onClick"/>
 
             <TextView
                 android:id="@+id/textView"
@@ -67,7 +75,7 @@
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 android:src="@drawable/square_sprite"
                 android:scaleType="fitCenter"
-                android:onClick="onClickSquare" />
+                android:onClick="onClick" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -81,7 +89,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:contentDescription="@string/config_circle_sprite"
-                android:onClick="onClickCircle"
+                android:onClick="onClick"
                 android:scaleType="fitCenter"
                 android:src="@drawable/circle_sprite"
                 app:layout_constraintLeft_toRightOf="@id/leftGuideline"
@@ -91,43 +99,44 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose your avatar:"/>
+            android:text="@string/choose_your_avatar"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/triangle_sprite"
+                android:id="@+id/sprite1"
                 android:text="@string/easy"
                 android:layout_width="70sp"
                 android:layout_height="70sp"
                 android:contentDescription="@string/config_triangle_sprite"
-                android:src="@drawable/triangle_sprite"
+                android:src="@drawable/sprite1"
                 app:layout_constraintRight_toLeftOf="@id/rightGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 android:scaleType="fitCenter"
-                android:onClick="onClickTriangle"/>
+                android:onClick="onClick"/>
 
             <ImageButton
-                android:id="@+id/square_sprite"
+                android:id="@+id/sprite2"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:contentDescription="@string/config_square_sprite"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintRight_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
-                android:src="@drawable/square_sprite"
+                android:src="@drawable/sprite2"
                 android:scaleType="fitCenter"
-                android:onClick="onClickSquare" />
+                android:onClick="onClick" />
 
             <ImageButton
-                android:id="@+id/circle_sprite"
+                android:id="@+id/sprite3"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:contentDescription="@string/config_circle_sprite"
-                android:onClick="onClickCircle"
+                android:onClick="onClick"
                 android:scaleType="fitCenter"
-                android:src="@drawable/circle_sprite"
+                android:src="@drawable/sprite3"
                 app:layout_constraintLeft_toRightOf="@id/leftGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline" />
         </LinearLayout>
@@ -161,10 +170,12 @@
             app:layout_constraintGuide_percent="0.90" />
 
         <Button
+            android:id="@+id/next_button"
+            android:enabled="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#700000"
-            android:onClick="toGameView"
+            android:onClick="onClick"
             android:text="@string/next_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@id/rightGuideline"
