@@ -10,7 +10,7 @@ public class GameViewModel extends BaseObservable {
     private Player player;
     //Constructor
     public GameViewModel() {
-        player = new Player();
+        player = Model.getPlayer();
     }
 
     public int getHealth() {

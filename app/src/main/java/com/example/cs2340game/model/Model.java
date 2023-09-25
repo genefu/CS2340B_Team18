@@ -15,6 +15,7 @@ public class Model {
     static private int score;
     static private int difficulty; //TODO make this an ENUM (0 = easy, 1 = medium)
     static private TreeSet<Score> leaderboard;
+    static private Player player;
     static private final int LEADERBOARD_SIZE = 10;
     static private final int WIN_THRESHOLD = 1000;
 
@@ -22,11 +23,11 @@ public class Model {
 
     //Constructor
     public static void initializeModel() {
-        Model.playerName = "TESTNAME";
         Model.difficulty = -1;
         Model.score = 0;
         //leaderboard in descending order
         Model.leaderboard = new TreeSet<>();
+        Model.player = new Player(playerName);
         testLeaderboard(leaderboard);
     }
 
@@ -59,14 +60,17 @@ public class Model {
     }
 
     //TODO make getters and setters
+    public static Player getPlayer() {
+        return player;
+    }
     //Getter for playerName
     public static String getPlayerName() {
-        return playerName;
+        return player.getName();
     }
 
     //Setter for playerName
     public static void setPlayerName(String playerName) {
-        Model.playerName = playerName;
+        player.setName(playerName);
     }
 
     //Setter for difficulty

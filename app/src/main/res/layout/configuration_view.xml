@@ -111,7 +111,7 @@
                 android:layout_width="70sp"
                 android:layout_height="70sp"
                 android:contentDescription="@string/config_triangle_sprite"
-                android:src="@drawable/triangle_sprite"
+                android:src="@drawable/sprite1"
                 app:layout_constraintRight_toLeftOf="@id/rightGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
                 android:scaleType="fitCenter"
@@ -125,7 +125,7 @@
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintRight_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline"
-                android:src="@drawable/square_sprite"
+                android:src="@drawable/sprite2"
                 android:scaleType="fitCenter"
                 android:onClick="onClick" />
 
@@ -136,7 +136,7 @@
                 android:contentDescription="@string/config_circle_sprite"
                 android:onClick="onClick"
                 android:scaleType="fitCenter"
-                android:src="@drawable/circle_sprite"
+                android:src="@drawable/sprite3"
                 app:layout_constraintLeft_toRightOf="@id/leftGuideline"
                 app:layout_constraintTop_toBottomOf="@id/topGuideline" />
         </LinearLayout>

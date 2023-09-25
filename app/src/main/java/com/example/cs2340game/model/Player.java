@@ -4,13 +4,13 @@ public class Player {
     private int health;
     private int defense;
     private int strength;
-    private static String name;
+    private String name;
     private int speed;
 
-    private static String avatar;
+    private String avatar;
 
 
-    public Player() {
+    public Player(String name) {
         switch (Model.getDifficulty()) {
             case 0: health = 100;
                     strength = 100;
@@ -26,7 +26,7 @@ public class Player {
                      break;
         }
         speed = 100;
-        name = Model.getPlayerName();
+        this.name = name;
         avatar = "sprite1";
 
 
@@ -39,8 +39,19 @@ public class Player {
         return strength;
     }
 
-    public static void setAvatar(String avatar) {
-        Player.avatar = avatar;
+    public String getName() {
+        return name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
 }

@@ -48,6 +48,6 @@ public class ConfigurationViewModel extends BaseObservable {
     }
 
     public void onSpriteClicked(String avatar) {
-        Player.setAvatar(avatar);
+        Model.getPlayer().setAvatar(avatar);
     }
 }
