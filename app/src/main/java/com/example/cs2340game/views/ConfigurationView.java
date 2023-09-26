@@ -28,7 +28,7 @@ public class ConfigurationView extends AppCompatActivity implements View.OnClick
 
         nameSender.addTextChangedListener(new TextWatcher() {
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) { }
 
             @Override
             public void beforeTextChanged(CharSequence s, int swtart, int before, int count) {
@@ -36,8 +36,10 @@ public class ConfigurationView extends AppCompatActivity implements View.OnClick
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (nameSender.getText().toString() == null || nameSender.getText().toString().isBlank())
-                    ((Button)findViewById(R.id.next_button)).setEnabled(true);
+                if (nameSender.getText().toString() == null
+                        || nameSender.getText().toString().isBlank()) {
+                    ((Button) findViewById(R.id.next_button)).setEnabled(true);
+                }
             }
         });
 
