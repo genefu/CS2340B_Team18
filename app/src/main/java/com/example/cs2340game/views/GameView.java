@@ -16,10 +16,10 @@ import com.example.cs2340game.model.Player;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity {
-    TextView nameTextView;
-    TextView healthTextView;
-    TextView strengthTextView;
-    ImageView playerSprite;
+    private TextView nameTextView;
+    private TextView healthTextView;
+    private TextView strengthTextView;
+    private ImageView playerSprite;
     private GameViewModel viewModel;
 
     //Displays the view
@@ -36,7 +36,8 @@ public class GameView extends AppCompatActivity {
         strengthTextView = (TextView) findViewById(R.id.StrengthStat);
         strengthTextView.setText("Strength: " + Integer.toString(viewModel.getStrength()));
         playerSprite = (ImageView) findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(Model.getPlayer().getAvatar(), "drawable", this.getPackageName());
+        int id = this.getResources().getIdentifier(Model.getPlayer().getAvatar(),
+                "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
 
     }

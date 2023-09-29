@@ -4,20 +4,19 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import java.util.Set;
 import java.util.TreeSet;
 
 //Main Model
 public class Model {
 
     @Nullable
-    static private String playerName;
-    static private int score;
-    static private int difficulty; //TODO make this an ENUM (0 = easy, 1 = medium)
-    static private TreeSet<Score> leaderboard;
-    static private Player player;
-    static private final int LEADERBOARD_SIZE = 10;
-    static private final int WIN_THRESHOLD = 1000;
+    private static String playerName;
+    private static int score;
+    private static int difficulty; //TODO make this an ENUM (0 = easy, 1 = medium)
+    private static TreeSet<Score> leaderboard;
+    private static Player player;
+    private static final int LEADERBOARD_SIZE = 10;
+    private static final int WIN_THRESHOLD = 1000;
 
     //TODO enum variable for different weapon types
 
@@ -32,7 +31,7 @@ public class Model {
     }
 
     //Adds dummy scores to leaderboard
-    static public void testLeaderboard(TreeSet<Score> leaderboard) {
+    public static void testLeaderboard(TreeSet<Score> leaderboard) {
         updateLeaderboard(new Score("a", 1));
         updateLeaderboard(new Score("b", 2));
         updateLeaderboard(new Score("c", 3));
@@ -56,7 +55,7 @@ public class Model {
 
     //Determines if the player won or lost
     public static boolean isWinner() {
-        return score>1000; //TODO get real win condition
+        return score > 1000; //TODO get real win condition
     }
 
     //TODO make getters and setters
@@ -87,5 +86,6 @@ public class Model {
     }
 
     //Getter for leaderboard
-    public static TreeSet<Score> getLeaderboard() { return leaderboard; }
+    public static TreeSet<Score> getLeaderboard() {
+        return leaderboard; }
 }
