@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import java.util.Set;
 import java.util.TreeSet;
 
 //Main Model
@@ -33,7 +32,7 @@ public class Model {
     }
 
     //Adds dummy scores to leaderboard
-    static public void testLeaderboard(TreeSet<Score> leaderboard) {
+    public static void testLeaderboard(TreeSet<Score> leaderboard) {
         updateLeaderboard(new Score("a", 1));
         updateLeaderboard(new Score("b", 2));
         updateLeaderboard(new Score("c", 3));
@@ -57,7 +56,7 @@ public class Model {
 
     //Determines if the player won or lost
     public static boolean isWinner() {
-        return score>1000; //TODO get real win condition
+        return score > 1000; //TODO get real win condition
     }
 
     //TODO make getters and setters
@@ -88,5 +87,6 @@ public class Model {
     }
 
     //Getter for leaderboard
-    public static TreeSet<Score> getLeaderboard() { return leaderboard; }
+    public static TreeSet<Score> getLeaderboard() {
+        return leaderboard; }
 }

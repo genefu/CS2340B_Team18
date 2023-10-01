@@ -10,8 +10,6 @@ import com.example.cs2340game.R;
 import com.example.cs2340game.model.Score;
 import com.example.cs2340game.model.Model;
 
-import com.example.cs2340game.model.Model;
-
 import java.util.ArrayList;
 
 //View Model for End Screen
@@ -21,7 +19,8 @@ public class EndViewModel extends BaseObservable {
     private ArrayList<Score> leaderboard;
 
     // Constructor
-    public EndViewModel(TextView[] leaderboardPlayers, TextView[] leaderboardScores, TextView winStatus) {
+    public EndViewModel(TextView[] leaderboardPlayers,
+                        TextView[] leaderboardScores, TextView winStatus) {
         //initialize leaderboard
         Log.d("iwantdeath", "initialized");
         leaderboard = new ArrayList<>();
@@ -34,7 +33,7 @@ public class EndViewModel extends BaseObservable {
             i++;
         }
 
-        winStatus.setText(Model.isWinner()? "You win": "You lose");
+        winStatus.setText(Model.isWinner() ? "You win" : "You lose");
     }
 
     //Getter for leaderboard
