@@ -81,6 +81,7 @@ public class Model {
     //Setter for difficulty
     public static void setDifficulty(int difficulty) {
         Model.difficulty = difficulty;
+        player.updateDifficultyStats();
         Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
     }
 
