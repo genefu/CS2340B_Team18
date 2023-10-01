@@ -10,13 +10,14 @@ import java.util.TreeSet;
 public class Model {
 
     @Nullable
-    private static String playerName;
-    private static int score;
-    private static int difficulty; //TODO make this an ENUM (0 = easy, 1 = medium)
-    private static TreeSet<Score> leaderboard;
-    private static Player player;
-    private static final int LEADERBOARD_SIZE = 10;
-    private static final int WIN_THRESHOLD = 1000;
+    static private String playerName;
+    static private int score;
+    static private int difficulty; //TODO make this an ENUM (0 = easy, 1 = medium)
+    static private TreeSet<Score> leaderboard;
+    static private Player player;
+
+    static private final int LEADERBOARD_SIZE = 10;
+    static private final int WIN_THRESHOLD = 1000;
 
     //TODO enum variable for different weapon types
 
