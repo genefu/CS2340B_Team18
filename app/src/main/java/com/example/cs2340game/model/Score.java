@@ -4,6 +4,7 @@ package com.example.cs2340game.model;
 public class Score implements Comparable<Score> {
     private String playerName;
     private int score;
+
     //Constructor
     public Score(String playerName, int score) {
         this.playerName = playerName;
@@ -29,6 +30,7 @@ public class Score implements Comparable<Score> {
         return score.score - this.score;
     }
 
+    // To string
     @Override
     public String toString() { return "(" + playerName + ", " + score + ")"; }
 }

@@ -13,10 +13,12 @@ public class GameViewModel extends BaseObservable {
         player = Model.getPlayer();
     }
 
+    // Gets the total player health
     public int getHealth() {
         return player.getHealth();
     }
 
+    // Gets the total player strength
     public int getStrength() {
         return player.getStrength();
     }

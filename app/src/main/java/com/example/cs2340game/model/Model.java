@@ -16,6 +16,7 @@ public class Model {
     static private int difficulty; //TODO make this an ENUM (0 = easy, 1 = medium)
     static private TreeSet<Score> leaderboard;
     static private Player player;
+
     static private final int LEADERBOARD_SIZE = 10;
     static private final int WIN_THRESHOLD = 1000;
 
