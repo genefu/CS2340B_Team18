@@ -60,11 +60,11 @@ public class ConfigurationView extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         Log.d("iwantdeath", "OnClick");
         if (view.getId() == R.id.easy_button) {
-            viewModel.onDifficultyClicked(0);
+            viewModel.onDifficultyClicked(Model.Difficulty.EASY);
         } else if (view.getId() == R.id.medium_button) {
-            viewModel.onDifficultyClicked(1);
+            viewModel.onDifficultyClicked(Model.Difficulty.MEDIUM);
         } else if (view.getId() == R.id.hard_button) {
-            viewModel.onDifficultyClicked(2);
+            viewModel.onDifficultyClicked(Model.Difficulty.HARD);
         } else if (view.getId() == R.id.sprite1) {
             viewModel.onSpriteClicked("sprite1");
         } else if (view.getId() == R.id.sprite2) {

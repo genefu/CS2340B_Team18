@@ -24,7 +24,7 @@ public class ConfigurationViewModel extends BaseObservable {
     }
 
     // Sets the difficulty based on the difficulty buttons
-    public void onDifficultyClicked(int difficulty) {
+    public void onDifficultyClicked(Model.Difficulty difficulty) {
         Log.d("iwantdeath", "view model triangle clicked");
         Model.setDifficulty(difficulty);
     }

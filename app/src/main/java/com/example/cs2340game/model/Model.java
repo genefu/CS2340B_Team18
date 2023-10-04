@@ -12,7 +12,11 @@ public class Model {
     @Nullable
     static private String playerName;
     static private int score;
-    static private int difficulty; //TODO make this an ENUM (0 = easy, 1 = medium)
+    public enum Difficulty {
+        EASY, MEDIUM, HARD
+    }
+
+    static private Difficulty difficulty;
     static private TreeSet<Score> leaderboard;
     static private Player player;
 
@@ -23,8 +27,7 @@ public class Model {
 
     //Constructor
     public static void initializeModel() {
-        Model.difficulty = -1;
-        Model.score = 0;
+        Model.difficulty = Difficulty.MEDIUM;
         //leaderboard in descending order
         Model.leaderboard = new TreeSet<>();
         Model.player = new Player(playerName);
@@ -65,7 +68,7 @@ public class Model {
     }
 
     //Getter for difficulty
-    public static int getDifficulty() {
+    public static Difficulty getDifficulty() {
         return difficulty;
 
     }
@@ -80,8 +83,7 @@ public class Model {
     }
 
     //Setter for difficulty
-    public static void setDifficulty(int difficulty) {
-        Model.difficulty = difficulty;
+    public static void setDifficulty(Difficulty difficulty) {
         player.updateDifficultyStats();
         Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
     }
