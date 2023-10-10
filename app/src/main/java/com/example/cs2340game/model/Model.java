@@ -86,7 +86,7 @@ public class Model {
     public static void setDifficulty(Difficulty difficulty) {
         Model.difficulty = difficulty;
         player.updateDifficultyStats();
-        Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
+        //Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
     }
 
     //Getter for leaderboard
