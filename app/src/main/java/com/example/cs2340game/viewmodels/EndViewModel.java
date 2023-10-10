@@ -6,7 +6,6 @@ import android.widget.TextView;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
-import com.example.cs2340game.R;
 import com.example.cs2340game.model.Score;
 import com.example.cs2340game.model.Model;
 
