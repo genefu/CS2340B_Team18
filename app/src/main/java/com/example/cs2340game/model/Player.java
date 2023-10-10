@@ -21,13 +21,10 @@ public class Player {
     // Updates the player stats based on the difficulty
     public void updateDifficultyStats() {
         switch (Model.getDifficulty()) {
-            case 0: baseHealth = 100;
+            case EASY: baseHealth = 100;
                 baseStrength = 100;
                 break;
-            case 1: baseHealth = 50;
-                baseStrength = 50;
-                break;
-            case 2: baseHealth = 25;
+            case HARD: baseHealth = 25;
                 baseStrength = 25;
                 break;
             default: baseHealth = 50;
