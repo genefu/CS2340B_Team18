@@ -16,21 +16,21 @@ public class DifficultyUnitTests {
     public void correctHealthBasedOnDifficulty() {
         Model model = Model.getInstance();
         model.setDifficulty(Model.Difficulty.HARD);
-        assertEquals(25, Model.getPlayer().getHealth());
+        assertEquals(25, model.getPlayer().getHealth());
         model.setDifficulty(Model.Difficulty.MEDIUM);
-        assertEquals(50, Model.getPlayer().getHealth());
+        assertEquals(50, model.getPlayer().getHealth());
         model.setDifficulty(Model.Difficulty.EASY);
-        assertEquals(100, Model.getPlayer().getHealth());
+        assertEquals(100, model.getPlayer().getHealth());
     }
 
     @Test
     public void correctStrengthBasedOnDifficulty() {
         Model model = Model.getInstance();
         model.setDifficulty(Model.Difficulty.HARD);
-        assertEquals(25, Model.getPlayer().getStrength());
+        assertEquals(25, model.getPlayer().getStrength());
         model.setDifficulty(Model.Difficulty.MEDIUM);
-        assertEquals(50, Model.getPlayer().getStrength());
+        assertEquals(50, model.getPlayer().getStrength());
         model.setDifficulty(Model.Difficulty.EASY);
-        assertEquals(100, Model.getPlayer().getStrength());
+        assertEquals(100, model.getPlayer().getStrength());
     }
 }

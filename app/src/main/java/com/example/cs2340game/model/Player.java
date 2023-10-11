@@ -13,7 +13,7 @@ public class Player {
 
     // Constructor
     private Player(String name) {
-        updateDifficultyStats();
+        updateDifficultyStats(Model.Difficulty.MEDIUM);
         speed = 100;
         this.name = name;
         avatar = "sprite1";
@@ -25,8 +25,8 @@ public class Player {
     }
 
     // Updates the player stats based on the difficulty
-    public void updateDifficultyStats() {
-        switch (Model.getDifficulty()) {
+    public void updateDifficultyStats(Model.Difficulty difficulty) {
+        switch (difficulty) {
             case EASY:
                 baseHealth = 100;
                 baseStrength = 100;
