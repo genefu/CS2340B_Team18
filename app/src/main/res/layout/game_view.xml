@@ -84,8 +84,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#700000"
-            android:onClick="toEndView"
-            android:text="QUIT"
+            android:onClick="toGameView2"
+            android:text="to gameview 2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 

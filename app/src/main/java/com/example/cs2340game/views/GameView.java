@@ -51,7 +51,16 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
         gameTimer = new GameTimer(this);
         tickOffset = gameTimer.getTicks() % 40;
+    }
 
+    //switches view to second game screen
+    public void toGameView2(View view) {
+        setContentView(R.layout.game_view2);
+    }
+
+    //switches view to third game screen
+    public void toGameView3(View view) {
+        setContentView(R.layout.game_view3);
     }
 
     //Switches view to EndView
