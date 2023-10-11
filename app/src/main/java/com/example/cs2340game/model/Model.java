@@ -18,8 +18,8 @@ public class Model {
     private TreeSet<Score> leaderboard;
     private Player player;
 
-    private final int LEADERBOARD_SIZE = 10;
-    private final int WIN_THRESHOLD = 1000;
+    private static final int LEADERBOARD_SIZE = 10;
+    private static final int WIN_THRESHOLD = 1000;
 
     //TODO enum variable for different weapon types
 
@@ -28,13 +28,21 @@ public class Model {
         //leaderboard in descending order
         this.leaderboard = new TreeSet<>();
         this.player = Player.getInstance(null);
-        this.score = 20; //increments when objectives met (kill enemy, beat room), and lowers over time
+        //increments when objectives met (kill enemy, beat room), and lowers over time
+        this.score = 20;
         testLeaderboard(leaderboard);
     }
 
     // Creates (if not already created) and returns the model instance
     public static Model getInstance() {
-        return modelInstance == null? modelInstance = new Model(): modelInstance;
+        if (modelInstance == null) {
+            synchronized (Model.class) {
+                if (modelInstance == null) {
+                    modelInstance = new Model();
+                }
+            }
+        }
+        return modelInstance;
     }
 
     // Adds dummy scores to leaderboard
@@ -91,7 +99,9 @@ public class Model {
     }
 
     // Setter for score
-    public void setScore(int score) { this.score = score; }
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     // Setter for difficulty
     public void setDifficulty(Difficulty difficulty) {

@@ -37,15 +37,17 @@ public class GameViewModel extends BaseObservable {
     // Gets the string for the current time
     // Updates seconds, minutes, and hours to be correct
     public String getTime() {
-        while(secondsPassed >= 60) {
+        while (secondsPassed >= 60) {
             minutesPassed++;
             secondsPassed -= 60;
         }
-        while(minutesPassed >= 60) {
+        while (minutesPassed >= 60) {
             hoursPassed++;
             minutesPassed -= 60;
         }
-        return (hoursPassed == 0? "" + minutesPassed: hoursPassed + ":" + String.format("%02d", minutesPassed)) + ":" + String.format("%02d", secondsPassed);
+        return (hoursPassed == 0 ? "" + minutesPassed : hoursPassed + ":"
+                + String.format("%02d", minutesPassed)) + ":"
+                + String.format("%02d", secondsPassed);
     }
 
     // Setter for all time variables for debug
