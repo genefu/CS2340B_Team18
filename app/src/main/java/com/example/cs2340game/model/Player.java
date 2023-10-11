@@ -21,24 +21,31 @@ public class Player {
 
     //Creates (if not already created) and returns the player instance
     public static Player getInstance(String name) {
-        return playerInstance == null? playerInstance = new Player(name): playerInstance;
+        if (playerInstance == null) {
+            synchronized (Player.class) {
+                if (playerInstance == null) {
+                    playerInstance = new Player(name);
+                }
+            }
+        }
+        return playerInstance;
     }
 
     // Updates the player stats based on the difficulty
     public void updateDifficultyStats(Model.Difficulty difficulty) {
         switch (difficulty) {
-            case EASY:
-                baseHealth = 100;
-                baseStrength = 100;
-                break;
-            case HARD:
-                baseHealth = 25;
-                baseStrength = 25;
-                break;
-            default:
-                baseHealth = 50;
-                baseStrength = 50;
-                break;
+        case EASY:
+            baseHealth = 100;
+            baseStrength = 100;
+            break;
+        case HARD:
+            baseHealth = 25;
+            baseStrength = 25;
+            break;
+        default:
+            baseHealth = 50;
+            baseStrength = 50;
+            break;
         }
     }
 
