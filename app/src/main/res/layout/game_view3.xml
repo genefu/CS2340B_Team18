@@ -4,13 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".views.GameView">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#700000"
-        android:text="NEXT"
+        android:text="QUIT"
+        android:onClick="toEndView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
