@@ -24,6 +24,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class ConfigurationView extends AppCompatActivity implements
         View.OnClickListener, GameTimer.TimerListener {
+    private Model model;
     private ConfigurationViewModel viewModel;
     private GameTimer gameTimer;
     private EditText nameSender;
@@ -32,6 +33,7 @@ public class ConfigurationView extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configuration_view);
+        this.model = Model.getInstance();
         nameSender = (EditText) findViewById(R.id.nameTextField);
         viewModel = new ConfigurationViewModel();
         gameTimer = new GameTimer(this);
@@ -54,7 +56,8 @@ public class ConfigurationView extends AppCompatActivity implements
     public void toGameView(View view) {
         Log.d("iwantdeath", "Going to Game View");
         String playerName = nameSender.getText().toString();
-        Model.setPlayerName(playerName);
+        model.setPlayerName(playerName);
+        gameTimer.stopTimer();
         //sendIntent.putExtra("nameSend",nameSender.getText().toString()); Obsolete
         startActivity(new Intent(this, GameView.class));
     }
@@ -87,7 +90,7 @@ public class ConfigurationView extends AppCompatActivity implements
             ((TextView) findViewById(R.id.nameRequirement)).setText("Premium");
             findViewById(R.id.next_button).setEnabled(false);
         } else {
-            Model.setPlayerName(playerName);
+            model.setPlayerName(playerName);
             findViewById(R.id.next_button).setEnabled(true);
         }
     }

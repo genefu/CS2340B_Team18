@@ -2,6 +2,7 @@ package com.example.cs2340game.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,38 +10,66 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
+import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
-public class GameView extends AppCompatActivity {
+public class GameView extends AppCompatActivity implements GameTimer.TimerListener {
+    private Model model;
     private TextView nameTextView;
     private TextView healthTextView;
     private TextView strengthTextView;
+    private TextView scoreTextView;
+    private TextView timeTextView;
     private ImageView playerSprite;
     private GameViewModel viewModel;
+    private GameTimer gameTimer;
+    private int tickOffset;
 
     //Displays the view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
+        this.model = Model.getInstance();
 
         viewModel = new GameViewModel();
-        nameTextView = (TextView) findViewById(R.id.nameReceiver);
-        nameTextView.setText(Model.getPlayerName());
-        healthTextView = (TextView) findViewById(R.id.HealthStat);
+        nameTextView = findViewById(R.id.nameReceiver);
+        nameTextView.setText(model.getPlayerName());
+        healthTextView = findViewById(R.id.HealthStat);
         healthTextView.setText("Health: " + Integer.toString(viewModel.getHealth()));
-        strengthTextView = (TextView) findViewById(R.id.StrengthStat);
+        strengthTextView = findViewById(R.id.StrengthStat);
         strengthTextView.setText("Strength: " + Integer.toString(viewModel.getStrength()));
-        playerSprite = (ImageView) findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(Model.getPlayer().getAvatar(),
+        scoreTextView = findViewById(R.id.ScoreText);
+        scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
+        timeTextView = findViewById(R.id.TimeText);
+        timeTextView.setText("Time: " + viewModel.getTime());
+        playerSprite = findViewById(R.id.player_sprite);
+        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
+
+        gameTimer = new GameTimer(this);
+        tickOffset = gameTimer.getTicks() % 40;
 
     }
 
     //Switches view to EndView
     public void toEndView(View view) {
         startActivity(new Intent(GameView.this, EndView.class));
+    }
+
+    @Override
+    public void onTimerUpdate(int ticks) {
+        Log.d("iwantdeath", "gameTicks: " + ticks);
+        //viewModel.updateView();
+        if (ticks % 20 - tickOffset % 20 == 0) { //every half second
+            viewModel.decrementScore();
+            if (ticks % 40 - tickOffset == 0) { //every second
+                viewModel.incrementSecond();
+            }
+        }
+        scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
+        timeTextView.setText("Time: " + viewModel.getTime());
     }
 }
