@@ -6,7 +6,6 @@
     tools:context=".views.EndView">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.cs2340game.viewmodels.EndViewModel" />

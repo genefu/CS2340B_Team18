@@ -21,6 +21,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
+
         <ImageView
             android:id="@+id/player_sprite"
             android:layout_width="100sp"
@@ -69,6 +70,7 @@
                 android:textColor="#FF0000"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/StrengthStat" />
+
             <TextView
                 android:id="@+id/TimeText"
                 android:layout_width="wrap_content"
@@ -90,6 +92,5 @@
             app:layout_constraintRight_toRightOf="parent" />
 
     </LinearLayout>
-
 
 </layout>
