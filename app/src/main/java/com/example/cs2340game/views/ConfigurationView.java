@@ -87,9 +87,12 @@ public class ConfigurationView extends AppCompatActivity implements
     public void updateNextButton() {
         String playerName = nameSender.getText().toString();
         if (TextUtils.isEmpty(playerName.trim())) {
-            ((TextView) findViewById(R.id.nameRequirement)).setText("Premium");
+            ((TextView) findViewById(R.id.nameRequirement)).setText(
+                    "A name must be entered before continuing");
             findViewById(R.id.next_button).setEnabled(false);
         } else {
+            ((TextView) findViewById(R.id.nameRequirement)).setText(
+                    " ");
             model.setPlayerName(playerName);
             findViewById(R.id.next_button).setEnabled(true);
         }
