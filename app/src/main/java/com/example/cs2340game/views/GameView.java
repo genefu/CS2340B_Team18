@@ -43,7 +43,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         scoreTextView = findViewById(R.id.ScoreText);
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView = findViewById(R.id.TimeText);
-        timeTextView.setText("Time: " + Integer.toString(viewModel.getSeconds()));
+        timeTextView.setText("Time: " + viewModel.getTime());
         playerSprite = findViewById(R.id.player_sprite);
         int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
                 "drawable", this.getPackageName());
@@ -70,6 +70,6 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             }
         }
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
-        timeTextView.setText("Time: " + Integer.toString(viewModel.getSeconds()));
+        timeTextView.setText("Time: " + viewModel.getTime());
     }
 }

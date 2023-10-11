@@ -62,7 +62,7 @@ public class Model {
 
     // Determines if the player won or lost
     public boolean isWinner() {
-        return score > 1000; //TODO get real win condition
+        return score > WIN_THRESHOLD; //TODO get real win condition
     }
 
     //TODO make getters and setters

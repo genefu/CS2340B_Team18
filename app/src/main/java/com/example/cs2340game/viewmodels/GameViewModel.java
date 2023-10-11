@@ -10,6 +10,8 @@ public class GameViewModel extends BaseObservable {
     private Model model;
     private Player player;
     private int secondsPassed;
+    private int minutesPassed;
+    private int hoursPassed;
     //Constructor
     public GameViewModel() {
         this.model = Model.getInstance();
@@ -32,8 +34,25 @@ public class GameViewModel extends BaseObservable {
         return model.getScore();
     }
 
-    public int getSeconds() {
-        return secondsPassed;
+    // Gets the string for the current time
+    // Updates seconds, minutes, and hours to be correct
+    public String getTime() {
+        while(secondsPassed >= 60) {
+            minutesPassed++;
+            secondsPassed -= 60;
+        }
+        while(minutesPassed >= 60) {
+            hoursPassed++;
+            minutesPassed -= 60;
+        }
+        return (hoursPassed == 0? "" + minutesPassed: hoursPassed + ":" + String.format("%02d", minutesPassed)) + ":" + String.format("%02d", secondsPassed);
+    }
+
+    // Setter for all time variables for debug
+    public void setTime(int secondsPassed, int minutesPassed, int hoursPassed) {
+        this.secondsPassed = secondsPassed;
+        this.minutesPassed = minutesPassed;
+        this.hoursPassed = hoursPassed;
     }
 
     //updates the view
