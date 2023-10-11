@@ -33,7 +33,14 @@ public class Model {
 
     //Creates (if not already created) and returns the model instance
     public static Model getInstance() {
-        return modelInstance == null? modelInstance = new Model(): modelInstance;
+        if (modelInstance == null) {
+            synchronized (Model.class) {
+                if (modelInstance == null) {
+                    modelInstance = new Model();
+                }
+            }
+        }
+        return modelInstance;
     }
 
     //Adds dummy scores to leaderboard
