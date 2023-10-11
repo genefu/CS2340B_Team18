@@ -1,25 +1,25 @@
 package com.example.cs2340game.model;
 
-import android.util.Log;
-
 import androidx.annotation.Nullable;
 
 import java.util.TreeSet;
 
 //Main Model
 public class Model {
+    @Nullable
+    private static String playerName;
     private static Model modelInstance;
     private static int score;
     public enum Difficulty {
         EASY, MEDIUM, HARD
     }
 
-    static private Difficulty difficulty;
-    static private TreeSet<Score> leaderboard;
-    static private Player player;
+    private static Difficulty difficulty;
+    private static TreeSet<Score> leaderboard;
+    private static Player player;
 
-    static private final int LEADERBOARD_SIZE = 10;
-    static private final int WIN_THRESHOLD = 1000;
+    private static final int LEADERBOARD_SIZE = 10;
+    private static final int WIN_THRESHOLD = 1000;
 
     //TODO enum variable for different weapon types
 
@@ -88,7 +88,7 @@ public class Model {
     public static void setDifficulty(Difficulty difficulty) {
         Model.difficulty = difficulty;
         player.updateDifficultyStats();
-        Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
+        //Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
     }
 
     //Getter for leaderboard
