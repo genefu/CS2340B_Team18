@@ -47,17 +47,17 @@
                 android:layout_height="wrap_content"
                 android:text="@string/easy" />
 
-                <ImageButton
-                    android:id="@+id/easy_button"
-                    android:text="@string/easy"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:contentDescription="@string/config_triangle_sprite"
-                    android:src="@drawable/triangle_sprite"
-                    app:layout_constraintRight_toLeftOf="@id/rightGuideline"
-                    app:layout_constraintTop_toBottomOf="@id/topGuideline"
-                    android:scaleType="fitCenter"
-                    android:onClick="onClick"/>
+            <ImageButton
+                android:id="@+id/easy_button"
+                android:text="@string/easy"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:contentDescription="@string/config_triangle_sprite"
+                android:src="@drawable/triangle_sprite"
+                app:layout_constraintRight_toLeftOf="@id/rightGuideline"
+                app:layout_constraintTop_toBottomOf="@id/topGuideline"
+                android:scaleType="fitCenter"
+                android:onClick="onClick"/>
 
             <TextView
                 android:id="@+id/textView"

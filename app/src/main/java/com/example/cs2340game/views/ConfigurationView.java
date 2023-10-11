@@ -2,7 +2,10 @@ package com.example.cs2340game.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.View;
 import android.text.Editable;
@@ -11,13 +14,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.text.TextWatcher;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.cs2340game.R;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.viewmodels.ConfigurationViewModel;
+import com.google.android.material.button.MaterialButton;
 
 public class ConfigurationView extends AppCompatActivity implements View.OnClickListener, GameTimer.TimerListener {
     private ConfigurationViewModel viewModel;

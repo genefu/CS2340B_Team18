@@ -8,10 +8,8 @@ import java.util.TreeSet;
 
 //Main Model
 public class Model {
-
-    @Nullable
-    static private String playerName;
-    static private int score;
+    private static Model modelInstance;
+    private static int score;
     public enum Difficulty {
         EASY, MEDIUM, HARD
     }
@@ -25,13 +23,17 @@ public class Model {
 
     //TODO enum variable for different weapon types
 
-    //Constructor
-    public static void initializeModel() {
+    private Model() {
         Model.difficulty = Difficulty.MEDIUM;
         //leaderboard in descending order
         Model.leaderboard = new TreeSet<>();
-        Model.player = new Player(playerName);
+        Model.player = Player.getInstance(null);
         testLeaderboard(leaderboard);
+    }
+
+    //Creates (if not already created) and returns the model instance
+    public static Model getInstance() {
+        return modelInstance == null? modelInstance = new Model(): modelInstance;
     }
 
     //Adds dummy scores to leaderboard
