@@ -1,12 +1,18 @@
 package com.example.cs2340game.model;
 
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 //Stores a score and the player that achieved it for the leaderboard
 public class Score implements Comparable<Score> {
     private String playerName;
     private int score;
 
+    private String date;
+
     //Constructor
     public Score(String playerName, int score) {
+                 //Calendar calendar) {
         this.playerName = playerName;
         this.score = score;
     }
