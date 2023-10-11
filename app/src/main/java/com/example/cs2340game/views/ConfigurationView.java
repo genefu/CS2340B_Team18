@@ -58,6 +58,7 @@ public class ConfigurationView extends AppCompatActivity implements
         String playerName = nameSender.getText().toString();
         model.setPlayerName(playerName);
         gameTimer.stopTimer();
+        model.setScore(20);
         //sendIntent.putExtra("nameSend",nameSender.getText().toString()); Obsolete
         startActivity(new Intent(this, GameView.class));
     }

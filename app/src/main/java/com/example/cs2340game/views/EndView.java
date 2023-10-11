@@ -13,6 +13,8 @@ import com.example.cs2340game.viewmodels.EndViewModel;
 public class EndView extends AppCompatActivity {
     private TextView[] leaderboardPlayers;
     private TextView[] leaderboardScores;
+    private TextView[] leaderboardTimes;
+
     private TextView winStatus;
     private EndViewModel viewModel;
 
@@ -24,6 +26,7 @@ public class EndView extends AppCompatActivity {
 
         leaderboardPlayers = new TextView[10];
         leaderboardScores = new TextView[10];
+        leaderboardTimes = new TextView[10];
         winStatus = (TextView) findViewById(R.id.win_status);
         addLeaderboardTextViews();
 
