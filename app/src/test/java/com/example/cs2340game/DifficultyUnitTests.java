@@ -14,23 +14,23 @@ import com.example.cs2340game.model.Model;
 public class DifficultyUnitTests {
     @Test
     public void correctHealthBasedOnDifficulty() {
-        Model.initializeModel();
-        Model.setDifficulty(Model.Difficulty.HARD);
+        Model model = Model.getInstance();
+        model.setDifficulty(Model.Difficulty.HARD);
         assertEquals(25, Model.getPlayer().getHealth());
-        Model.setDifficulty(Model.Difficulty.MEDIUM);
+        model.setDifficulty(Model.Difficulty.MEDIUM);
         assertEquals(50, Model.getPlayer().getHealth());
-        Model.setDifficulty(Model.Difficulty.EASY);
+        model.setDifficulty(Model.Difficulty.EASY);
         assertEquals(100, Model.getPlayer().getHealth());
     }
 
     @Test
     public void correctStrengthBasedOnDifficulty() {
-        Model.initializeModel();
-        Model.setDifficulty(Model.Difficulty.HARD);
+        Model model = Model.getInstance();
+        model.setDifficulty(Model.Difficulty.HARD);
         assertEquals(25, Model.getPlayer().getStrength());
-        Model.setDifficulty(Model.Difficulty.MEDIUM);
+        model.setDifficulty(Model.Difficulty.MEDIUM);
         assertEquals(50, Model.getPlayer().getStrength());
-        Model.setDifficulty(Model.Difficulty.EASY);
+        model.setDifficulty(Model.Difficulty.EASY);
         assertEquals(100, Model.getPlayer().getStrength());
     }
 }
