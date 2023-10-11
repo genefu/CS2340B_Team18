@@ -11,7 +11,7 @@ public class WelcomeViewModel extends BaseObservable {
     // constructor of ViewModel class
     public WelcomeViewModel() {
         // instantiating model
-        Model.initializeModel();
+        Model.getInstance();
     }
 
     // actions to be performed

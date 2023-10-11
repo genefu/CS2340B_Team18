@@ -1,6 +1,7 @@
 package com.example.cs2340game.model;
 
 public class Player {
+    private static Player playerInstance;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
@@ -11,11 +12,16 @@ public class Player {
 
 
     // Constructor
-    public Player(String name) {
+    private Player(String name) {
         updateDifficultyStats();
         speed = 100;
         this.name = name;
         avatar = "sprite1";
+    }
+
+    //Creates (if not already created) and returns the player instance
+    public static Player getInstance(String name) {
+        return playerInstance == null? playerInstance = new Player(name): playerInstance;
     }
 
     // Updates the player stats based on the difficulty
