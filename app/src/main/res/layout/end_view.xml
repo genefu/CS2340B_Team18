@@ -17,11 +17,20 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/win_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAllCaps="true"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -39,14 +48,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/end_leaderboard_players" />
+                        android:text="Players" />
 
                     <TextView
                         android:id="@+id/score_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/end_leaderboard_scores" />
+                        android:text="Scores" />
+
+                    <TextView
+                        android:id="@+id/time_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Time" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -67,6 +83,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -79,14 +102,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -99,14 +129,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -119,14 +156,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -139,14 +183,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -159,14 +210,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -179,14 +237,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -199,14 +264,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -219,14 +291,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -239,26 +318,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
 
                     <TextView
                         android:id="@+id/score10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="TEST" />
+
+                    <TextView
+                        android:id="@+id/time10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TEST" />
                 </LinearLayout>
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/win_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAllCaps="true"
-                android:textSize="48sp"
-                android:textStyle="bold" />
         </LinearLayout>
 
         <Button
