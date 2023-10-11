@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/dungeon"
     tools:context=".views.GameView">
 
     <data>
@@ -61,7 +60,12 @@
                     android:textSize="25sp"
                     app:layout_constraintRight_toRightOf="parent" />
 
-            </LinearLayout>
+            <ImageView
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:id="@+id/tileSet1"/>
+
+        </LinearLayout>
 
             <Button
                 android:layout_width="wrap_content"
@@ -73,6 +77,5 @@
                 app:layout_constraintRight_toRightOf="parent" />
 
     </LinearLayout>
-
 
 </layout>

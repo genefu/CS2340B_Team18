@@ -18,6 +18,8 @@ public class GameView extends AppCompatActivity {
     private TextView strengthTextView;
     private ImageView playerSprite;
     private GameViewModel viewModel;
+    private ImageView gameView;
+    private TileMap tileSet;
 
     //Displays the view
     @Override
@@ -36,6 +38,9 @@ public class GameView extends AppCompatActivity {
         int id = this.getResources().getIdentifier(Model.getPlayer().getAvatar(),
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
+        gameView = (ImageView) findViewById(R.id.tileSet1);
+        tileSet = new TileMap(gameView, "1");
+        gameView.setImageBitmap(tileSet.getTileSet());
 
     }
 
@@ -43,4 +48,5 @@ public class GameView extends AppCompatActivity {
     public void toEndView(View view) {
         startActivity(new Intent(GameView.this, EndView.class));
     }
+
 }
