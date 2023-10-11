@@ -76,6 +76,9 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         timeTextView = findViewById(R.id.TimeText);
         timeTextView.setText("Time: " + viewModel.getTime());
         playerSprite = findViewById(R.id.player_sprite);
+        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
+                "drawable", this.getPackageName());
+        playerSprite.setImageResource(id);
     }
 
     //switches view to third game screen
