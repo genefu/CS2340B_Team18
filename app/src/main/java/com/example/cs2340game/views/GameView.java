@@ -38,6 +38,7 @@ public class GameView extends AppCompatActivity {
         int id = this.getResources().getIdentifier(Model.getPlayer().getAvatar(),
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
+
         gameView = (ImageView) findViewById(R.id.tileSet1);
         tileSet = new TileMap(gameView, "1");
         gameView.setImageBitmap(tileSet.getTileSet());

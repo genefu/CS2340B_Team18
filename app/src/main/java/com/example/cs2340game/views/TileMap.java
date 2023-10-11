@@ -4,17 +4,20 @@ import android.graphics.Bitmap;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.View;
 import com.example.cs2340game.R;
 
 public class TileMap {
-
+    private final int VIEW_SIZE = 100;
     private Bitmap myBitmap;
     private Canvas canvas;
     private Bitmap tileSet;
+
     public TileMap(View gameView, String screen) {
-        int height = gameView.getHeight();
-        int width = gameView.getWidth();
+        int height = VIEW_SIZE;//gameView.getHeight();
+        int width = VIEW_SIZE;//gameView.getWidth();
+        Log.d("iwantdeath", width + " " + height);
         Resources res = gameView.getResources();
         //set the tile set based on which game screen it is
         if (screen.equals("1")) {
