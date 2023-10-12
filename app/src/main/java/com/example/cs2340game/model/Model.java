@@ -9,7 +9,7 @@ public class Model {
     @Nullable
     private static String playerName;
     private static Model modelInstance;
-    private int score;
+    private Score score;
     public enum Difficulty {
         EASY, MEDIUM, HARD
     }
@@ -29,7 +29,7 @@ public class Model {
         this.leaderboard = Leaderboard.getInstance();
         this.player = Player.getInstance(null);
         //increments when objectives met (kill enemy, beat room), and lowers over time
-        this.score = 20;
+        this.score = new Score(player.getName(), 20, "");
         //testLeaderboard(leaderboard);
     }
 
@@ -71,7 +71,7 @@ public class Model {
 
     // Determines if the player won or lost
     public boolean isWinner() {
-        return score > WIN_THRESHOLD; //TODO get real win condition
+        return score.getScoreValue() > WIN_THRESHOLD; //TODO get real win condition
     }
 
     //TODO make getters and setters
@@ -90,18 +90,13 @@ public class Model {
     }
 
     // Getter for score
-    public int getScore() {
+    public Score getScore() {
         return score;
     }
 
     // Setter for playerName
     public void setPlayerName(String playerName) {
         player.setName(playerName);
-    }
-
-    // Setter for score
-    public void setScore(int score) {
-        this.score = score;
     }
 
     // Setter for difficulty
