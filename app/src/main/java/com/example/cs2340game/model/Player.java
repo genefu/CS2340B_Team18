@@ -35,7 +35,7 @@ public class Player {
         if (playerInstance == null) {
             synchronized (Player.class) {
                 if (playerInstance == null) {
-                    throw new IllegalArgumentException("Player doesn't exist, needs a name parameter")
+                    throw new IllegalArgumentException("Player doesn't exist, needs a name parameter");
                 }
             }
         }

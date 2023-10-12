@@ -19,7 +19,7 @@ import com.example.cs2340game.views.GameView;
 public class AvatarUnitTests {
     @Test
     public void correctAvatarStored() {
-        Player player = Player.getInstance();
+        Player player = Player.getInstance("name");
         ConfigurationViewModel configurationViewModel = new ConfigurationViewModel();
         configurationViewModel.onSpriteClicked("sprite1");
         assertEquals("sprite1", player.getAvatar());
