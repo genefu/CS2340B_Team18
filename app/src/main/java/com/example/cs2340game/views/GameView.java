@@ -61,13 +61,6 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     }
 
     //switches view to second game screen
-    /**public void toGameView2(View view) {
-        LinearLayout gameScreen = new LinearLayout(this);
-        Button toGameView3 = new Button(this);
-        toGameView3.setText("To GameView3");
-        //setContentView(R.layout.game_view2);
-    }**/
-
     public void toGameView2(View view) {
         setContentView(R.layout.game_view2);
         nameTextView = findViewById(R.id.nameReceiver);
