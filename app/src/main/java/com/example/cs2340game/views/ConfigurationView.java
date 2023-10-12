@@ -31,6 +31,9 @@ public class ConfigurationView extends AppCompatActivity implements
     private ImageButton easy;
     private ImageButton medium;
     private ImageButton hard;
+    private ImageButton char1;
+    private ImageButton char2;
+    private ImageButton char3;
     //Displays the view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +50,12 @@ public class ConfigurationView extends AppCompatActivity implements
         medium.setOnClickListener(this);
         hard = (ImageButton) findViewById(R.id.hard_button);
         hard.setOnClickListener(this);
-        ImageButton triangle = (ImageButton) findViewById(R.id.sprite1);
-        triangle.setOnClickListener(this);
-        ImageButton square = (ImageButton) findViewById(R.id.sprite2);
-        square.setOnClickListener(this);
-        ImageButton circle = (ImageButton) findViewById(R.id.sprite3);
-        circle.setOnClickListener(this);
+        char1 = (ImageButton) findViewById(R.id.sprite1);
+        char1.setOnClickListener(this);
+        char2 = (ImageButton) findViewById(R.id.sprite2);
+        char2.setOnClickListener(this);
+        char3 = (ImageButton) findViewById(R.id.sprite3);
+        char3.setOnClickListener(this);
     }
 
     //Switches view to GameView
@@ -87,10 +90,19 @@ public class ConfigurationView extends AppCompatActivity implements
             hard.setImageResource(R.drawable.circle_sprite_highlighted);
         } else if (view.getId() == R.id.sprite1) {
             viewModel.onSpriteClicked("sprite1");
+            char1.setImageResource(R.drawable.sprite1_highlighted);
+            char2.setImageResource(R.drawable.sprite2);
+            char3.setImageResource(R.drawable.sprite3);
         } else if (view.getId() == R.id.sprite2) {
             viewModel.onSpriteClicked("sprite2");
+            char1.setImageResource(R.drawable.sprite1);
+            char2.setImageResource(R.drawable.sprite2_highlighted);
+            char3.setImageResource(R.drawable.sprite3);
         } else if (view.getId() == R.id.sprite3) {
             viewModel.onSpriteClicked("sprite3");
+            char1.setImageResource(R.drawable.sprite1);
+            char2.setImageResource(R.drawable.sprite2);
+            char3.setImageResource(R.drawable.sprite3_highlighted);
         } else if (view.getId() == R.id.next_button) {
             Log.d("gameTick", "Detected next button");
             toGameView(view);
