@@ -30,7 +30,8 @@ public class EndView extends AppCompatActivity {
         winStatus = (TextView) findViewById(R.id.win_status);
         addLeaderboardTextViews();
 
-        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores, winStatus, leaderboardTimes);
+        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores,
+                winStatus, leaderboardTimes);
     }
 
     //Adds all leaderboard text views to their respective arrays
