@@ -28,6 +28,9 @@ public class ConfigurationView extends AppCompatActivity implements
     private ConfigurationViewModel viewModel;
     private GameTimer gameTimer;
     private EditText nameSender;
+    private ImageButton easy;
+    private ImageButton medium;
+    private ImageButton hard;
     //Displays the view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,11 @@ public class ConfigurationView extends AppCompatActivity implements
         viewModel = new ConfigurationViewModel();
         gameTimer = new GameTimer(this);
 
-        ImageButton easy = (ImageButton) findViewById(R.id.easy_button);
+        easy = (ImageButton) findViewById(R.id.easy_button);
         easy.setOnClickListener(this);
-        ImageButton medium = (ImageButton) findViewById(R.id.medium_button);
+        medium = (ImageButton) findViewById(R.id.medium_button);
         medium.setOnClickListener(this);
-        ImageButton hard = (ImageButton) findViewById(R.id.hard_button);
+        hard = (ImageButton) findViewById(R.id.hard_button);
         hard.setOnClickListener(this);
         ImageButton triangle = (ImageButton) findViewById(R.id.sprite1);
         triangle.setOnClickListener(this);
@@ -69,10 +72,19 @@ public class ConfigurationView extends AppCompatActivity implements
         Log.d("iwantdeath", "OnClick");
         if (view.getId() == R.id.easy_button) {
             viewModel.onDifficultyClicked(Model.Difficulty.EASY);
+            easy.setImageResource(R.drawable.triangle_sprite_highlighted);
+            medium.setImageResource(R.drawable.square_sprite);
+            hard.setImageResource(R.drawable.circle_sprite);
         } else if (view.getId() == R.id.medium_button) {
             viewModel.onDifficultyClicked(Model.Difficulty.MEDIUM);
+            easy.setImageResource(R.drawable.triangle_sprite);
+            medium.setImageResource(R.drawable.square_sprite_highlighted);
+            hard.setImageResource(R.drawable.circle_sprite);
         } else if (view.getId() == R.id.hard_button) {
             viewModel.onDifficultyClicked(Model.Difficulty.HARD);
+            easy.setImageResource(R.drawable.triangle_sprite);
+            medium.setImageResource(R.drawable.square_sprite);
+            hard.setImageResource(R.drawable.circle_sprite_highlighted);
         } else if (view.getId() == R.id.sprite1) {
             viewModel.onSpriteClicked("sprite1");
         } else if (view.getId() == R.id.sprite2) {
@@ -84,6 +96,7 @@ public class ConfigurationView extends AppCompatActivity implements
             toGameView(view);
         }
     }
+
     //Updates next button based on if the playerName input is filled out
     public void updateNextButton() {
         String playerName = nameSender.getText().toString();
