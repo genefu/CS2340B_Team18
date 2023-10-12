@@ -15,30 +15,38 @@ public class Model {
     }
 
     private Difficulty difficulty;
-    private TreeSet<Score> leaderboard;
+    private Leaderboard leaderboard;
     private Player player;
 
-    private final int LEADERBOARD_SIZE = 10;
-    private final int WIN_THRESHOLD = 1000;
+    private static final int LEADERBOARD_SIZE = 10;
+    private static final int WIN_THRESHOLD = 1000;
 
     //TODO enum variable for different weapon types
 
     private Model() {
         this.difficulty = Difficulty.MEDIUM;
         //leaderboard in descending order
-        this.leaderboard = new TreeSet<>();
+        this.leaderboard = Leaderboard.getInstance();
         this.player = Player.getInstance(null);
-        this.score = 20; //increments when objectives met (kill enemy, beat room), and lowers over time
-        testLeaderboard(leaderboard);
+        //increments when objectives met (kill enemy, beat room), and lowers over time
+        this.score = 20;
+        //testLeaderboard(leaderboard);
     }
 
     // Creates (if not already created) and returns the model instance
     public static Model getInstance() {
-        return modelInstance == null? modelInstance = new Model(): modelInstance;
+        if (modelInstance == null) {
+            synchronized (Model.class) {
+                if (modelInstance == null) {
+                    modelInstance = new Model();
+                }
+            }
+        }
+        return modelInstance;
     }
 
     // Adds dummy scores to leaderboard
-    public void testLeaderboard(TreeSet<Score> leaderboard) {
+    /*public void testLeaderboard(TreeSet<Score> leaderboard) {
         updateLeaderboard(new Score("a", 1));
         updateLeaderboard(new Score("b", 2));
         updateLeaderboard(new Score("c", 3));
@@ -50,13 +58,14 @@ public class Model {
         updateLeaderboard(new Score("i", 8));
         updateLeaderboard(new Score("j", 9));
         updateLeaderboard(new Score("k", 10));
-    }
+    }*/
 
     // Updates leaderboard with a new score
     public void updateLeaderboard(Score score) {
-        leaderboard.add(score);
-        if (leaderboard.size() > LEADERBOARD_SIZE) {
-            leaderboard.pollLast(); //Removes smallest score
+        TreeSet<Score> leaderboardSet = leaderboard.getLeaderboardSet();
+        leaderboardSet.add(score);
+        if (leaderboardSet.size() > LEADERBOARD_SIZE) {
+            leaderboardSet.pollLast(); //Removes smallest score
         }
     }
 
@@ -91,7 +100,9 @@ public class Model {
     }
 
     // Setter for score
-    public void setScore(int score) { this.score = score; }
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     // Setter for difficulty
     public void setDifficulty(Difficulty difficulty) {
@@ -101,7 +112,7 @@ public class Model {
     }
 
     // Getter for leaderboard
-    public TreeSet<Score> getLeaderboard() {
+    public Leaderboard getLeaderboard() {
         return leaderboard; }
 
     public int getLeaderBoardSize() {

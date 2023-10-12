@@ -13,6 +13,8 @@ import com.example.cs2340game.viewmodels.EndViewModel;
 public class EndView extends AppCompatActivity {
     private TextView[] leaderboardPlayers;
     private TextView[] leaderboardScores;
+    private TextView[] leaderboardTimes;
+
     private TextView winStatus;
     private EndViewModel viewModel;
 
@@ -24,10 +26,11 @@ public class EndView extends AppCompatActivity {
 
         leaderboardPlayers = new TextView[10];
         leaderboardScores = new TextView[10];
+        leaderboardTimes = new TextView[10];
         winStatus = (TextView) findViewById(R.id.win_status);
         addLeaderboardTextViews();
 
-        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores, winStatus);
+        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores, winStatus, leaderboardTimes);
     }
 
     //Adds all leaderboard text views to their respective arrays
@@ -53,6 +56,17 @@ public class EndView extends AppCompatActivity {
         leaderboardScores[7] = (TextView) findViewById(R.id.score8);
         leaderboardScores[8] = (TextView) findViewById(R.id.score9);
         leaderboardScores[9] = (TextView) findViewById(R.id.score10);
+
+        leaderboardTimes[0] = (TextView) findViewById(R.id.time1);
+        leaderboardTimes[1] = (TextView) findViewById(R.id.time2);
+        leaderboardTimes[2] = (TextView) findViewById(R.id.time3);
+        leaderboardTimes[3] = (TextView) findViewById(R.id.time4);
+        leaderboardTimes[4] = (TextView) findViewById(R.id.time5);
+        leaderboardTimes[5] = (TextView) findViewById(R.id.time6);
+        leaderboardTimes[6] = (TextView) findViewById(R.id.time7);
+        leaderboardTimes[7] = (TextView) findViewById(R.id.time8);
+        leaderboardTimes[8] = (TextView) findViewById(R.id.time9);
+        leaderboardTimes[9] = (TextView) findViewById(R.id.time10);
     }
 
     //Switches view to WelcomeView
