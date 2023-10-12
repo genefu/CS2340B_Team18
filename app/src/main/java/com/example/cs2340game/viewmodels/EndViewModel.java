@@ -21,7 +21,7 @@ public class EndViewModel extends BaseObservable {
     // Constructor
     public EndViewModel(TextView[] leaderboardPlayers,
                         TextView[] leaderboardScores, TextView winStatus,
-                        TextView[] leaderboardTimes) {
+                        TextView[] leaderboardTimes, TextView currentScore) {
         this.model = Model.getInstance();
         //initialize leaderboard
         Log.d("iwantdeath", "initialized");
@@ -35,6 +35,7 @@ public class EndViewModel extends BaseObservable {
             leaderboardTimes[i].setText(score.getDateTime());
             i++;
         }
+        currentScore.setText(model.getScore());
 
         winStatus.setText(model.isWinner() ? "You win" : "You lose");
     }

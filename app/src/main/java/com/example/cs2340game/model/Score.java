@@ -49,5 +49,5 @@ public class Score implements Comparable<Score> {
     // To string
     @Override
     public String toString() {
-        return "(" + playerName + ", " + score + ")"; }
+        return "(" + playerName + ", " + score + ", " + dateTime + ")"; }
 }
