@@ -3,14 +3,11 @@ package com.example.cs2340game.model;
 import java.util.TreeSet;
 
 public class Leaderboard {
-    private TreeSet<Score> leaderboard;
-    private Score scoreEntry;
-    private Model model;
     private static Leaderboard leaderboardInstance;
+    private TreeSet<Score> leaderboard;
 
-    public Leaderboard() {
-        model = model.getInstance();
-        leaderboard = model.getLeaderboard();
+    private Leaderboard() {
+        leaderboard = new TreeSet<>();
     }
 
     public static Leaderboard getInstance() {
@@ -22,6 +19,11 @@ public class Leaderboard {
             }
         }
         return leaderboardInstance;
+    }
+
+    //Getter for leaderboard
+    public TreeSet<Score> getLeaderboardSet() {
+        return leaderboard;
     }
 
 }

@@ -15,7 +15,7 @@ public class Model {
     }
 
     private Difficulty difficulty;
-    private TreeSet<Score> leaderboard;
+    private Leaderboard leaderboard;
     private Player player;
 
     private static final int LEADERBOARD_SIZE = 10;
@@ -26,7 +26,7 @@ public class Model {
     private Model() {
         this.difficulty = Difficulty.MEDIUM;
         //leaderboard in descending order
-        this.leaderboard = new TreeSet<>();
+        this.leaderboard = Leaderboard.getInstance();
         this.player = Player.getInstance(null);
         //increments when objectives met (kill enemy, beat room), and lowers over time
         this.score = 20;
@@ -62,9 +62,10 @@ public class Model {
 
     // Updates leaderboard with a new score
     public void updateLeaderboard(Score score) {
-        leaderboard.add(score);
-        if (leaderboard.size() > LEADERBOARD_SIZE) {
-            leaderboard.pollLast(); //Removes smallest score
+        TreeSet<Score> leaderboardSet = leaderboard.getLeaderboardSet();
+        leaderboardSet.add(score);
+        if (leaderboardSet.size() > LEADERBOARD_SIZE) {
+            leaderboardSet.pollLast(); //Removes smallest score
         }
     }
 
@@ -111,6 +112,6 @@ public class Model {
     }
 
     // Getter for leaderboard
-    public TreeSet<Score> getLeaderboard() {
+    public Leaderboard getLeaderboard() {
         return leaderboard; }
 }
