@@ -13,6 +13,7 @@ public class Score implements Comparable<Score> {
         this.dateTime = dateTime;
     }
 
+
     //Setter for playerName
     public String getPlayerName() {
         return playerName; }

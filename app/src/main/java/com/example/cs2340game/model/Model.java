@@ -114,4 +114,8 @@ public class Model {
     // Getter for leaderboard
     public Leaderboard getLeaderboard() {
         return leaderboard; }
+
+    public int getLeaderBoardSize() {
+        return leaderboard.size();
+    }
 }
