@@ -20,17 +20,19 @@ public class EndViewModel extends BaseObservable {
 
     // Constructor
     public EndViewModel(TextView[] leaderboardPlayers,
-                        TextView[] leaderboardScores, TextView winStatus) {
+                        TextView[] leaderboardScores, TextView winStatus,
+                        TextView[] leaderboardTimes) {
         this.model = Model.getInstance();
         //initialize leaderboard
         Log.d("iwantdeath", "initialized");
         leaderboard = new ArrayList<>();
         int i = 0;
-        for (Score score: model.getLeaderboard()) {
+        for (Score score : model.getLeaderboard()) {
             Log.d("iwantdeath", score.toString());
             leaderboard.add(score);
             leaderboardPlayers[i].setText(score.getPlayerName());
             leaderboardScores[i].setText(String.valueOf(score.getScore()));
+            leaderboardTimes[i].setText(score.getDateTime());
             i++;
         }
 
