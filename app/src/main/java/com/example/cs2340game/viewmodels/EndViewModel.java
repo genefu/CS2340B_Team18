@@ -27,7 +27,7 @@ public class EndViewModel extends BaseObservable {
         Log.d("iwantdeath", "initialized");
         leaderboard = new ArrayList<>();
         int i = 0;
-        for (Score score : model.getLeaderboard()) {
+        for (Score score : model.getLeaderboard().getLeaderboardSet()) {
             Log.d("iwantdeath", score.toString());
             leaderboard.add(score);
             leaderboardPlayers[i].setText(score.getPlayerName());
