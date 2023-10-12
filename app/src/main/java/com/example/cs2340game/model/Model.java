@@ -103,4 +103,8 @@ public class Model {
     // Getter for leaderboard
     public TreeSet<Score> getLeaderboard() {
         return leaderboard; }
+
+    public int getLeaderBoardSize() {
+        return leaderboard.size();
+    }
 }

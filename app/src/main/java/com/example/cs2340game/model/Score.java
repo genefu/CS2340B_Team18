@@ -11,6 +11,7 @@ public class Score implements Comparable<Score> {
         this.score = score;
     }
 
+
     //Setter for playerName
     public String getPlayerName() {
         return playerName; }
