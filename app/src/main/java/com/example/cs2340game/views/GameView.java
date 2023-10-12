@@ -1,6 +1,8 @@
 package com.example.cs2340game.views;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,12 +10,14 @@ import android.view.View;
 import android.widget.ImageView;
 //import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.icu.text.DateFormat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.Score;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity implements GameTimer.TimerListener {
@@ -27,6 +31,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private GameViewModel viewModel;
     private GameTimer gameTimer;
     private int tickOffset;
+    private String date;
 
     //Displays the view
     @Override
@@ -103,6 +108,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     //Switches view to EndView
     public void toEndView(View view) {
         startActivity(new Intent(GameView.this, EndView.class));
+        //record score when button is pressed (will later change to when player completes level)
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+        date = dateFormat.format(Calendar.getInstance().getTime());
+        model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
     }
 
     @Override

@@ -75,21 +75,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -102,21 +102,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,21 +129,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -156,21 +156,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -183,21 +183,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -210,21 +210,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -237,21 +237,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -264,21 +264,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -291,21 +291,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -318,21 +318,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/score10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/time10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TEST" />
+                        android:text="" />
                 </LinearLayout>
 
             </LinearLayout>
