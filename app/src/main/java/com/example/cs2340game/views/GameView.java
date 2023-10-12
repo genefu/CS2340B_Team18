@@ -100,11 +100,13 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
     //Switches view to EndView
     public void toEndView(View view) {
-        startActivity(new Intent(GameView.this, EndView.class));
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
         model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
+        model.getScore().setPlayerName(model.getPlayerName());
+        model.getScore().setDateTime(date);
+        startActivity(new Intent(GameView.this, EndView.class));
     }
 
     @Override

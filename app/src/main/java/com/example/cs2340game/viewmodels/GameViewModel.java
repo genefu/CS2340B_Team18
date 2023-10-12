@@ -31,7 +31,7 @@ public class GameViewModel extends BaseObservable {
 
     // Gets the current player score
     public int getScore() {
-        return model.getScore();
+        return model.getScore().getScoreValue();
     }
 
     // Gets the string for the current time
@@ -64,9 +64,9 @@ public class GameViewModel extends BaseObservable {
 
     // Subtracts 1 point from score until it hits 0
     public void decrementScore() {
-        int currentScore = model.getScore();
+        int currentScore = model.getScore().getScoreValue();
         if (currentScore > 0) {
-            model.setScore(currentScore - 1);
+            model.getScore().setScoreValue(currentScore - 1);
         }
     }
 

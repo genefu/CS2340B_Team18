@@ -31,11 +31,11 @@ public class EndViewModel extends BaseObservable {
             Log.d("iwantdeath", score.toString());
             leaderboard.add(score);
             leaderboardPlayers[i].setText(score.getPlayerName());
-            leaderboardScores[i].setText(String.valueOf(score.getScore()));
+            leaderboardScores[i].setText(String.valueOf(score.getScoreValue()));
             leaderboardTimes[i].setText(score.getDateTime());
             i++;
         }
-        currentScore.setText(model.getScore());
+        currentScore.setText(model.getScore().toString());
 
         winStatus.setText(model.isWinner() ? "You win" : "You lose");
     }

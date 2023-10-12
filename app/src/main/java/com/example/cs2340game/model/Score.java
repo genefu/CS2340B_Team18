@@ -23,11 +23,11 @@ public class Score implements Comparable<Score> {
         this.playerName = playerName; }
 
     //Setter for score
-    public int getScore() {
+    public int getScoreValue() {
         return score; }
 
     //Getter for score
-    public void setScore(int score) {
+    public void setScoreValue(int score) {
         this.score = score; }
 
     //getter for date/time
@@ -49,5 +49,5 @@ public class Score implements Comparable<Score> {
     // To string
     @Override
     public String toString() {
-        return "(" + playerName + ", " + score + ", " + dateTime + ")"; }
+        return "Name: " + playerName + "\nScore: " + score + "\nTime: " + dateTime; }
 }
