@@ -31,6 +31,17 @@ public class Player {
         return playerInstance;
     }
 
+    public static Player getInstance() {
+        if (playerInstance == null) {
+            synchronized (Player.class) {
+                if (playerInstance == null) {
+                    throw new IllegalArgumentException("Player doesn't exist, needs a name parameter")
+                }
+            }
+        }
+        return playerInstance;
+    }
+
     // Updates the player stats based on the difficulty
     public void updateDifficultyStats(Model.Difficulty difficulty) {
         switch (difficulty) {
