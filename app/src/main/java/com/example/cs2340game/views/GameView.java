@@ -41,7 +41,7 @@ public class GameView extends AppCompatActivity {
 
         gameView = (ImageView) findViewById(R.id.tileSet1);
         tileSet = new TileMap(gameView, "1", this);
-        gameView.setImageBitmap(tileSet.getTileSet());
+        //gameView.setImageBitmap(tileSet.getTileSet());
 
     }
 
