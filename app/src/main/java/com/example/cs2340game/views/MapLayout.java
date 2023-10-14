@@ -4,13 +4,15 @@ import com.example.cs2340game.model.Model;
 
 public class MapLayout {
     private Model model;
+    private int viewWidth;
+    private int viewHeight;
     int[][] mapLayout;
-    public MapLayout () {
+    public MapLayout() {
         model = Model.getInstance();
-        double height = model.getScreenHeight() - model.getScreenHeight()%225; //gameView.getHeight();
-        double width = height * 1.7; //gameView.getWidth();
-        int numCols = (int) height / 225;
-        int numRows = (int)width/225;
+        viewHeight = model.getScreenHeight() - model.getScreenHeight()%225; //gameView.getHeight();
+        viewWidth = (int) (viewHeight * 1.7); //gameView.getWidth();
+        int numCols = (int) viewHeight / 225;
+        int numRows = (int) viewWidth/225;
         mapLayout = new int[][]{{3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
                 {3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3},
                 {3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 3, 3, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3},
@@ -35,5 +37,11 @@ public class MapLayout {
 
     public int[][] getMapLayout() {
         return mapLayout;
+    }
+    public int getViewWidth() {
+        return viewWidth;
+    }
+    public int getViewHeight() {
+        return viewHeight;
     }
 }
