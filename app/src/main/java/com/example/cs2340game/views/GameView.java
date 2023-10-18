@@ -32,6 +32,8 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private GameTimer gameTimer;
     private int tickOffset;
     private String date;
+    private ImageView gameView;
+    private TileMap tileSet;
 
     //Displays the view
     @Override
@@ -56,8 +58,13 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
 
+        gameView = (ImageView) findViewById(R.id.tileSet);
+        tileSet = new TileMap(gameView, "3", this);
+        //gameView.setImageBitmap(tileSet.getTileSet());
+
         gameTimer = new GameTimer(this);
         tickOffset = gameTimer.getTicks() % 40;
+
     }
 
     //switches view to second game screen
@@ -122,4 +129,5 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());
     }
+
 }
