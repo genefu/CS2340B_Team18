@@ -39,7 +39,7 @@ public class GameView extends AppCompatActivity {
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
 
-        gameView = (ImageView) findViewById(R.id.tileSet1);
+        gameView = (ImageView) findViewById(R.id.tileSet);
         tileSet = new TileMap(gameView, "1", this);
         //gameView.setImageBitmap(tileSet.getTileSet());
 
