@@ -13,26 +13,31 @@ import java.util.ArrayList;
 
 //View Model for End Screen
 public class EndViewModel extends BaseObservable {
+    private Model model;
     private TextView winStatus;
     @Bindable
     private ArrayList<Score> leaderboard;
 
     // Constructor
     public EndViewModel(TextView[] leaderboardPlayers,
-                        TextView[] leaderboardScores, TextView winStatus) {
+                        TextView[] leaderboardScores, TextView winStatus,
+                        TextView[] leaderboardTimes, TextView currentScore) {
+        this.model = Model.getInstance();
         //initialize leaderboard
         Log.d("iwantdeath", "initialized");
         leaderboard = new ArrayList<>();
         int i = 0;
-        for (Score score: Model.getLeaderboard()) {
+        for (Score score : model.getLeaderboard().getLeaderboardSet()) {
             Log.d("iwantdeath", score.toString());
             leaderboard.add(score);
             leaderboardPlayers[i].setText(score.getPlayerName());
-            leaderboardScores[i].setText(String.valueOf(score.getScore()));
+            leaderboardScores[i].setText(String.valueOf(score.getScoreValue()));
+            leaderboardTimes[i].setText(score.getDateTime());
             i++;
         }
+        currentScore.setText(model.getScore().toString());
 
-        winStatus.setText(Model.isWinner() ? "You win" : "You lose");
+        winStatus.setText(model.isWinner() ? "You win" : "You lose");
     }
 
     //Getter for leaderboard

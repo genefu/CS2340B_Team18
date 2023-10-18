@@ -4,12 +4,15 @@ package com.example.cs2340game.model;
 public class Score implements Comparable<Score> {
     private String playerName;
     private int score;
+    private String dateTime;
 
     //Constructor
-    public Score(String playerName, int score) {
+    public Score(String playerName, int score, String dateTime) {
         this.playerName = playerName;
         this.score = score;
+        this.dateTime = dateTime;
     }
+
 
     //Setter for playerName
     public String getPlayerName() {
@@ -20,12 +23,22 @@ public class Score implements Comparable<Score> {
         this.playerName = playerName; }
 
     //Setter for score
-    public int getScore() {
+    public int getScoreValue() {
         return score; }
 
     //Getter for score
-    public void setScore(int score) {
+    public void setScoreValue(int score) {
         this.score = score; }
+
+    //getter for date/time
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    //setter for date/time
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
 
     //Compare for sorted leaderboard list
     //outputs negative if larger due to treesets sorting in ascending order by default
@@ -36,5 +49,5 @@ public class Score implements Comparable<Score> {
     // To string
     @Override
     public String toString() {
-        return "(" + playerName + ", " + score + ")"; }
+        return "Name: " + playerName + "\nScore: " + score + "\nTime: " + dateTime; }
 }
