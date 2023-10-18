@@ -1,5 +1,7 @@
 package com.example.cs2340game.model;
 
+import android.content.res.Resources;
+
 import androidx.annotation.Nullable;
 
 import java.util.TreeSet;
@@ -68,6 +70,13 @@ public class Model {
             leaderboardSet.pollLast(); //Removes smallest score
         }
     }
+    public static int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
+    }
+
+    public static int getScreenHeight() {
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
+    }
 
     // Determines if the player won or lost
     public boolean isWinner() {
@@ -110,7 +119,9 @@ public class Model {
     public Leaderboard getLeaderboard() {
         return leaderboard; }
 
+}
     public int getLeaderBoardSize() {
         return leaderboard.getLeaderboardSet().size();
     }
 }
+

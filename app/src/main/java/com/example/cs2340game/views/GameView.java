@@ -29,6 +29,8 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private TextView timeTextView;
     private ImageView playerSprite;
     private GameViewModel viewModel;
+    private ImageView gameView;
+    private TileMap tileSet;
     private GameTimer gameTimer;
     private int tickOffset;
     private String date;
@@ -55,6 +57,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
+
+        gameView = (ImageView) findViewById(R.id.tileSet);
+        tileSet = new TileMap(gameView, "3", this);
+        //gameView.setImageBitmap(tileSet.getTileSet());
 
         gameTimer = new GameTimer(this);
         tickOffset = gameTimer.getTicks() % 40;
