@@ -23,7 +23,7 @@ public class TileMap {
     private Rect destinationRect;
     public TileMap(ImageView gameView, String screen, Context context) {
 
-        mapLayout = new MapLayout();
+        mapLayout = new MapLayout(screen);
         Bitmap tempBitmap = Bitmap.createBitmap(mapLayout.getViewWidth(),
                 mapLayout.getViewHeight(), Bitmap.Config.RGB_565);
         Canvas canvas = new Canvas(tempBitmap);

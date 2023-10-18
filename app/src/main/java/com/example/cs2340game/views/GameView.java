@@ -40,7 +40,7 @@ public class GameView extends AppCompatActivity {
         playerSprite.setImageResource(id);
 
         gameView = (ImageView) findViewById(R.id.tileSet);
-        tileSet = new TileMap(gameView, "1", this);
+        tileSet = new TileMap(gameView, "3", this);
         //gameView.setImageBitmap(tileSet.getTileSet());
 
     }
