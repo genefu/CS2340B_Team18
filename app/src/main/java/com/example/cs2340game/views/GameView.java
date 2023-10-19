@@ -104,11 +104,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
                 avatar.applyVector(StandardVectors.UP_VECTOR);
                 return true;
             case KeyEvent.KEYCODE_A:
-                if (event.isShiftPressed()) {
-                    avatar.removeVector(StandardVectors.LEFT_VECTOR);
-                } else {
-                    avatar.applyVector(StandardVectors.LEFT_VECTOR);
-                }
+                avatar.applyVector(StandardVectors.LEFT_VECTOR);
                 return true;
             case KeyEvent.KEYCODE_S:
                 avatar.applyVector(StandardVectors.DOWN_VECTOR);
