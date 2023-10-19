@@ -34,6 +34,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private GameTimer gameTimer;
     private int tickOffset;
     private String date;
+    private int currentRoom;
 
     //Displays the view
     @Override
@@ -59,49 +60,25 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         playerSprite.setImageResource(id);
 
         gameView = (ImageView) findViewById(R.id.tileSet);
-        tileSet = new TileMap(gameView, "3", this);
+        currentRoom = 1;
+        tileSet = new TileMap(gameView, currentRoom + "", this);
         //gameView.setImageBitmap(tileSet.getTileSet());
 
         gameTimer = new GameTimer(this);
         tickOffset = gameTimer.getTicks() % 40;
+
     }
 
     //switches view to second game screen
-    public void toGameView2(View view) {
-        setContentView(R.layout.game_view2);
-        nameTextView = findViewById(R.id.nameReceiver);
-        nameTextView.setText(model.getPlayerName());
-        healthTextView = findViewById(R.id.HealthStat);
-        healthTextView.setText("Health: " + Integer.toString(viewModel.getHealth()));
-        strengthTextView = findViewById(R.id.StrengthStat);
-        strengthTextView.setText("Strength: " + Integer.toString(viewModel.getStrength()));
-        scoreTextView = findViewById(R.id.ScoreText);
-        scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
-        timeTextView = findViewById(R.id.TimeText);
-        timeTextView.setText("Time: " + viewModel.getTime());
-        playerSprite = findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
-                "drawable", this.getPackageName());
-        playerSprite.setImageResource(id);
-    }
+    public void switchRoom(View view) {
+        currentRoom++;
+        if (currentRoom == 4) {
+            toEndView(view);
+        } else {
+            tileSet = new TileMap(gameView, currentRoom + "", this);
+            Log.d("bruh", currentRoom + ": room");
+        }
 
-    //switches view to third game screen
-    public void toGameView3(View view) {
-        setContentView(R.layout.game_view3);
-        nameTextView = findViewById(R.id.nameReceiver);
-        nameTextView.setText(model.getPlayerName());
-        healthTextView = findViewById(R.id.HealthStat);
-        healthTextView.setText("Health: " + Integer.toString(viewModel.getHealth()));
-        strengthTextView = findViewById(R.id.StrengthStat);
-        strengthTextView.setText("Strength: " + Integer.toString(viewModel.getStrength()));
-        scoreTextView = findViewById(R.id.ScoreText);
-        scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
-        timeTextView = findViewById(R.id.TimeText);
-        timeTextView.setText("Time: " + viewModel.getTime());
-        playerSprite = findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
-                "drawable", this.getPackageName());
-        playerSprite.setImageResource(id);
     }
 
     //Switches view to EndView
@@ -128,4 +105,5 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());
     }
+
 }
