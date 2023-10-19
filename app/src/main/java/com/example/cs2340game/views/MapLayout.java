@@ -9,14 +9,15 @@ public class MapLayout {
     private int[][] mapLayout;
     public MapLayout(String screen) {
         model = Model.getInstance();
-        if (model.getScreenHeight() > model.getScreenWidth()) {
-            viewWidth = model.getScreenWidth() - model.getScreenHeight() % 64;
-            viewHeight = (int) (viewWidth * 0.588);
+        if (model.getScreenHeight() > 1.7 * model.getScreenWidth()) {
+            viewWidth = model.getScreenWidth() - model.getScreenWidth() % 64; //MAY NEED TO ROUND BECAUSE OF FLOATING POINTS
+            viewHeight = (int) (viewWidth / 1.7);
         }
-        if (model.getScreenHeight() < model.getScreenWidth()) {
+        if (model.getScreenHeight() <= 1.7 *model.getScreenWidth()) {
             viewHeight = model.getScreenHeight() - model.getScreenHeight() % 64; //gameView.getHeight();
             viewWidth = (int) (viewHeight * 1.7); //gameView.getWidth();
         }
+
         int numCols = (int) viewHeight / 64;
         int numRows = (int) viewWidth / 64;
         switch (screen) {
