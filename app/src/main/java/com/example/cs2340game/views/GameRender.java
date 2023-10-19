@@ -10,29 +10,27 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.cs2340game.R;
+import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.Model;
 
 public class GameRender {
-    private static final int VIEW_SIZE = 100;
-    private Canvas canvas;
-    private Bitmap tileSet;
-    private Tile[][] tilemap;
     private MapLayout mapLayout;
     private Context context;
+    private Canvas canvas;
+    private Bitmap tempBitmap;
     private Model model;
-    private Rect destinationRect;
     private ImageView gameView;
     public GameRender(ImageView gameView, String screen, Context context) {
 
         mapLayout = new MapLayout(screen);
-        Bitmap tempBitmap = Bitmap.createBitmap(34*64,
+        tempBitmap = Bitmap.createBitmap(34*64,
                 20*64, Bitmap.Config.RGB_565);
-        Canvas canvas = new Canvas(tempBitmap);
-        Resources res = gameView.getResources();
+        canvas = new Canvas(tempBitmap);
+        this.model = Model.getInstance();
         this.gameView = gameView;
-        drawMap(canvas);
-        drawAvatar(canvas);
-        gameView.setImageBitmap(Bitmap.createScaledBitmap(new BitmapDrawable(context.getResources(), tempBitmap).getBitmap(), mapLayout.getViewWidth(),mapLayout.getViewHeight(), false));
+        this.context = context;
+
+        refreshScreen();
         Log.d("test", gameView.getLayoutParams().width + " " + gameView.getLayoutParams().height + " " + model.getScreenWidth() + " " + model.getScreenHeight());
     }
     public void drawMap(Canvas canvas) {
@@ -62,7 +60,19 @@ public class GameRender {
     }
 
     public void drawAvatar(Canvas canvas) {
-        //Tile avatar = new Tile(context, R.drawable.)
+        Avatar avatar = model.getPlayer().getAvatar();
+        Bitmap avatarBitmap = avatar.getBitMap(context);
+        int[] gameViewPosition = new int[2];
+        gameView.getLocationOnScreen(gameViewPosition);
+        canvas.drawBitmap(avatarBitmap, gameViewPosition[0] + avatar.getPosX(), gameViewPosition[1] + avatar.getPosY(), null);
+    }
+
+    public void refreshScreen() {
+        drawMap(canvas);
+        drawAvatar(canvas);
+
+        gameView.setImageBitmap(Bitmap.createScaledBitmap(new BitmapDrawable(context.getResources(), tempBitmap).getBitmap(), mapLayout.getViewWidth(),mapLayout.getViewHeight(), false));
+        gameView.invalidate();
     }
 //
 //    public Bitmap getTileSet() {

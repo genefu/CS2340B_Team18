@@ -15,7 +15,7 @@ public class Player {
         updateDifficultyStats(Model.Difficulty.MEDIUM);
         speed = 100;
         this.name = name;
-        avatar = new Avatar("sprite1");
+        avatar = Avatar.getInstance("sprite1");
     }
 
     //Creates (if not already created) and returns the player instance

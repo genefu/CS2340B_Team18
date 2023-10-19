@@ -1,6 +1,6 @@
 package com.example.cs2340game.model;
 
-public class Vector {
+public class Vector implements Comparable<Vector> {
     private double x;
     private double y;
 
@@ -33,5 +33,21 @@ public class Vector {
 
     public double getY() {
         return y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Vector v = (Vector) o;
+        return v.getX() == this.x && v.getY() == this.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) this.x * 100 + (int)this.y;
+    }
+
+    @Override
+    public int compareTo(Vector v) {
+        return (int) (v.getX() - this.x + v.getY() - this.y);
     }
 }

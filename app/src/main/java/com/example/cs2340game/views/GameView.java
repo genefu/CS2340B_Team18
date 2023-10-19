@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -34,11 +36,12 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private ImageView playerSprite;
     private GameViewModel viewModel;
     private ImageView gameView;
-    private TileMap tileSet;
+    private GameRender gameRender;
     private GameTimer gameTimer;
     private int tickOffset;
     private String date;
     private int currentRoom;
+    private Avatar avatar;
 
     //Displays the view
     @Override
@@ -59,18 +62,18 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         timeTextView = findViewById(R.id.TimeText);
         timeTextView.setText("Time: " + viewModel.getTime());
         playerSprite = findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar().getSprite(),
+        avatar = model.getPlayer().getAvatar();
+        int id = this.getResources().getIdentifier(avatar.getSprite(),
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
 
         gameView = (ImageView) findViewById(R.id.tileSet);
         currentRoom = 1;
-        tileSet = new TileMap(gameView, currentRoom + "", this);
+        gameRender = new GameRender(gameView, currentRoom + "", this);
         //gameView.setImageBitmap(tileSet.getTileSet());
 
         gameTimer = new GameTimer(this);
         tickOffset = gameTimer.getTicks() % 40;
-
     }
 
     //switches view to second game screen
@@ -79,7 +82,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         if (currentRoom == 4) {
             toEndView(view);
         } else {
-            tileSet = new TileMap(gameView, currentRoom + "", this);
+            gameRender = new GameRender(gameView, currentRoom + "", this);
             Log.d("bruh", currentRoom + ": room");
         }
 
@@ -98,45 +101,48 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Avatar avatar = model.getPlayer().getAvatar();
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_W:
-                avatar.applyVector(StandardVectors.UP_VECTOR);
-                return true;
-            case KeyEvent.KEYCODE_A:
-                avatar.applyVector(StandardVectors.LEFT_VECTOR);
-                return true;
-            case KeyEvent.KEYCODE_S:
-                avatar.applyVector(StandardVectors.DOWN_VECTOR);
-                return true;
-            case KeyEvent.KEYCODE_D:
-                avatar.applyVector(StandardVectors.RIGHT_VECTOR);
-                return true;
-            default:
-                avatar.clearVectors();
-                return onKeyUp(keyCode, event);
+        Log.d("keyPress", keyCode + " down");
+        boolean out = super.onKeyUp(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_W) {
+            avatar.applyVector(StandardVectors.UP_VECTOR);
+            out = true;
         }
+        if (keyCode == KeyEvent.KEYCODE_A) {
+            avatar.applyVector(StandardVectors.LEFT_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_S) {
+            avatar.applyVector(StandardVectors.DOWN_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_D) {
+            avatar.applyVector(StandardVectors.RIGHT_VECTOR);
+            out = true;
+        }
+        return out;
     }
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        Avatar avatar = model.getPlayer().getAvatar();
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_W:
-                avatar.removeVector(StandardVectors.UP_VECTOR);
-                return true;
-            case KeyEvent.KEYCODE_A:
-                avatar.removeVector(StandardVectors.LEFT_VECTOR);
-                return true;
-            case KeyEvent.KEYCODE_S:
-                avatar.removeVector(StandardVectors.DOWN_VECTOR);
-                return true;
-            case KeyEvent.KEYCODE_D:
-                avatar.removeVector(StandardVectors.RIGHT_VECTOR);
-                return true;
-            default:
-                avatar.clearVectors();
-                return onKeyUp(keyCode, event);
+        boolean out = super.onKeyUp(keyCode, event);
+        Log.d("keyPress", keyCode + " up");
+        if (keyCode == KeyEvent.KEYCODE_W) {
+            avatar.removeVector(StandardVectors.UP_VECTOR);
+            out = true;
         }
+        if (keyCode == KeyEvent.KEYCODE_A) {
+            avatar.removeVector(StandardVectors.LEFT_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_S) {
+            avatar.removeVector(StandardVectors.DOWN_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_D) {
+            avatar.removeVector(StandardVectors.RIGHT_VECTOR);
+            out = true;
+        }
+        return out;
     }
 
 
@@ -152,6 +158,9 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         }
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());
+        avatar.updatePosition();
+        gameRender.refreshScreen();
+        //Log.d("keyPress", avatar.getMovementVector().getX() + " " + avatar.getMovementVector().getY());
     }
 
 }
