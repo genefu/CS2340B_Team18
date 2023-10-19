@@ -117,13 +117,13 @@ public class Model {
 
     // Getter for leaderboard
     public Leaderboard getLeaderboard() {
-        return leaderboard; }
-
-}
+        return leaderboard;
+    }
+  
+    // Returns the size of the leaderboard
     public int getLeaderBoardSize() {
         return leaderboard.getLeaderboardSet().size();
     }
 
-}
 }
 

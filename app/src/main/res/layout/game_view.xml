@@ -205,8 +205,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#700000"
-                    android:onClick="toGameView2"
-                    android:text="to gameview 2"
+                    android:onClick="switchRoom"
+                    android:text="to next room"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />
 

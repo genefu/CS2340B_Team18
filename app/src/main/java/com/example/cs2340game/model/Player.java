@@ -22,11 +22,11 @@ public class Player {
     //Creates (if not already created) and returns the player instance
     public static Player getInstance(String name) {
         if (playerInstance == null) {
-
             synchronized (Model.class) {
-            synchronized (Player.class) {
-                if (playerInstance == null) {
-                    playerInstance = new Player(name);
+                synchronized (Player.class) {
+                    if (playerInstance == null) {
+                        playerInstance = new Player(name);
+                    }
                 }
             }
         }
