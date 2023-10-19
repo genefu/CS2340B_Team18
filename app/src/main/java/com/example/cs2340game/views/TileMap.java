@@ -24,8 +24,8 @@ public class TileMap {
     public TileMap(ImageView gameView, String screen, Context context) {
 
         mapLayout = new MapLayout(screen);
-        Bitmap tempBitmap = Bitmap.createBitmap(mapLayout.getViewWidth(),
-                mapLayout.getViewHeight(), Bitmap.Config.RGB_565);
+        Bitmap tempBitmap = Bitmap.createBitmap(34*64,
+                20*64, Bitmap.Config.RGB_565);
         Canvas canvas = new Canvas(tempBitmap);
         Resources res = gameView.getResources();
         //set the tile set based on which game screen it is
@@ -51,7 +51,8 @@ public class TileMap {
                 }
             }
         }
-        gameView.setImageDrawable(new BitmapDrawable(context.getResources(), tempBitmap));
+        gameView.setImageBitmap(Bitmap.createScaledBitmap(new BitmapDrawable(context.getResources(), tempBitmap).getBitmap(), mapLayout.getViewWidth(),mapLayout.getViewHeight(), false));
+        Log.d("test", gameView.getLayoutParams().width + " " + gameView.getLayoutParams().height + " " + model.getScreenWidth() + " " + model.getScreenHeight());
     }
 //    public void draw(Canvas canvas) {
 //        canvas.drawBitmap(myBitmap, VIEW_SIZE, VIEW_SIZE, null);
