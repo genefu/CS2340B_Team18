@@ -11,14 +11,14 @@ public class Model {
     @Nullable
     private static String playerName;
     private static Model modelInstance;
-    private static int score;
+    private Score score;
     public enum Difficulty {
         EASY, MEDIUM, HARD
     }
 
-    private static Difficulty difficulty;
-    private static TreeSet<Score> leaderboard;
-    private static Player player;
+    private Difficulty difficulty;
+    private Leaderboard leaderboard;
+    private Player player;
 
     private static final int LEADERBOARD_SIZE = 10;
     private static final int WIN_THRESHOLD = 1000;
@@ -26,14 +26,16 @@ public class Model {
     //TODO enum variable for different weapon types
 
     private Model() {
-        Model.difficulty = Difficulty.MEDIUM;
+        this.difficulty = Difficulty.MEDIUM;
         //leaderboard in descending order
-        Model.leaderboard = new TreeSet<>();
-        Model.player = Player.getInstance(null);
-        testLeaderboard(leaderboard);
+        this.leaderboard = Leaderboard.getInstance();
+        this.player = Player.getInstance(null);
+        //increments when objectives met (kill enemy, beat room), and lowers over time
+        this.score = new Score(player.getName(), 20, "");
+        //testLeaderboard(leaderboard);
     }
 
-    //Creates (if not already created) and returns the model instance
+    // Creates (if not already created) and returns the model instance
     public static Model getInstance() {
         if (modelInstance == null) {
             synchronized (Model.class) {
@@ -45,8 +47,8 @@ public class Model {
         return modelInstance;
     }
 
-    //Adds dummy scores to leaderboard
-    public static void testLeaderboard(TreeSet<Score> leaderboard) {
+    // Adds dummy scores to leaderboard
+    /*public void testLeaderboard(TreeSet<Score> leaderboard) {
         updateLeaderboard(new Score("a", 1));
         updateLeaderboard(new Score("b", 2));
         updateLeaderboard(new Score("c", 3));
@@ -58,13 +60,14 @@ public class Model {
         updateLeaderboard(new Score("i", 8));
         updateLeaderboard(new Score("j", 9));
         updateLeaderboard(new Score("k", 10));
-    }
+    }*/
 
-    //Updates leaderboard with a new score
-    public static void updateLeaderboard(Score score) {
-        leaderboard.add(score);
-        if (leaderboard.size() > LEADERBOARD_SIZE) {
-            leaderboard.pollLast(); //Removes smallest score
+    // Updates leaderboard with a new score
+    public void updateLeaderboard(Score score) {
+        TreeSet<Score> leaderboardSet = leaderboard.getLeaderboardSet();
+        leaderboardSet.add(score);
+        if (leaderboardSet.size() > LEADERBOARD_SIZE) {
+            leaderboardSet.pollLast(); //Removes smallest score
         }
     }
     public static int getScreenWidth() {
@@ -75,39 +78,49 @@ public class Model {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
-    //Determines if the player won or lost
-    public static boolean isWinner() {
-        return score > 1000; //TODO get real win condition
+    // Determines if the player won or lost
+    public boolean isWinner() {
+        return score.getScoreValue() > WIN_THRESHOLD; //TODO get real win condition
     }
 
     //TODO make getters and setters
-    public static Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
-    //Getter for difficulty
-    public static Difficulty getDifficulty() {
+    // Getter for difficulty
+    public Difficulty getDifficulty() {
         return difficulty;
 
     }
-    //Getter for playerName
-    public static String getPlayerName() {
+    // Getter for playerName
+    public String getPlayerName() {
         return player.getName();
     }
 
-    //Setter for playerName
-    public static void setPlayerName(String playerName) {
+    // Getter for score
+    public Score getScore() {
+        return score;
+    }
+
+    // Setter for playerName
+    public void setPlayerName(String playerName) {
         player.setName(playerName);
     }
 
-    //Setter for difficulty
-    public static void setDifficulty(Difficulty difficulty) {
-        Model.difficulty = difficulty;
-        player.updateDifficultyStats();
+    // Setter for difficulty
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+        player.updateDifficultyStats(difficulty);
         //Log.d("iwantdeath", "difficulty set in model " + Model.difficulty);
     }
 
-    //Getter for leaderboard
-    public static TreeSet<Score> getLeaderboard() {
-        return leaderboard; }
+    // Getter for leaderboard
+    public Leaderboard getLeaderboard() {
+        return leaderboard;
+    }
+
+    public int getLeaderBoardSize() {
+        return leaderboard.getLeaderboardSet().size();
+    }
 }

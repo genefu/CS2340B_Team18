@@ -8,19 +8,20 @@ import com.example.cs2340game.model.Model;
 
 //View Model for Configuration Screen
 public class ConfigurationViewModel extends BaseObservable {
+    private Model model;
     //Constructor
     public ConfigurationViewModel() {
-
+        this.model = Model.getInstance();
     }
 
     // Sets the difficulty based on the difficulty buttons
     public void onDifficultyClicked(Model.Difficulty difficulty) {
         Log.d("iwantdeath", "view model triangle clicked");
-        Model.setDifficulty(difficulty);
+        model.setDifficulty(difficulty);
     }
 
     // Sets the player avatar based on the avatar buttons
     public void onSpriteClicked(String avatar) {
-        Model.getPlayer().setAvatar(avatar);
+        model.getPlayer().setAvatar(avatar);
     }
 }

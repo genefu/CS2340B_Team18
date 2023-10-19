@@ -13,7 +13,7 @@ public class Player {
 
     // Constructor
     private Player(String name) {
-        updateDifficultyStats();
+        updateDifficultyStats(Model.Difficulty.MEDIUM);
         speed = 100;
         this.name = name;
         avatar = "sprite1";
@@ -23,8 +23,22 @@ public class Player {
     public static Player getInstance(String name) {
         if (playerInstance == null) {
             synchronized (Model.class) {
+                synchronized (Player.class) {
+                    if (playerInstance == null) {
+                        playerInstance = new Player(name);
+                    }
+                }
+            }
+        }
+        return playerInstance;
+    }
+
+    public static Player getInstance() {
+        if (playerInstance == null) {
+            synchronized (Player.class) {
                 if (playerInstance == null) {
-                    playerInstance = new Player(name);
+                    throw new IllegalArgumentException(
+                            "Player doesn't exist, needs a name parameter");
                 }
             }
         }
@@ -32,8 +46,8 @@ public class Player {
     }
 
     // Updates the player stats based on the difficulty
-    public void updateDifficultyStats() {
-        switch (Model.getDifficulty()) {
+    public void updateDifficultyStats(Model.Difficulty difficulty) {
+        switch (difficulty) {
         case EASY:
             baseHealth = 100;
             baseStrength = 100;

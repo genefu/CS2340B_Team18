@@ -24,11 +24,11 @@ public class GameTimer {
             public void run() {
                 ticks++;
                 listener.onTimerUpdate(ticks);
-                handler.postDelayed(this, 33); //updates game roughly 30 times a second
+                handler.postDelayed(this, 25); //updates game roughly 40 times a second
             }
         };
 
-        handler.postDelayed(runnable, 33);
+        handler.postDelayed(runnable, 25);
     }
 
     // Stops the timer
@@ -36,8 +36,13 @@ public class GameTimer {
         handler.removeCallbacks(runnable);
     }
 
+    //Getter for ticks
+    public int getTicks() {
+        return ticks;
+    }
+
     // Interface to implement if you want to use the timer in a view
     public interface TimerListener {
-        void onTimerUpdate(int seconds);
+        void onTimerUpdate(int ticks);
     }
 }

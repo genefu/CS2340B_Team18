@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".views.GameView">
+    tools:context=".views.GameView"
+    android:id="@+id/layout"
+    android:background="@drawable/map1">
 
     <data>
         <variable
@@ -24,8 +26,9 @@
             android:id="@+id/tileSet"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
 
@@ -43,11 +46,20 @@
                     android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/nameReceiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PLAYERNAME"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <TextView
                     android:id="@+id/HealthStat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Health"
-                    android:textColor="#FF0000"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintLeft_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,18 +68,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Strength"
-                        android:textColor="#FF0000"
+                        android:textColor="#FFFFFF"
                         app:layout_constraintLeft_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/HealthStat" />
 
                 <TextView
-                        android:id="@+id/nameReceiver"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PLAYERNAME"
-                        android:textColor="#FF0000"
-                        android:textSize="25sp"
-                        app:layout_constraintRight_toRightOf="parent" />
+                    android:id="@+id/ScoreText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Score"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/StrengthStat" />
+
+                <TextView
+                    android:id="@+id/TimeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ScoreText" />
 
             </LinearLayout>
 
@@ -75,10 +96,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#700000"
-                    android:onClick="toEndView"
-                    android:text="QUIT"
+                    android:onClick="switchRoom"
+                    android:text="to next room"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />
+
         </LinearLayout>
     </RelativeLayout>
 
