@@ -119,6 +119,7 @@ public class Model {
     public Leaderboard getLeaderboard() {
         return leaderboard; }
 
+}
     public int getLeaderBoardSize() {
         return leaderboard.getLeaderboardSet().size();
     }

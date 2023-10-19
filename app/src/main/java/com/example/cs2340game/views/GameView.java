@@ -29,6 +29,8 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private TextView timeTextView;
     private ImageView playerSprite;
     private GameViewModel viewModel;
+    private ImageView gameView;
+    private TileMap tileSet;
     private GameTimer gameTimer;
     private int tickOffset;
     private String date;
