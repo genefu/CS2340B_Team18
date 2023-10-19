@@ -5,6 +5,7 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 //import android.widget.Button;
 import android.widget.ImageView;
@@ -15,9 +16,12 @@ import android.icu.text.DateFormat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
+import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Score;
+import com.example.cs2340game.model.StandardVectors;
+import com.example.cs2340game.model.Vector;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity implements GameTimer.TimerListener {
@@ -55,7 +59,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         timeTextView = findViewById(R.id.TimeText);
         timeTextView.setText("Time: " + viewModel.getTime());
         playerSprite = findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
+        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar().getSprite(),
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
 
@@ -91,6 +95,54 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         model.getScore().setDateTime(date);
         startActivity(new Intent(GameView.this, EndView.class));
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Avatar avatar = model.getPlayer().getAvatar();
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_W:
+                avatar.applyVector(StandardVectors.UP_VECTOR);
+                return true;
+            case KeyEvent.KEYCODE_A:
+                if (event.isShiftPressed()) {
+                    avatar.removeVector(StandardVectors.LEFT_VECTOR);
+                } else {
+                    avatar.applyVector(StandardVectors.LEFT_VECTOR);
+                }
+                return true;
+            case KeyEvent.KEYCODE_S:
+                avatar.applyVector(StandardVectors.DOWN_VECTOR);
+                return true;
+            case KeyEvent.KEYCODE_D:
+                avatar.applyVector(StandardVectors.RIGHT_VECTOR);
+                return true;
+            default:
+                avatar.clearVectors();
+                return onKeyUp(keyCode, event);
+        }
+    }
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        Avatar avatar = model.getPlayer().getAvatar();
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_W:
+                avatar.removeVector(StandardVectors.UP_VECTOR);
+                return true;
+            case KeyEvent.KEYCODE_A:
+                avatar.removeVector(StandardVectors.LEFT_VECTOR);
+                return true;
+            case KeyEvent.KEYCODE_S:
+                avatar.removeVector(StandardVectors.DOWN_VECTOR);
+                return true;
+            case KeyEvent.KEYCODE_D:
+                avatar.removeVector(StandardVectors.RIGHT_VECTOR);
+                return true;
+            default:
+                avatar.clearVectors();
+                return onKeyUp(keyCode, event);
+        }
+    }
+
 
     @Override
     public void onTimerUpdate(int ticks) {

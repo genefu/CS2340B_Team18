@@ -7,8 +7,7 @@ public class Player {
     private int baseStrength;
     private String name;
     private int speed;
-    private String sprite;
-    private String avatar;
+    private Avatar avatar;
 
 
     // Constructor
@@ -16,7 +15,7 @@ public class Player {
         updateDifficultyStats(Model.Difficulty.MEDIUM);
         speed = 100;
         this.name = name;
-        avatar = "sprite1";
+        avatar = new Avatar("sprite1");
     }
 
     //Creates (if not already created) and returns the player instance
@@ -79,18 +78,13 @@ public class Player {
     }
 
     // Getter for player avatar
-    public String getAvatar() {
+    public Avatar getAvatar() {
         return avatar;
     }
 
     // Setter for player avatar
     public void setName(String name) {
         this.name = name;
-    }
-
-    // Setter for player avatar
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
     }
 
 }
