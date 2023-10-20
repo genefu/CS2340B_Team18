@@ -69,7 +69,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
         gameView = (ImageView) findViewById(R.id.tileSet);
         currentRoom = 1;
-        gameRender = new GameRender(gameView, currentRoom + "", this);
+        gameRender = new GameRender(gameView, currentRoom, this);
         //gameView.setImageBitmap(tileSet.getTileSet());
 
         gameTimer = new GameTimer(this);
@@ -82,7 +82,8 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         if (currentRoom == 4) {
             toEndView(view);
         } else {
-            gameRender = new GameRender(gameView, currentRoom + "", this);
+            //gameRender = new GameRender(gameView, currentRoom + "", this);
+            gameRender.getMapLayout().setScreen(currentRoom);
             Log.d("bruh", currentRoom + ": room");
         }
 

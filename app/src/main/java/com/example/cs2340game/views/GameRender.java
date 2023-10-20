@@ -20,9 +20,9 @@ public class GameRender {
     private Bitmap tempBitmap;
     private Model model;
     private ImageView gameView;
-    public GameRender(ImageView gameView, String screen, Context context) {
+    public GameRender(ImageView gameView, int screen, Context context) {
 
-        mapLayout = new MapLayout(screen);
+        mapLayout = MapLayout.getInstance(screen);
         tempBitmap = Bitmap.createBitmap(34*64,
                 20*64, Bitmap.Config.RGB_565);
         canvas = new Canvas(tempBitmap);
@@ -73,6 +73,10 @@ public class GameRender {
 
         gameView.setImageBitmap(Bitmap.createScaledBitmap(new BitmapDrawable(context.getResources(), tempBitmap).getBitmap(), mapLayout.getViewWidth(), mapLayout.getViewHeight(), false));
         gameView.invalidate();
+    }
+
+    public MapLayout getMapLayout() {
+        return mapLayout;
     }
 //
 //    public Bitmap getTileSet() {

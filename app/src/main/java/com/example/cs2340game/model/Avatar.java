@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.example.cs2340game.R;
+import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
 
@@ -144,7 +145,8 @@ public class Avatar {
 
     public Bitmap getBitMap(Context context) {
         Resources res = context.getResources();
-        return BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
-                "drawable", context.getPackageName()));
+        MapLayout mapLayout = MapLayout.getInstance();
+        return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
+                "drawable", context.getPackageName())), mapLayout.getTileSize(), mapLayout.getTileSize(), false);
     }
 }
