@@ -13,6 +13,7 @@ import java.util.HashSet;
 public class Avatar {
     private static Avatar avatarInstance;
     private Vector movementVector;
+    private MovementStrategy movementStrategy;
     private HashSet<Vector> appliedVectors;
     private String sprite;
     private Direction directionFacing;
@@ -22,8 +23,9 @@ public class Avatar {
         UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT
     }
 
-    private Avatar(String sprite) {
+    private Avatar(String sprite, MovementStrategy movementStrategy) {
         movementVector = new Vector();
+        this.movementStrategy = movementStrategy;
         appliedVectors = new HashSet<>();
         this.sprite = sprite;
         this.directionFacing = Direction.UP;
@@ -36,7 +38,7 @@ public class Avatar {
             synchronized (Model.class) {
                 synchronized (Player.class) {
                     if (avatarInstance == null) {
-                        avatarInstance = new Avatar(sprite);
+                        avatarInstance = new Avatar(sprite, new WalkStrategy());
                     }
                 }
             }
@@ -101,9 +103,15 @@ public class Avatar {
         }
     }
 
+    public void setMovementStrategy(MovementStrategy movementStrategy) {
+        this.movementStrategy = movementStrategy;
+    }
+
     public void updatePosition() {
-        posX += movementVector.getX();
-        posY += movementVector.getY();
+        int[] temp = new int[]{posX, posY};
+        movementStrategy.move(movementVector, temp);
+        posX = temp[0];
+        posY = temp[1];
     }
 
     public void setPosition(int x, int y) {
