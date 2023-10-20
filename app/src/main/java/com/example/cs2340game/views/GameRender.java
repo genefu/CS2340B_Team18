@@ -71,7 +71,7 @@ public class GameRender {
         drawMap(canvas);
         drawAvatar(canvas);
 
-        gameView.setImageBitmap(Bitmap.createScaledBitmap(new BitmapDrawable(context.getResources(), tempBitmap).getBitmap(), mapLayout.getViewWidth(),mapLayout.getViewHeight(), false));
+        gameView.setImageBitmap(Bitmap.createScaledBitmap(new BitmapDrawable(context.getResources(), tempBitmap).getBitmap(), mapLayout.getViewWidth(), mapLayout.getViewHeight(), false));
         gameView.invalidate();
     }
 //
