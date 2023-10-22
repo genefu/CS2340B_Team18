@@ -31,6 +31,7 @@ public class WelcomeView extends AppCompatActivity {
         int width = size.x;
         int height = size.y;
 
+        Log.d("collision", width + " " + height);
         Model model = Model.getInstance();
         model.setScreenWidth(width);
         model.setScreenHeight(height);

@@ -159,7 +159,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         }
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());
-        avatar.updatePosition();
+        //avatar.updatePosition();
         gameRender.refreshScreen();
         //Log.d("keyPress", avatar.getMovementVector().getX() + " " + avatar.getMovementVector().getY());
     }

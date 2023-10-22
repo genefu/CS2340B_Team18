@@ -3,6 +3,7 @@ package com.example.cs2340game.views;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import com.example.cs2340game.R;
 import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.Tile;
 
 import java.util.Arrays;
 
@@ -39,23 +41,23 @@ public class GameRender {
         Log.d("test", gameView.getLayoutParams().width + " " + gameView.getLayoutParams().height + " " + model.getScreenWidth() + " " + model.getScreenHeight());
     }
     public void drawMap() {
-        //set the tile set based on which game screen it is
-        Tile grassTile = new Tile(context, R.drawable.grasstile);
-        Tile stoneTile = new Tile(context, R.drawable.stonetile);
-        Tile waterTile = new Tile(context, R.drawable.watertile);
+        Tile[][] tileMap = mapLayout.getTileMap();
+
+        Resources res = context.getResources();
+        Bitmap waterTile = BitmapFactory.decodeResource(res, R.drawable.watertile);
+        Bitmap grassTile = BitmapFactory.decodeResource(res, R.drawable.grasstile);
+        Bitmap stoneTile = BitmapFactory.decodeResource(res, R.drawable.stonetile);
+
         for (int row = 0; row < 20; row++) {
             for (int col = 0; col < 34; col++) {
                 Log.d("bruh", row + " " + col);
-                switch (mapLayout.getMapLayout()[row][col]) {
-                    //case 1: canvas.drawBitmap(stoneTile.getBitmap(),null, destinationRect, null);
-                    case 1: canvas.drawBitmap(waterTile.getBitmap(),
-                            col * 64, row * 64, null);
+                Tile tile = tileMap[row][col];
+                switch (tile.getType()) {
+                    case 1: canvas.drawBitmap(waterTile, col * Tile.TILE_SIZE, row * Tile.TILE_SIZE, null);
                         break;
-                    case 2: canvas.drawBitmap(grassTile.getBitmap(),
-                            col * 64, row * 64, null);
+                    case 2: canvas.drawBitmap(grassTile, col * Tile.TILE_SIZE, row * Tile.TILE_SIZE, null);
                         break;
-                    case 3: canvas.drawBitmap(stoneTile.getBitmap(),
-                            col * 64, row * 64, null);
+                    case 3: canvas.drawBitmap(stoneTile, col * Tile.TILE_SIZE, row * Tile.TILE_SIZE, null);
                         break;
                     default:
                         break;
@@ -71,8 +73,7 @@ public class GameRender {
         int[] gameViewPosition = new int[2];
         gameView.getLocationOnScreen(gameViewPosition);
         int yOffset = gameViewPosition[1];
-        Log.d("tileSize", "view position: " + Arrays.toString(gameViewPosition));
-        canvas.drawBitmap(avatarBitmap, gameViewPosition[0] + avatar.getPosX(), gameViewPosition[1] + avatar.getPosY() - yOffset, null);
+        canvas.drawBitmap(avatarBitmap, gameViewPosition[0] + avatar.getPosX() - Avatar.AVATAR_SIZE / 2, gameViewPosition[1] + avatar.getPosY() - Avatar.AVATAR_SIZE / 2 - yOffset, null);
     }
 
     public void refreshScreen() {
@@ -87,7 +88,7 @@ public class GameRender {
     public void showTilePositions() {
         for (int row = 0; row < 20; row++) {
             for (int col = 0; col < 34; col++) {
-                canvas.drawRect(col * 64, row * 64, col * 64 + 2, row * 64 + 2, new Paint(Color.RED));
+                canvas.drawRect(col * Tile.TILE_SIZE, row * Tile.TILE_SIZE, col * Tile.TILE_SIZE + 2, row * Tile.TILE_SIZE + 2, new Paint(Color.RED));
             }
         }
     }

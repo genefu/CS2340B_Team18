@@ -22,8 +22,9 @@ public class Model {
     private int screenWidth;
     private int screenHeight;
 
-    private static final int LEADERBOARD_SIZE = 10;
-    private static final int WIN_THRESHOLD = 1000;
+    public static final int LEADERBOARD_SIZE = 10;
+    public static final int WIN_THRESHOLD = 1000;
+    public static final int REFRESH_RATE = 20;
 
 
     //TODO enum variable for different weapon types
