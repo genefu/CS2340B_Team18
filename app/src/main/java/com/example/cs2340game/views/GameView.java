@@ -22,8 +22,10 @@ import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Score;
+import com.example.cs2340game.model.SprintStrategy;
 import com.example.cs2340game.model.StandardVectors;
 import com.example.cs2340game.model.Vector;
+import com.example.cs2340game.model.WalkStrategy;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity implements GameTimer.TimerListener {
@@ -119,6 +121,11 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         if (keyCode == KeyEvent.KEYCODE_D) {
             avatar.applyVector(StandardVectors.RIGHT_VECTOR);
             out = true;
+        }
+        if (event.isShiftPressed()) {
+            avatar.setMovementStrategy(new SprintStrategy());
+        } else {
+            avatar.setMovementStrategy(new WalkStrategy());
         }
         return out;
     }
