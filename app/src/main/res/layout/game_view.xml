@@ -24,7 +24,9 @@
             android:id="@+id/tileSet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:background="#000000"
+            android:padding="1dp"/>
 
         <LinearLayout
 
@@ -93,16 +95,16 @@
 
             </LinearLayout>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#700000"
-                    android:onClick="switchRoom"
-                    android:text="to next room"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#700000"
+                android:onClick="switchRoom"
+                android:text="to next room"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
 
-        </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
 
 </layout>

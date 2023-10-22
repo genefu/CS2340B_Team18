@@ -21,7 +21,7 @@ public class ConfigurationViewModel extends BaseObservable {
     }
 
     // Sets the player avatar based on the avatar buttons
-    public void onSpriteClicked(String avatar) {
-        model.getPlayer().setAvatar(avatar);
+    public void onSpriteClicked(String sprite) {
+        model.getPlayer().getAvatar().setSprite(sprite);
     }
 }

@@ -25,7 +25,7 @@ public class ScoreTrackerUnitTests {
     public void scoreStopAtZero() throws InterruptedException {
         Model model = Model.getInstance();
         GameViewModel gvm = new GameViewModel();
-        model.setScore(1);
+        model.getScore().setScoreValue(1);
         assertEquals(1, model.getScore());
         gvm.decrementScore();
         assertEquals(0, model.getScore());

@@ -13,13 +13,13 @@ public class PlayerWinAndNextButtonTests {
     @Test
     public void playerWinsWhenThresholdMet() {
         Model model = Model.getInstance();
-        model.setScore(2000);
+        model.getScore().setScoreValue(2000);
         assertEquals(true, model.isWinner() );
     }
     @Test
     public void playerLoseWhenThresholdNodeMet() {
         Model model1 = Model.getInstance();
-        model1.setScore(999);
+        model1.getScore().setScoreValue(999);
         assertEquals(false, model1.isWinner());
     }
 }
