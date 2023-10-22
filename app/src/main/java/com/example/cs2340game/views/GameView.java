@@ -29,9 +29,12 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private TextView timeTextView;
     private ImageView playerSprite;
     private GameViewModel viewModel;
+    private ImageView gameView;
+    private TileMap tileSet;
     private GameTimer gameTimer;
     private int tickOffset;
     private String date;
+    private int currentRoom;
 
     //Displays the view
     @Override
@@ -56,62 +59,37 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
 
+        gameView = (ImageView) findViewById(R.id.tileSet);
+        currentRoom = 1;
+        tileSet = new TileMap(gameView, currentRoom + "", this);
+        //gameView.setImageBitmap(tileSet.getTileSet());
+
         gameTimer = new GameTimer(this);
         tickOffset = gameTimer.getTicks() % 40;
+
     }
 
     //switches view to second game screen
-    /**public void toGameView2(View view) {
-        LinearLayout gameScreen = new LinearLayout(this);
-        Button toGameView3 = new Button(this);
-        toGameView3.setText("To GameView3");
-        //setContentView(R.layout.game_view2);
-    }**/
+    public void switchRoom(View view) {
+        currentRoom++;
+        if (currentRoom == 4) {
+            toEndView(view);
+        } else {
+            tileSet = new TileMap(gameView, currentRoom + "", this);
+            Log.d("bruh", currentRoom + ": room");
+        }
 
-    public void toGameView2(View view) {
-        setContentView(R.layout.game_view2);
-        nameTextView = findViewById(R.id.nameReceiver);
-        nameTextView.setText(model.getPlayerName());
-        healthTextView = findViewById(R.id.HealthStat);
-        healthTextView.setText("Health: " + Integer.toString(viewModel.getHealth()));
-        strengthTextView = findViewById(R.id.StrengthStat);
-        strengthTextView.setText("Strength: " + Integer.toString(viewModel.getStrength()));
-        scoreTextView = findViewById(R.id.ScoreText);
-        scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
-        timeTextView = findViewById(R.id.TimeText);
-        timeTextView.setText("Time: " + viewModel.getTime());
-        playerSprite = findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
-                "drawable", this.getPackageName());
-        playerSprite.setImageResource(id);
-    }
-
-    //switches view to third game screen
-    public void toGameView3(View view) {
-        setContentView(R.layout.game_view3);
-        nameTextView = findViewById(R.id.nameReceiver);
-        nameTextView.setText(model.getPlayerName());
-        healthTextView = findViewById(R.id.HealthStat);
-        healthTextView.setText("Health: " + Integer.toString(viewModel.getHealth()));
-        strengthTextView = findViewById(R.id.StrengthStat);
-        strengthTextView.setText("Strength: " + Integer.toString(viewModel.getStrength()));
-        scoreTextView = findViewById(R.id.ScoreText);
-        scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
-        timeTextView = findViewById(R.id.TimeText);
-        timeTextView.setText("Time: " + viewModel.getTime());
-        playerSprite = findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
-                "drawable", this.getPackageName());
-        playerSprite.setImageResource(id);
     }
 
     //Switches view to EndView
     public void toEndView(View view) {
-        startActivity(new Intent(GameView.this, EndView.class));
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
         model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
+        model.getScore().setPlayerName(model.getPlayerName());
+        model.getScore().setDateTime(date);
+        startActivity(new Intent(GameView.this, EndView.class));
     }
 
     @Override
@@ -127,4 +105,5 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());
     }
+
 }

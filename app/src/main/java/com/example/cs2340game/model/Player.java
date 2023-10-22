@@ -22,9 +22,11 @@ public class Player {
     //Creates (if not already created) and returns the player instance
     public static Player getInstance(String name) {
         if (playerInstance == null) {
-            synchronized (Player.class) {
-                if (playerInstance == null) {
-                    playerInstance = new Player(name);
+            synchronized (Model.class) {
+                synchronized (Player.class) {
+                    if (playerInstance == null) {
+                        playerInstance = new Player(name);
+                    }
                 }
             }
         }
@@ -35,7 +37,8 @@ public class Player {
         if (playerInstance == null) {
             synchronized (Player.class) {
                 if (playerInstance == null) {
-                    throw new IllegalArgumentException("Player doesn't exist, needs a name parameter");
+                    throw new IllegalArgumentException(
+                            "Player doesn't exist, needs a name parameter");
                 }
             }
         }

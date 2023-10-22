@@ -25,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
-
         <LinearLayout
 
             android:layout_width="match_parent"
@@ -42,9 +41,9 @@
                 android:src="@drawable/sprite1" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/nameReceiver"
@@ -65,13 +64,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/StrengthStat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Strength"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintLeft_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/HealthStat" />
+                        android:id="@+id/StrengthStat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Strength"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintLeft_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/HealthStat" />
 
                 <TextView
                     android:id="@+id/ScoreText"
@@ -93,14 +92,14 @@
 
             </LinearLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#700000"
-                android:onClick="switchRoom"
-                android:text="to next room"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#700000"
+                    android:onClick="switchRoom"
+                    android:text="to next room"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
 
         </LinearLayout>
     </RelativeLayout>

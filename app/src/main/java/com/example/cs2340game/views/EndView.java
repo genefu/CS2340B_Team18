@@ -17,6 +17,7 @@ public class EndView extends AppCompatActivity {
 
     private TextView winStatus;
     private EndViewModel viewModel;
+    private TextView currentScore;
 
     //Displays the view
     @Override
@@ -29,8 +30,10 @@ public class EndView extends AppCompatActivity {
         leaderboardTimes = new TextView[10];
         winStatus = (TextView) findViewById(R.id.win_status);
         addLeaderboardTextViews();
+        currentScore = (TextView) findViewById(R.id.currentScore);
 
-        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores, winStatus, leaderboardTimes);
+        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores,
+                winStatus, leaderboardTimes, currentScore);
     }
 
     //Adds all leaderboard text views to their respective arrays
