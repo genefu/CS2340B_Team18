@@ -19,9 +19,13 @@ public class Model {
     private Difficulty difficulty;
     private Leaderboard leaderboard;
     private Player player;
+    private int screenWidth;
+    private int screenHeight;
 
-    private static final int LEADERBOARD_SIZE = 10;
-    private static final int WIN_THRESHOLD = 1000;
+    public static final int LEADERBOARD_SIZE = 10;
+    public static final int WIN_THRESHOLD = 1000;
+    public static final int REFRESH_RATE = 20;
+
 
     //TODO enum variable for different weapon types
 
@@ -33,6 +37,9 @@ public class Model {
         //increments when objectives met (kill enemy, beat room), and lowers over time
         this.score = new Score(player.getName(), 20, "");
         //testLeaderboard(leaderboard);
+
+        this.screenWidth = 0; //Resources.getSystem().getDisplayMetrics().widthPixels;
+        this.screenHeight = 0; //Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
     // Creates (if not already created) and returns the model instance
@@ -70,20 +77,20 @@ public class Model {
             leaderboardSet.pollLast(); //Removes smallest score
         }
     }
-    public static int getScreenWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
-    }
-
-    public static int getScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
-    }
 
     // Determines if the player won or lost
     public boolean isWinner() {
         return score.getScoreValue() > WIN_THRESHOLD; //TODO get real win condition
     }
 
-    //TODO make getters and setters
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -101,6 +108,14 @@ public class Model {
     // Getter for score
     public Score getScore() {
         return score;
+    }
+
+    public void setScreenWidth(int screenWidth) {
+        this.screenWidth = screenWidth;
+    }
+
+    public void setScreenHeight(int screenHeight) {
+        this.screenHeight = screenHeight;
     }
 
     // Setter for playerName
