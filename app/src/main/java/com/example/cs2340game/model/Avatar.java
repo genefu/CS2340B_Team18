@@ -147,6 +147,6 @@ public class Avatar {
         Resources res = context.getResources();
         MapLayout mapLayout = MapLayout.getInstance();
         return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
-                "drawable", context.getPackageName())), mapLayout.getTileSize(), mapLayout.getTileSize(), false);
+                "drawable", context.getPackageName())), 64, 64, false);
     }
 }
