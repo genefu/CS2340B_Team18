@@ -21,6 +21,7 @@ public class Avatar {
     private MovementStrategy movementStrategy;
     private HashSet<Vector> appliedVectors;
     private String sprite;
+    private boolean isOnExit;
     private Direction directionFacing;
     private int posX; //position of center x
     private int posY; //position of center y
@@ -40,6 +41,7 @@ public class Avatar {
         this.directionFacing = Direction.UP;
         this.posX = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 2; //TODO replace with room 1 starting position
         this.posY = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 2; //TODO replace with room 1 starting position
+        isOnExit = false;
     }
 
     public static Avatar getInstance(String sprite) {
@@ -135,7 +137,7 @@ public class Avatar {
         Tile[] coveredTiles = getTileCoverage(tileMap);
         for (int i = 0; i < 4; i++) {
             if (coveredTiles[i].isExit()) {
-
+                isOnExit = true;
             }
         }
         for (int i = 0; i < 4; i++) {
@@ -208,6 +210,14 @@ public class Avatar {
                 posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
                 break;
         }
+    }
+
+    public boolean isOnExit() {
+        return isOnExit;
+    }
+
+    public void resetOnExit() {
+        isOnExit = false;
     }
 
     public void setPosition(int x, int y) {

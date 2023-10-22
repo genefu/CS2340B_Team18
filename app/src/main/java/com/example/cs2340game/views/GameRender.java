@@ -47,6 +47,7 @@ public class GameRender {
         Bitmap waterTile = BitmapFactory.decodeResource(res, R.drawable.watertile);
         Bitmap grassTile = BitmapFactory.decodeResource(res, R.drawable.grasstile);
         Bitmap stoneTile = BitmapFactory.decodeResource(res, R.drawable.stonetile);
+        Bitmap exitTile = BitmapFactory.decodeResource(res, R.drawable.exittile);
 
         for (int row = 0; row < 20; row++) {
             for (int col = 0; col < 34; col++) {
@@ -59,6 +60,7 @@ public class GameRender {
                         break;
                     case 3: canvas.drawBitmap(stoneTile, col * Tile.TILE_SIZE, row * Tile.TILE_SIZE, null);
                         break;
+                    case 4: canvas.drawBitmap(exitTile, col * Tile.TILE_SIZE, row * Tile.TILE_SIZE, null);
                     default:
                         break;
                 }

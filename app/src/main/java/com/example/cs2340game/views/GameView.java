@@ -77,10 +77,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     }
 
     //switches view to second game screen
-    public void switchRoom(View view) {
+    public void switchRoom() {
         currentRoom++;
         if (currentRoom == 4) {
-            toEndView(view);
+            toEndView();
         } else {
             //gameRender = new GameRender(gameView, currentRoom + "", this);
             gameRender.getMapLayout().setScreen(currentRoom);
@@ -90,7 +90,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     }
 
     //Switches view to EndView
-    public void toEndView(View view) {
+    public void toEndView() {
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
@@ -143,7 +143,11 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             avatar.removeVector(StandardVectors.RIGHT_VECTOR);
             out = true;
         }
+        if (avatar.isOnExit()) {
+            switchRoom();
+        }
         return out;
+
     }
 
 
