@@ -1,6 +1,8 @@
 package com.example.cs2340game.views;
 
+import android.graphics.Point;
 import android.util.Log;
+import android.view.Display;
 
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Player;
@@ -14,18 +16,21 @@ public class MapLayout {
     private int[][] mapLayout;
     private MapLayout(int screen) {
         model = Model.getInstance();
-        if (model.getScreenWidth() < 1.7 * model.getScreenHeight()) {
-            viewWidth = model.getScreenWidth() - model.getScreenWidth() % 64; //MAY NEED TO ROUND BECAUSE OF FLOATING POINTS
-            viewHeight = (int) (viewWidth / 1.7);
+        int screenWidth = model.getScreenWidth();
+        int screenHeight = model.getScreenHeight();
+
+        if (screenWidth >= 1.7 * screenHeight) {
+            viewWidth = screenWidth - screenWidth % 64; //MAY NEED TO ROUND BECAUSE OF FLOATING POINTS
+            viewHeight = (int) Math.round(viewWidth / 1.7);
             Log.d("tileSize", "larger width: " + viewWidth + " " + viewHeight);
         }
-        if (model.getScreenWidth() >= 1.7 * model.getScreenHeight()) {
-            viewHeight = model.getScreenHeight() - model.getScreenHeight() % 64; //gameView.getHeight();
-            viewWidth = (int) (viewHeight * 1.7); //gameView.getWidth();
+        if (screenWidth < 1.7 * screenHeight) {
+            viewHeight = screenHeight - screenHeight % 64; //gameView.getHeight();
+            viewWidth = (int) Math.round(viewHeight * 1.7); //gameView.getWidth();
             Log.d("tileSize", "larger height: " + viewWidth + " " + viewHeight);
         }
 
-        Log.d("tileSize", (viewHeight / 20) + " " + (viewWidth / 34) + " " + (model.getScreenHeight() / 20));
+        Log.d("tileSize", (viewHeight / 20) + " " + (viewWidth / 34) + " " + (screenHeight / 20));
         tileSize = (int) (viewHeight / 20);
 
         setScreen(screen);

@@ -30,8 +30,8 @@ public class Avatar {
         appliedVectors = new HashSet<>();
         this.sprite = sprite;
         this.directionFacing = Direction.UP;
-        this.posX = 500; //TODO replace with room 1 starting position
-        this.posY = 500; //TODO replace with room 1 starting position
+        this.posX = 0; //TODO replace with room 1 starting position
+        this.posY = 0; //TODO replace with room 1 starting position
     }
 
     public static Avatar getInstance(String sprite) {
