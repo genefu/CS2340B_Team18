@@ -1,5 +1,7 @@
 package com.example.cs2340game.model;
 
+import android.content.res.Resources;
+
 import androidx.annotation.Nullable;
 
 import java.util.TreeSet;
@@ -9,7 +11,7 @@ public class Model {
     @Nullable
     private static String playerName;
     private static Model modelInstance;
-    private int score;
+    private Score score;
     public enum Difficulty {
         EASY, MEDIUM, HARD
     }
@@ -29,7 +31,7 @@ public class Model {
         this.leaderboard = Leaderboard.getInstance();
         this.player = Player.getInstance(null);
         //increments when objectives met (kill enemy, beat room), and lowers over time
-        this.score = 20;
+        this.score = new Score(player.getName(), 20, "");
         //testLeaderboard(leaderboard);
     }
 
@@ -68,10 +70,17 @@ public class Model {
             leaderboardSet.pollLast(); //Removes smallest score
         }
     }
+    public static int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
+    }
+
+    public static int getScreenHeight() {
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
+    }
 
     // Determines if the player won or lost
     public boolean isWinner() {
-        return score > WIN_THRESHOLD; //TODO get real win condition
+        return score.getScoreValue() > WIN_THRESHOLD; //TODO get real win condition
     }
 
     //TODO make getters and setters
@@ -90,18 +99,13 @@ public class Model {
     }
 
     // Getter for score
-    public int getScore() {
+    public Score getScore() {
         return score;
     }
 
     // Setter for playerName
     public void setPlayerName(String playerName) {
         player.setName(playerName);
-    }
-
-    // Setter for score
-    public void setScore(int score) {
-        this.score = score;
     }
 
     // Setter for difficulty
@@ -113,6 +117,10 @@ public class Model {
 
     // Getter for leaderboard
     public Leaderboard getLeaderboard() {
-        return leaderboard; }
+        return leaderboard;
+    }
 
+    public int getLeaderBoardSize() {
+        return leaderboard.getLeaderboardSet().size();
+    }
 }
