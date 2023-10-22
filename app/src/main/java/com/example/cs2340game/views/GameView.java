@@ -22,8 +22,10 @@ import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Score;
+import com.example.cs2340game.model.SprintStrategy;
 import com.example.cs2340game.model.StandardVectors;
 import com.example.cs2340game.model.Vector;
+import com.example.cs2340game.model.WalkStrategy;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity implements GameTimer.TimerListener {
@@ -77,10 +79,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     }
 
     //switches view to second game screen
-    public void switchRoom(View view) {
+    public void switchRoom() {
         currentRoom++;
         if (currentRoom == 4) {
-            toEndView(view);
+            toEndView();
         } else {
             //gameRender = new GameRender(gameView, currentRoom + "", this);
             gameRender.getMapLayout().setScreen(currentRoom);
@@ -90,7 +92,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     }
 
     //Switches view to EndView
-    public void toEndView(View view) {
+    public void toEndView() {
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
@@ -120,6 +122,11 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             avatar.applyVector(StandardVectors.RIGHT_VECTOR);
             out = true;
         }
+        if (event.isShiftPressed()) {
+            avatar.setMovementStrategy(new SprintStrategy());
+        } else {
+            avatar.setMovementStrategy(new WalkStrategy());
+        }
         return out;
     }
 
@@ -143,7 +150,11 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             avatar.removeVector(StandardVectors.RIGHT_VECTOR);
             out = true;
         }
+        if (avatar.isOnExit()) {
+            switchRoom();
+        }
         return out;
+
     }
 
 

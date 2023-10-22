@@ -24,7 +24,7 @@ public class Model {
 
     public static final int LEADERBOARD_SIZE = 10;
     public static final int WIN_THRESHOLD = 1000;
-    public static final int REFRESH_RATE = 20;
+    public static final int REFRESH_RATE = 40;
 
 
     //TODO enum variable for different weapon types
