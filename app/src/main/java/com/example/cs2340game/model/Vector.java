@@ -43,7 +43,7 @@ public class Vector implements Comparable<Vector> {
 
     @Override
     public int hashCode() {
-        return (int) this.x * 100 + (int)this.y;
+        return (int) this.x * 100 + (int) this.y;
     }
 
     @Override

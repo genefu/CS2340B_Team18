@@ -1,9 +1,6 @@
 package com.example.cs2340game.model;
 
-import android.content.res.Resources;
-
 import androidx.annotation.Nullable;
-
 import java.util.TreeSet;
 
 //Main Model
@@ -52,6 +49,11 @@ public class Model {
             }
         }
         return modelInstance;
+    }
+
+    //for testing, implement later to have model save highest score/most recent score
+    public void setScore(Score score) {
+        this.score = score;
     }
 
     // Adds dummy scores to leaderboard

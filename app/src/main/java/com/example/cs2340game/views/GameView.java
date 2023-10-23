@@ -4,14 +4,9 @@ import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
-//import android.widget.Button;
 import android.widget.ImageView;
-//import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.icu.text.DateFormat;
 
@@ -24,7 +19,6 @@ import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Score;
 import com.example.cs2340game.model.SprintStrategy;
 import com.example.cs2340game.model.StandardVectors;
-import com.example.cs2340game.model.Vector;
 import com.example.cs2340game.model.WalkStrategy;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
@@ -86,7 +80,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         } else {
             //gameRender = new GameRender(gameView, currentRoom + "", this);
             gameRender.getMapLayout().setScreen(currentRoom);
-            Log.d("bruh", currentRoom + ": room");
+            //Log.d("bruh", currentRoom + ": room");
         }
 
     }
@@ -133,7 +127,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         boolean out = super.onKeyUp(keyCode, event);
-        Log.d("keyPress", keyCode + " up");
+        //Log.d("keyPress", keyCode + " up");
         if (keyCode == KeyEvent.KEYCODE_W) {
             avatar.removeVector(StandardVectors.UP_VECTOR);
             out = true;
@@ -157,7 +151,6 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
     }
 
-
     @Override
     public void onTimerUpdate(int ticks) {
         Log.d("iwantdeath", "gameTicks: " + ticks);
@@ -172,7 +165,5 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         timeTextView.setText("Time: " + viewModel.getTime());
         //avatar.updatePosition();
         gameRender.refreshScreen();
-        //Log.d("keyPress", avatar.getMovementVector().getX() + " " + avatar.getMovementVector().getY());
     }
-
 }

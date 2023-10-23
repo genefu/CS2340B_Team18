@@ -36,8 +36,10 @@ public class Avatar {
         appliedVectors = new HashSet<>();
         this.sprite = sprite;
         this.directionFacing = Direction.UP;
-        this.posX = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 2; //TODO replace with room 1 starting position
-        this.posY = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 2; //TODO replace with room 1 starting position
+        this.posX = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 2;
+        //TODO replace with room 1 starting position
+        this.posY = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 2;
+        //TODO replace with room 1 starting position
         isOnExit = false;
     }
 
@@ -70,7 +72,6 @@ public class Avatar {
         //Log.d("keyPress", "Applied Vector");
         if (appliedVectors.add(v)) {
             movementVector.addVector(v);
-            //Log.d("keyPress", "Added Vector: " + movementVector.getX() + " " + movementVector.getY());
             updateDirection();
             updatePosition();
         }
@@ -123,7 +124,8 @@ public class Avatar {
         posY = temp[1];
         //Log.d("collision", "Before: " + posX + " " + posY);
         CollisionBox collisionBox;
-        if ((collisionBox = checkCollision()) != CollisionBox.NONE) {
+        collisionBox = checkCollision();
+        if (collisionBox != CollisionBox.NONE) {
             moveToValidPosition(collisionBox);
         }
         //Log.d("collision", "After: " + posX + " " + posY);
@@ -139,13 +141,12 @@ public class Avatar {
         }
         for (int i = 0; i < 4; i++) {
             if (coveredTiles[i].isWall()) {
-                //Log.d("collision", "Collision Detected with tile at: " + coveredTiles[i].getCol() + ", " + coveredTiles[i].getRow());
                 switch (i) {
-                    case 0: return CollisionBox.TOP_LEFT;
-                    case 1: return CollisionBox.TOP_RIGHT;
-                    case 2: return CollisionBox.BOTTOM_LEFT;
-                    case 3: return CollisionBox.BOTTOM_RIGHT;
-                    default: throw new IllegalArgumentException("Invalid collision box");
+                case 0: return CollisionBox.TOP_LEFT;
+                case 1: return CollisionBox.TOP_RIGHT;
+                case 2: return CollisionBox.BOTTOM_LEFT;
+                case 3: return CollisionBox.BOTTOM_RIGHT;
+                default: throw new IllegalArgumentException("Invalid collision box");
                 }
             }
         }
@@ -156,56 +157,58 @@ public class Avatar {
         int baseX;
         int baseY;
         switch (collisionBox) {
-            case TOP_LEFT:
-                baseX = posX - 32;
-                baseY = posY - 32;
-                break;
-            case TOP_RIGHT:
-                baseX = posX + 31;
-                baseY = posY - 32;
-                break;
-            case BOTTOM_LEFT:
-                baseX = posX - 32;
-                baseY = posY + 31;
-                break;
-            case BOTTOM_RIGHT:
-                baseX = posX + 31;
-                baseY = posY + 31;
-                break;
-            default: return;
+        case TOP_LEFT:
+            baseX = posX - 32;
+            baseY = posY - 32;
+            break;
+        case TOP_RIGHT:
+            baseX = posX + 31;
+            baseY = posY - 32;
+            break;
+        case BOTTOM_LEFT:
+            baseX = posX - 32;
+            baseY = posY + 31;
+            break;
+        case BOTTOM_RIGHT:
+            baseX = posX + 31;
+            baseY = posY + 31;
+            break;
+        default:
+            return;
         }
-        //Log.d("collision", "TL: " + (posX - 32) + " " + (posY - 32) + "\nBR: " + (posX + 31) + " " + (posY + 31));
         //Log.d("collision", "BaseXY: " + baseX + " " + baseY);
         //Log.d("collision", collisionBox.toString() + " " + directionFacing.toString());
         switch (directionFacing) {
-            case UP:
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
-            case UP_RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
-            case RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN_RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN:
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN_LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                break;
-            case UP_LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
+        case UP:
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        case UP_RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        case RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN_RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN:
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN_LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            break;
+        case UP_LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        default:
+            break;
         }
     }
 
