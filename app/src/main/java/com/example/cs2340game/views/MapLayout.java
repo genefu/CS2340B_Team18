@@ -22,15 +22,15 @@ public class MapLayout {
         if (screenWidth >= 1.7 * screenHeight) {
             viewWidth = screenWidth - screenWidth % 64; //MAY NEED TO ROUND BECAUSE OF FLOATING POINTS
             viewHeight = (int) Math.round(viewWidth / 1.7);
-            Log.d("tileSize", "larger width: " + viewWidth + " " + viewHeight);
+            //Log.d("tileSize", "larger width: " + viewWidth + " " + viewHeight);
         }
         if (screenWidth < 1.7 * screenHeight) {
             viewHeight = screenHeight - screenHeight % 64; //gameView.getHeight();
             viewWidth = (int) Math.round(viewHeight * 1.7); //gameView.getWidth();
-            Log.d("tileSize", "larger height: " + viewWidth + " " + viewHeight);
+            //Log.d("tileSize", "larger height: " + viewWidth + " " + viewHeight);
         }
 
-        Log.d("tileSize", (viewHeight / 20) + " " + (viewWidth / 34) + " " + (screenHeight / 20));
+        //Log.d("tileSize", (viewHeight / 20) + " " + (viewWidth / 34) + " " + (screenHeight / 20));
         tileSize = (int) (viewHeight / 20);
 
         setScreen(screen);
