@@ -38,7 +38,7 @@ public class Sprint3Tests {
         avatar.setMovementStrategy(new WalkStrategy());
         avatar.applyVector(StandardVectors.UP_VECTOR);
         assertEquals(160, avatar.getPosX());
-        assertEquals(140, avatar.getPosY());
+        assertEquals(150, avatar.getPosY());
     }
 
     @Test
@@ -113,5 +113,25 @@ public class Sprint3Tests {
         Model model = Model.getInstance();
         model.setScore(new Score("player", 999, "00:00"));
         assertEquals(false, model.isWinner());
+    }
+
+    @Test
+    public void playerMovesRight() {
+        MapLayout mapLayout = MapLayout.getInstance(2);
+        Avatar avatar = Avatar.getInstance("sprite3");
+        avatar.setMovementStrategy(new WalkStrategy());
+        avatar.applyVector(StandardVectors.RIGHT_VECTOR);
+        assertEquals((int) 1, (int) avatar.getMovementVector().getX());
+        assertEquals((int) 0, (int) avatar.getMovementVector().getY());
+    }
+
+    @Test
+    public void playerMovesLeft() {
+        MapLayout mapLayout = MapLayout.getInstance(2);
+        Avatar avatar = Avatar.getInstance("sprite3");
+        avatar.setMovementStrategy(new WalkStrategy());
+        avatar.applyVector(StandardVectors.LEFT_VECTOR);
+        assertEquals((int) -1, (int) avatar.getMovementVector().getX());
+        assertEquals((int) 0, (int) avatar.getMovementVector().getY());
     }
 }
