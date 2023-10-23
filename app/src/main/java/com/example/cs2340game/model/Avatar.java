@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import androidx.core.math.MathUtils;
 
-import com.example.cs2340game.R;
 import com.example.cs2340game.views.MapLayout;
 
-import java.util.Arrays;
 import java.util.HashSet;
 
 public class Avatar {
@@ -246,6 +243,13 @@ public class Avatar {
 
     public Direction getDirectionFacing() {
         return directionFacing;
+    }
+    public String getDirectionFacingString() {
+        return directionFacing.toString();
+    }
+
+    public void setMovementVector(Vector v) {
+        movementVector = v;
     }
 
     public Bitmap getBitMap(Context context) {
