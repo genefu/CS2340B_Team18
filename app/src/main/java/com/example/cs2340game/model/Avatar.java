@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import androidx.core.math.MathUtils;
 
-import com.example.cs2340game.R;
 import com.example.cs2340game.views.MapLayout;
 
-import java.util.Arrays;
 import java.util.HashSet;
 
 public class Avatar {
@@ -70,15 +67,17 @@ public class Avatar {
     }
 
     public void applyVector(Vector v) {
+        //Log.d("keyPress", "Applied Vector");
         if (appliedVectors.add(v)) {
             movementVector.addVector(v);
+            //Log.d("keyPress", "Added Vector: " + movementVector.getX() + " " + movementVector.getY());
             updateDirection();
             updatePosition();
         }
     }
 
     public void removeVector(Vector v) {
-        Log.d("keyPress", "Removed Vector");
+        //Log.d("keyPress", "Removed Vector");
         if (appliedVectors.remove(v)) {
             movementVector.subtractVector(v);
             updateDirection();
@@ -122,11 +121,12 @@ public class Avatar {
         movementStrategy.move(movementVector, temp);
         posX = temp[0];
         posY = temp[1];
+        //Log.d("collision", "Before: " + posX + " " + posY);
         CollisionBox collisionBox;
         if ((collisionBox = checkCollision()) != CollisionBox.NONE) {
             moveToValidPosition(collisionBox);
         }
-        Log.d("collision", "After: " + posX + " " + posY);
+        //Log.d("collision", "After: " + posX + " " + posY);
     }
 
     public CollisionBox checkCollision() {
@@ -139,7 +139,7 @@ public class Avatar {
         }
         for (int i = 0; i < 4; i++) {
             if (coveredTiles[i].isWall()) {
-                Log.d("collision", "Collision Detected with tile at: " + coveredTiles[i].getCol() + ", " + coveredTiles[i].getRow());
+                //Log.d("collision", "Collision Detected with tile at: " + coveredTiles[i].getCol() + ", " + coveredTiles[i].getRow());
                 switch (i) {
                     case 0: return CollisionBox.TOP_LEFT;
                     case 1: return CollisionBox.TOP_RIGHT;
@@ -174,9 +174,9 @@ public class Avatar {
                 break;
             default: return;
         }
-        Log.d("collision", "TL: " + (posX - 32) + " " + (posY - 32) + "\nBR: " + (posX + 31) + " " + (posY + 31));
-        Log.d("collision", "BaseXY: " + baseX + " " + baseY);
-        Log.d("collision", collisionBox.toString() + " " + directionFacing.toString());
+        //Log.d("collision", "TL: " + (posX - 32) + " " + (posY - 32) + "\nBR: " + (posX + 31) + " " + (posY + 31));
+        //Log.d("collision", "BaseXY: " + baseX + " " + baseY);
+        //Log.d("collision", collisionBox.toString() + " " + directionFacing.toString());
         switch (directionFacing) {
             case UP:
                 posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
