@@ -67,8 +67,7 @@ public class EndView extends AppCompatActivity {
         startActivity(new Intent(EndView.this, WelcomeView.class));
     }
 
-    public void toLeaderboard(View view)
-    {
+    public void toLeaderboard(View view) {
         setContentView(R.layout.end_view);
         leaderboardPlayers = new TextView[10];
         leaderboardScores = new TextView[10];
