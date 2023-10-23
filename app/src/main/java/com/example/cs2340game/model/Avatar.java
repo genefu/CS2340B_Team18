@@ -70,10 +70,8 @@ public class Avatar {
     }
 
     public void applyVector(Vector v) {
-        Log.d("keyPress", "Applied Vector");
         if (appliedVectors.add(v)) {
             movementVector.addVector(v);
-            Log.d("keyPress", "Added Vector: " + movementVector.getX() + " " + movementVector.getY());
             updateDirection();
             updatePosition();
         }
@@ -124,7 +122,6 @@ public class Avatar {
         movementStrategy.move(movementVector, temp);
         posX = temp[0];
         posY = temp[1];
-        Log.d("collision", "Before: " + posX + " " + posY);
         CollisionBox collisionBox;
         if ((collisionBox = checkCollision()) != CollisionBox.NONE) {
             moveToValidPosition(collisionBox);
@@ -246,6 +243,13 @@ public class Avatar {
 
     public Direction getDirectionFacing() {
         return directionFacing;
+    }
+    public String getDirectionFacingString() {
+        return directionFacing.toString();
+    }
+
+    public void setMovementVector(Vector v) {
+        movementVector = v;
     }
 
     public Bitmap getBitMap(Context context) {
