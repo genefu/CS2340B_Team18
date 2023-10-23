@@ -16,15 +16,12 @@ import com.example.cs2340game.viewmodels.WelcomeViewModel;
 public class WelcomeView extends AppCompatActivity {
     private WelcomeViewModel viewModel;
     private MediaPlayer mediaPlayer;
-    int orientation;
 
     //Displays the viewds
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("iwantdeath", "start");
         super.onCreate(savedInstanceState);
-        orientation = this.getResources().getConfiguration().orientation;
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

@@ -72,7 +72,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     //switches view to second game screen
     public void switchRoom(View view) {
         currentRoom++;
-        if (currentRoom == 4) {
+        if (currentRoom == 1) {
             toEndView(view);
         } else {
             tileSet = new TileMap(gameView, currentRoom + "", this);
@@ -89,7 +89,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
         model.getScore().setPlayerName(model.getPlayerName());
         model.getScore().setDateTime(date);
-        startActivity(new Intent(GameView.this, EndView.class));
+        startActivity(new Intent(GameView.this, WinView.class));
     }
 
     @Override
