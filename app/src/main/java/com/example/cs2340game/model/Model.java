@@ -54,6 +54,11 @@ public class Model {
         return modelInstance;
     }
 
+    //for testing, implement later to have model save highest score/most recent score
+    public void setScore(Score score) {
+        this.score = score;
+    }
+
     // Adds dummy scores to leaderboard
     /*public void testLeaderboard(TreeSet<Score> leaderboard) {
         updateLeaderboard(new Score("a", 1));

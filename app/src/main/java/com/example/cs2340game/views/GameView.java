@@ -86,7 +86,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         } else {
             //gameRender = new GameRender(gameView, currentRoom + "", this);
             gameRender.getMapLayout().setScreen(currentRoom);
-            Log.d("bruh", currentRoom + ": room");
+            //Log.d("bruh", currentRoom + ": room");
         }
 
     }
@@ -133,7 +133,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         boolean out = super.onKeyUp(keyCode, event);
-        Log.d("keyPress", keyCode + " up");
+        //Log.d("keyPress", keyCode + " up");
         if (keyCode == KeyEvent.KEYCODE_W) {
             avatar.removeVector(StandardVectors.UP_VECTOR);
             out = true;
@@ -174,5 +174,4 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         gameRender.refreshScreen();
         //Log.d("keyPress", avatar.getMovementVector().getX() + " " + avatar.getMovementVector().getY());
     }
-
 }

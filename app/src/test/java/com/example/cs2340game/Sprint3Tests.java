@@ -2,14 +2,22 @@ package com.example.cs2340game;
 
 import static org.junit.Assert.*;
 
+import android.view.KeyEvent;
+import android.widget.TextView;
+
 import com.example.cs2340game.model.Avatar;
+import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.Score;
 import com.example.cs2340game.model.SprintStrategy;
 import com.example.cs2340game.model.StandardVectors;
 import com.example.cs2340game.model.Vector;
 import com.example.cs2340game.model.WalkStrategy;
+import com.example.cs2340game.viewmodels.EndViewModel;
+import com.example.cs2340game.views.GameView;
 import com.example.cs2340game.views.MapLayout;
 
 import org.junit.Test;
+import org.w3c.dom.Text;
 
 public class Sprint3Tests {
 
@@ -91,5 +99,19 @@ public class Sprint3Tests {
         Vector vector4 = new Vector(0,0);
         vector4.addVector(vector4);
         assertEquals(0,vector4.getX(),0);
+    }
+
+    @Test
+    public void playerWins() {
+        Model model = Model.getInstance();
+        model.setScore(new Score("player", 1001, "00:00"));
+        assertEquals(true, model.isWinner());
+    }
+
+    @Test
+    public void playerLoses() {
+        Model model = Model.getInstance();
+        model.setScore(new Score("player", 999, "00:00"));
+        assertEquals(false, model.isWinner());
     }
 }
