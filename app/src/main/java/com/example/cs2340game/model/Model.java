@@ -1,9 +1,6 @@
 package com.example.cs2340game.model;
 
-import android.content.res.Resources;
-
 import androidx.annotation.Nullable;
-
 import java.util.TreeSet;
 
 //Main Model

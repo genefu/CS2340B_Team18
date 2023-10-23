@@ -1,12 +1,7 @@
 package com.example.cs2340game.model;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
-
 import com.example.cs2340game.R;
-
 import java.util.HashSet;
 
 public class Tile {
@@ -20,11 +15,17 @@ public class Tile {
         this.type = type;
         this.row = row;
         this.col = col;
-        boundsRect = new Rect(col * TILE_SIZE, row * TILE_SIZE, col * TILE_SIZE + TILE_SIZE - 1, row * TILE_SIZE + TILE_SIZE - 1);
+        boundsRect = new Rect(col * TILE_SIZE, row * TILE_SIZE,
+                col * TILE_SIZE + TILE_SIZE - 1, row * TILE_SIZE + TILE_SIZE - 1);
         switch (type) {
-            case 1: resourceId = R.drawable.watertile; break;
-            case 2: resourceId = R.drawable.grasstile; break;
-            case 3: resourceId = R.drawable.stonetile; break;
+        case 1: resourceId = R.drawable.watertile;
+            break;
+        case 2: resourceId = R.drawable.grasstile;
+            break;
+        case 3: resourceId = R.drawable.stonetile;
+            break;
+        default:
+            break;
         }
     }
 
