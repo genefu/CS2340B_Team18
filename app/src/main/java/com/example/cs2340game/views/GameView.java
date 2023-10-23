@@ -5,19 +5,21 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-//import android.widget.Button;
+import android.view.KeyEvent;
 import android.widget.ImageView;
-//import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.icu.text.DateFormat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
+import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Score;
+import com.example.cs2340game.model.SprintStrategy;
+import com.example.cs2340game.model.StandardVectors;
+import com.example.cs2340game.model.WalkStrategy;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity implements GameTimer.TimerListener {
@@ -30,11 +32,12 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private ImageView playerSprite;
     private GameViewModel viewModel;
     private ImageView gameView;
-    private TileMap tileSet;
+    private GameRender gameRender;
     private GameTimer gameTimer;
     private int tickOffset;
     private String date;
     private int currentRoom;
+    private Avatar avatar;
 
     //Displays the view
     @Override
@@ -55,41 +58,97 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         timeTextView = findViewById(R.id.TimeText);
         timeTextView.setText("Time: " + viewModel.getTime());
         playerSprite = findViewById(R.id.player_sprite);
-        int id = this.getResources().getIdentifier(model.getPlayer().getAvatar(),
+        avatar = model.getPlayer().getAvatar();
+        int id = this.getResources().getIdentifier(avatar.getSprite(),
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
 
         gameView = (ImageView) findViewById(R.id.tileSet);
         currentRoom = 1;
-        tileSet = new TileMap(gameView, currentRoom + "", this);
+        gameRender = new GameRender(gameView, currentRoom, this);
         //gameView.setImageBitmap(tileSet.getTileSet());
 
         gameTimer = new GameTimer(this);
         tickOffset = gameTimer.getTicks() % 40;
-
     }
 
     //switches view to second game screen
-    public void switchRoom(View view) {
+    public void switchRoom() {
         currentRoom++;
-        if (currentRoom == 1) {
-            toEndView(view);
+        if (currentRoom == 4) {
+            toEndView();
         } else {
-            tileSet = new TileMap(gameView, currentRoom + "", this);
-            Log.d("bruh", currentRoom + ": room");
+            //gameRender = new GameRender(gameView, currentRoom + "", this);
+            gameRender.getMapLayout().setScreen(currentRoom);
+            //Log.d("bruh", currentRoom + ": room");
         }
 
     }
 
     //Switches view to EndView
-    public void toEndView(View view) {
+    public void toEndView() {
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
         model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
         model.getScore().setPlayerName(model.getPlayerName());
         model.getScore().setDateTime(date);
-        startActivity(new Intent(GameView.this, WinView.class));
+        startActivity(new Intent(GameView.this, EndView.class));
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Log.d("keyPress", keyCode + " down");
+        boolean out = super.onKeyUp(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_W) {
+            avatar.applyVector(StandardVectors.UP_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_A) {
+            avatar.applyVector(StandardVectors.LEFT_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_S) {
+            avatar.applyVector(StandardVectors.DOWN_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_D) {
+            avatar.applyVector(StandardVectors.RIGHT_VECTOR);
+            out = true;
+        }
+        if (event.isShiftPressed()) {
+            avatar.setMovementStrategy(new SprintStrategy());
+        } else {
+            avatar.setMovementStrategy(new WalkStrategy());
+        }
+        return out;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        boolean out = super.onKeyUp(keyCode, event);
+        //Log.d("keyPress", keyCode + " up");
+        if (keyCode == KeyEvent.KEYCODE_W) {
+            avatar.removeVector(StandardVectors.UP_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_A) {
+            avatar.removeVector(StandardVectors.LEFT_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_S) {
+            avatar.removeVector(StandardVectors.DOWN_VECTOR);
+            out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_D) {
+            avatar.removeVector(StandardVectors.RIGHT_VECTOR);
+            out = true;
+        }
+        if (avatar.isOnExit()) {
+            switchRoom();
+        }
+        return out;
+
     }
 
     @Override
@@ -104,6 +163,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         }
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());
+        //avatar.updatePosition();
+        gameRender.refreshScreen();
     }
-
 }

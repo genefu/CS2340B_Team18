@@ -1,20 +1,71 @@
 package com.example.cs2340game.views;
 
+import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.Player;
+import com.example.cs2340game.model.Tile;
 
 public class MapLayout {
+    private static MapLayout mapLayoutInstance;
     private Model model;
     private int viewWidth;
     private int viewHeight;
-    private int[][] mapLayout;
-    public MapLayout(String screen) {
+    private int tileSize;
+    private Tile[][] tileMap;
+    private MapLayout(int screen) {
         model = Model.getInstance();
-        viewHeight = model.getScreenHeight() - model.getScreenHeight() % 64; //gameView.getHeight();
-        viewWidth = (int) (viewHeight * 1.7); //gameView.getWidth();
-        int numCols = (int) viewHeight / 64;
-        int numRows = (int) viewWidth / 64;
+        int screenWidth = model.getScreenWidth();
+        int screenHeight = model.getScreenHeight();
+
+        if (screenWidth >= 1.7 * screenHeight) {
+            viewWidth = screenWidth - screenWidth % 64;
+            //MAY NEED TO ROUND BECAUSE OF FLOATING POINTS
+            viewHeight = (int) Math.round(viewWidth / 1.7);
+            //Log.d("tileSize", "larger width: " + viewWidth + " " + viewHeight);
+        }
+        if (screenWidth < 1.7 * screenHeight) {
+            viewHeight = screenHeight - screenHeight % 64; //gameView.getHeight();
+            viewWidth = (int) Math.round(viewHeight * 1.7); //gameView.getWidth();
+            //Log.d("tileSize", "larger height: " + viewWidth + " " + viewHeight);
+        }
+
+        //Log.d("tileSize", (viewHeight / 20) + " " + (viewWidth / 34) + " " + (screenHeight / 20));
+        tileSize = (int) (viewHeight / 20);
+
+        setScreen(screen);
+    }
+
+    //Creates (if not already created) and returns the player instance
+    public static MapLayout getInstance(int screen) {
+        if (mapLayoutInstance == null) {
+            synchronized (Model.class) {
+                synchronized (Player.class) {
+                    if (mapLayoutInstance == null) {
+                        mapLayoutInstance = new MapLayout(screen);
+                    }
+                }
+            }
+        }
+        return mapLayoutInstance;
+    }
+
+    public static MapLayout getInstance() {
+        if (mapLayoutInstance == null) {
+            synchronized (Player.class) {
+                if (mapLayoutInstance == null) {
+                    throw new IllegalArgumentException(
+                            "MapLayout doesn't exist, needs a screen parameter");
+                }
+            }
+        }
+        return mapLayoutInstance;
+    }
+
+    public void setScreen(int screen) {
+        Avatar avatar = Avatar.getInstance();
+        int[][] mapLayout = new int[20][34];
         switch (screen) {
-        case "1":
+        case 1:
             mapLayout = new int[][]
                 {{3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
@@ -39,9 +90,9 @@ public class MapLayout {
                 {3, 2, 1, 2, 2, 3, 3, 3, 3, 1, 1, 1, 2, 3, 3, 3,
                         1, 1, 1, 3, 1, 1, 1, 1, 2, 3, 3, 2, 3, 3, 3, 2, 3, 3},
                 {3, 2, 1, 2, 1, 3, 3, 3, 3, 3, 1, 1, 1, 2, 3, 3,
-                        1, 1, 1, 1, 1, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 2, 3, 3},
+                        1, 1, 1, 1, 1, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 2, 2, 4},
                 {3, 2, 3, 2, 1, 3, 3, 3, 3, 3, 3, 3, 1, 2, 2, 2,
-                        3, 3, 1, 3, 1, 2, 2, 1, 3, 3, 1, 2, 3, 3, 3, 2, 3, 3},
+                        3, 3, 1, 3, 1, 2, 2, 1, 3, 3, 1, 2, 3, 3, 3, 2, 2, 4},
                 {3, 2, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                         2, 2, 2, 2, 2, 3, 3, 3, 1, 1, 2, 2, 3, 3, 3, 2, 3, 3},
                 {3, 2, 3, 3, 2, 2, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3,
@@ -56,8 +107,9 @@ public class MapLayout {
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
+            avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
             break;
-        case "2":
+        case 2:
             mapLayout = new int[][]
                 {{3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
@@ -66,11 +118,11 @@ public class MapLayout {
                 {3, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 3},
                 {3, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1,
-                        1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+                        1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4},
                 {3, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1,
-                        1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+                        1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4},
                 {3, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1,
-                        1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+                        1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 4},
                 {3, 1, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 1, 1, 1,
                         1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 2, 2, 1, 3},
                 {3, 1, 2, 2, 2, 2, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1,
@@ -99,8 +151,9 @@ public class MapLayout {
                         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3},
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
+            avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
             break;
-        case "3":
+        case 3:
             mapLayout = new int[][]
                 {{3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
@@ -121,9 +174,9 @@ public class MapLayout {
                 {3, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
                         2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 3},
                 {3, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2,
-                        2, 2, 2, 2, 2, 2, 3, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 3},
+                        2, 2, 2, 2, 2, 4, 3, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 3},
                 {3, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1,
-                        1, 1, 1, 1, 2, 2, 3, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 3},
+                        1, 1, 1, 1, 4, 4, 3, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 3},
                 {3, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1,
                         1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 3},
                 {3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1,
@@ -142,19 +195,30 @@ public class MapLayout {
                         1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3},
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
+            avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
             break;
         default:
             break;
         }
+        tileMap = new Tile[20][34];
+        for (int row = 0; row < 20; row++) {
+            for (int col = 0; col < 34; col++) {
+                tileMap[row][col] = new Tile(mapLayout[row][col], row, col);
+            }
+        }
+        avatar.resetOnExit();
     }
 
-    public int[][] getMapLayout() {
-        return mapLayout;
+    public Tile[][] getTileMap() {
+        return tileMap;
     }
     public int getViewWidth() {
         return viewWidth;
     }
     public int getViewHeight() {
         return viewHeight;
+    }
+    public int getTileSize() {
+        return tileSize;
     }
 }

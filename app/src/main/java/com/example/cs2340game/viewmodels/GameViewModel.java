@@ -19,6 +19,10 @@ public class GameViewModel extends BaseObservable {
         secondsPassed = 0;
     }
 
+    public void switchRoom() {
+
+    }
+
     // Gets the total player health
     public int getHealth() {
         return player.getHealth();
@@ -57,11 +61,6 @@ public class GameViewModel extends BaseObservable {
         this.hoursPassed = hoursPassed;
     }
 
-    //updates the view
-    public void updateView() {
-
-    }
-
     // Subtracts 1 point from score until it hits 0
     public void decrementScore() {
         int currentScore = model.getScore().getScoreValue();
@@ -73,11 +72,5 @@ public class GameViewModel extends BaseObservable {
     // Adds 1 second to secondsPassed
     public void incrementSecond() {
         secondsPassed++;
-    }
-
-    // actions to be performed
-    // when user clicks a button
-    public void onButtonClicked() {
-        //TODO implement if button added
     }
 }

@@ -19,16 +19,17 @@ public class GameTimer {
 
     //Starts the timer
     private void startTimer() {
+        int delayMilis = 1000 / Model.REFRESH_RATE;
         runnable = new Runnable() {
             @Override
             public void run() {
                 ticks++;
                 listener.onTimerUpdate(ticks);
-                handler.postDelayed(this, 25); //updates game roughly 40 times a second
+                handler.postDelayed(this, delayMilis); //updates game roughly 20 times a second
             }
         };
 
-        handler.postDelayed(runnable, 25);
+        handler.postDelayed(runnable, delayMilis);
     }
 
     // Stops the timer
