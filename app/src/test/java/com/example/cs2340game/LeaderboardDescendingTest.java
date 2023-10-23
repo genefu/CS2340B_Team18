@@ -26,7 +26,7 @@ public class LeaderboardDescendingTest {
         model.updateLeaderboard(new Score("p10", 19, "1:3:40"));
 
         TreeSet<Score> leaderboard = model.getLeaderboard().getLeaderboardSet();
-        assertEquals(19, leaderboard.first().getScore());
+        assertEquals(19, leaderboard.first().getScoreValue());
     }
 
     @Test
