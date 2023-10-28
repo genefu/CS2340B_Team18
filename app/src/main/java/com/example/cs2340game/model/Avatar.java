@@ -249,7 +249,7 @@ public class Avatar {
     }
     public String getDirectionFacingString() {
         return directionFacing.toString();
-    }
+    } //For JUnits
 
     public void setMovementVector(Vector v) {
         movementVector = v;
@@ -264,11 +264,12 @@ public class Avatar {
     // Returns the set of all tiles that the avatar is currently on top of
     public Tile[] getTileCoverage(Tile[][] tileMap) {
         Tile[] tilesCovered = new Tile[4];
-        int top = MathUtils.clamp((int) ((posY - 32) / Tile.TILE_SIZE), 0, 19);
-        int left = MathUtils.clamp((int) ((posX - 32) / Tile.TILE_SIZE), 0, 33);
+        int midPoint = AVATAR_SIZE/ 2;
+        int top = MathUtils.clamp((int) ((posY - midPoint) / Tile.TILE_SIZE), 0, 19);
+        int left = MathUtils.clamp((int) ((posX - midPoint) / Tile.TILE_SIZE), 0, 33);
 
-        int bottom = MathUtils.clamp((int) ((posY + 31) / Tile.TILE_SIZE), 0, 19);
-        int right = MathUtils.clamp((int) ((posX + 31) / Tile.TILE_SIZE), 0, 33);
+        int bottom = MathUtils.clamp((int) ((posY + midPoint - 1) / Tile.TILE_SIZE), 0, 19);
+        int right = MathUtils.clamp((int) ((posX + midPoint - 1) / Tile.TILE_SIZE), 0, 33);
         tilesCovered[0] = (tileMap[top][left]); // Top left corner
         tilesCovered[1] = (tileMap[top][right]); // Top right corner
         tilesCovered[2] = (tileMap[bottom][left]); // Bottom left corner
