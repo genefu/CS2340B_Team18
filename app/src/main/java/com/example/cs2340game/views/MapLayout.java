@@ -107,7 +107,7 @@ public class MapLayout {
                         1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 3},
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
-            avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
+            avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 17);
             break;
         case 2:
             mapLayout = new int[][]
