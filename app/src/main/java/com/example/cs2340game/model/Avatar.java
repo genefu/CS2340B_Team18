@@ -36,9 +36,9 @@ public class Avatar {
         appliedVectors = new HashSet<>();
         this.sprite = sprite;
         this.directionFacing = Direction.UP;
-        this.posX = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 2;
+        this.posX = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 17;
         //TODO replace with room 1 starting position
-        this.posY = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 2;
+        this.posY = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 17;
         //TODO replace with room 1 starting position
         isOnExit = false;
     }
