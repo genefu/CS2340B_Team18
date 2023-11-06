@@ -1,6 +1,6 @@
 package com.example.cs2340game.model;
 
-public class E3Devil {
+public class E3Devil implements Enemy{
     private static E3Devil devilInstance;
     private int baseHealth;
     private int baseDefense;
@@ -9,7 +9,11 @@ public class E3Devil {
     private int speed;
     private Avatar avatar;
 
-    private E3Devil(String name) {
+    public void attack() {
+        //TO BE IMPLEMENTED
+    }
+
+    public E3Devil(String name) {
         this.name = name;
         baseHealth = 200;
         this.baseDefense = 10;
@@ -17,7 +21,7 @@ public class E3Devil {
         this.speed = 12;
     }
 
-    private E3Devil(){
+    public E3Devil(){
         this.baseHealth = 200;
         this.baseDefense = 10;
         this.baseStrength = 15;

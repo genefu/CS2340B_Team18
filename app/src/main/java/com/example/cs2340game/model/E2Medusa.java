@@ -1,6 +1,6 @@
 package com.example.cs2340game.model;
 
-public class E2Medusa {
+public class E2Medusa implements Enemy{
 
     private static E2Medusa medusaInstance;
     private int baseHealth;
@@ -10,7 +10,7 @@ public class E2Medusa {
     private int speed;
     private Avatar avatar;
 
-    private E2Medusa(String name) {
+    public E2Medusa(String name) {
         this.name = name;
         baseHealth = 1;
         this.baseDefense = 10;
@@ -18,12 +18,16 @@ public class E2Medusa {
         this.speed = 30;
     }
 
-    private E2Medusa(){
+    public E2Medusa(){
         this.baseHealth = 1;
         this.baseDefense = 10;
         this.baseStrength = 1000;
         this.name = "Medusa";
         this.speed = 30;
+    }
+
+    public void attack() {
+        //TO BE IMPLEMENTED
     }
 
     public static E2Medusa getInstance(String name) {

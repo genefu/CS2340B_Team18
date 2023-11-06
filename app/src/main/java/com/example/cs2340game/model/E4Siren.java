@@ -1,6 +1,6 @@
 package com.example.cs2340game.model;
 
-public class E4Siren {
+public class E4Siren implements Enemy{
     private static E4Siren sirenInstance;
     private int baseHealth;
     private int baseDefense;
@@ -9,7 +9,11 @@ public class E4Siren {
     private int speed;
     private Avatar avatar;
 
-    private E4Siren(String name) {
+    public void attack() {
+        //TO BE IMPLEMENTED
+    }
+
+    public E4Siren(String name) {
         this.name = name;
         baseHealth = 40;
         this.baseDefense = 0;
@@ -17,7 +21,7 @@ public class E4Siren {
         this.speed = 40;
     }
 
-    private E4Siren(){
+    public E4Siren(){
         this.baseHealth = 40;
         this.baseDefense = 0;
         this.baseStrength = 10;
