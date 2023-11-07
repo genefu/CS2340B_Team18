@@ -1,5 +1,15 @@
 package com.example.cs2340game.model;
 
+import static com.example.cs2340game.model.StandardVectors.DOWNLEFT_VECTOR;
+import static com.example.cs2340game.model.StandardVectors.DOWNRIGHT_VECTOR;
+import static com.example.cs2340game.model.StandardVectors.DOWN_VECTOR;
+import static com.example.cs2340game.model.StandardVectors.LEFT_VECTOR;
+import static com.example.cs2340game.model.StandardVectors.RIGHT_VECTOR;
+import static com.example.cs2340game.model.StandardVectors.UPLEFT_VECTOR;
+import static com.example.cs2340game.model.StandardVectors.UPRIGHT_VECTOR;
+import static com.example.cs2340game.model.StandardVectors.UP_VECTOR;
+
+
 public class EnemyMovement {
 
     private Vector movementVector;
@@ -7,7 +17,7 @@ public class EnemyMovement {
     private Enemy enemy;
     private Avatar avatar;
     private Model model;
-    private StandardVectors[] standard
+    private MovementStrategy movementStrategy;
     enum enemyDirection {
         UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT
     }
@@ -16,6 +26,7 @@ public class EnemyMovement {
         this.model = Model.getInstance();
         this.avatar = Avatar.getInstance();
         enemy = new Enemy();
+        movementStrategy = new WalkStrategy();
     }
 
     public void startingPosition() {
@@ -27,8 +38,8 @@ public class EnemyMovement {
     }
 
     public void movement() {
-        if (avatar.getPosX() < enemy.getPosX + 192 && avatar.getPosX() > enemy.getPosX - 192) {
-            if (avatar.getPosY() < enemy.getPoxY() + 192 && avatar.getPosY() > enemy.getPosY - 192) {
+        if (avatar.getPosX() < enemy.getPosX() + 192 && avatar.getPosX() > enemy.getPosX() - 192) {
+            if (avatar.getPosY() < enemy.getPoxY() + 192 && avatar.getPosY() > enemy.getPosY() - 192) {
                 combatMovement();
             }
         }
@@ -38,7 +49,10 @@ public class EnemyMovement {
     }
 
     public void combatMovement() {
+        movementStrategy = new SprintStrategy();
+        
 
+        updateDirection();
     }
     public void basicMovement() {
         // this method is for the enemy movement when the enemy is not close to the enemy
@@ -46,33 +60,58 @@ public class EnemyMovement {
         int randomVector = (int) (8 * Math.random());
         switch (randomVector) {
             case 0:
-                movementVector = new Vector(1, 1);
+                movementVector = UP_VECTOR;
                 break;
             case 1:
-                movementVector = new Vector(-1, 1);
+                movementVector = DOWN_VECTOR;
                 break;
             case 2:
-                movementVector = new Vector(1, -1);
+                movementVector = LEFT_VECTOR;
                 break;
             case 3:
-                movementVector = new Vector(-1, -1);
+                movementVector = RIGHT_VECTOR;
                 break;
             case 4:
-                movementVector = new Vector(0, 1);
+                movementVector = UPLEFT_VECTOR;
                 break;
             case 5:
-                movementVector = new Vector(1, 0);
+                movementVector = UPRIGHT_VECTOR;
                 break;
             case 6:
-                movementVector = new Vector(0, -1);
+                movementVector = DOWNLEFT_VECTOR;
                 break;
             case 7:
-                movementVector = new Vector(-1, 0);
+                movementVector = DOWNRIGHT_VECTOR;
                 break;
         }
         if (randomMovement > 95) {
-            enemy.posX += movementVector.getX();
-            enemy.posY += movementVector.getY();
+            int[] temp = new int[]{posX, posY};
+            movementStrategy.move(movementVector, temp);
+            enemy.setPosX(posX);
+            enemy.setPosY(posY);
+            updateDirection();
         }
     }
+    public void updateDirection() {
+        double x = movementVector.getX();
+        double y = -movementVector.getY();
+        if (y > 0 && x == 0) {
+            directionFacing = enemyDirection.UP;
+        } else if (y > 0 && x > 0) {
+            directionFacing = enemyDirection.UP_RIGHT;
+        } else if (y == 0 && x > 0) {
+            directionFacing = enemyDirection.RIGHT;
+        } else if (y < 0 && x > 0) {
+            directionFacing = enemyDirection.DOWN_RIGHT;
+        } else if (y < 0 && x == 0) {
+            directionFacing = enemyDirection.DOWN;
+        } else if (y < 0 && x < 0) {
+            directionFacing = enemyDirection.DOWN_LEFT;
+        } else if (y == 0 && x < 0) {
+            directionFacing = enemyDirection.LEFT;
+        } else if (y > 0 && x < 0) {
+            directionFacing = enemyDirection.UP_LEFT;
+        }
+    }
+
 }
