@@ -7,9 +7,14 @@ import android.graphics.BitmapFactory;
 
 import androidx.core.math.MathUtils;
 
+import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
+import com.example.cs2340game.model.MovementStrategies.Vector;
+import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
 import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class Avatar implements Movable, Collidable {
     private static Avatar avatarInstance;
@@ -20,6 +25,7 @@ public class Avatar implements Movable, Collidable {
     private String sprite;
     private boolean isOnExit;
     private Direction directionFacing;
+    private int invincibilityTime;
     private int posX; //position of center x
     private int posY; //position of center y
 
@@ -31,6 +37,7 @@ public class Avatar implements Movable, Collidable {
         this.directionFacing = Direction.UP;
         this.posX = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 17;
         this.posY = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 17;
+        this.invincibilityTime = 0;
         isOnExit = false;
     }
 
@@ -120,6 +127,24 @@ public class Avatar implements Movable, Collidable {
             moveToValidPosition(collisionBox);
         }
         //Log.d("collision", "After: " + posX + " " + posY);
+    }
+
+    public void updateInvincibility() {
+        if (invincibilityTime > 0) {
+            invincibilityTime--;
+        }
+    }
+
+    public void checkEnemyCollision(TreeSet<Enemy> enemies) {
+        if (invincibilityTime > 0) {
+            return;
+        }
+        for (Enemy e: enemies) {
+            if (e.getDistance(posX, posY) < 60) {
+                invincibilityTime += 40;
+                Player.getInstance().removeHealth(e.getStrength());
+            }
+        }
     }
 
     public CollisionBox checkCollision() {
@@ -259,6 +284,10 @@ public class Avatar implements Movable, Collidable {
 
     public void setMovementVector(Vector v) {
         movementVector = v;
+    }
+
+    public int getInvincibilityTime() {
+        return invincibilityTime;
     }
 
     public Bitmap getBitMap(Context context) {

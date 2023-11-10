@@ -17,9 +17,9 @@ import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Score;
-import com.example.cs2340game.model.SprintStrategy;
-import com.example.cs2340game.model.StandardVectors;
-import com.example.cs2340game.model.WalkStrategy;
+import com.example.cs2340game.model.MovementStrategies.SprintStrategy;
+import com.example.cs2340game.model.MovementStrategies.StandardVectors;
+import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
 import com.example.cs2340game.viewmodels.GameViewModel;
 
 public class GameView extends AppCompatActivity implements GameTimer.TimerListener {
@@ -153,17 +153,20 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
     @Override
     public void onTimerUpdate(int ticks) {
-        Log.d("iwantdeath", "gameTicks: " + ticks);
-        //viewModel.updateView();
+        Log.d("iwantdeath", "invincibility:" + viewModel.getInvincibilityTime());
+        viewModel.updatePlayerInvincibility();
         if (ticks % 20 - tickOffset % 20 == 0) { //every half second
             viewModel.decrementScore();
             if (ticks % 40 - tickOffset == 0) { //every second
                 viewModel.incrementSecond();
             }
         }
+        healthTextView.setText("Health: " + viewModel.getHealth());
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());
         //avatar.updatePosition();
+        avatar.checkEnemyCollision(model.getRenderedEnemies());
+        Log.d("Enemies", model.getRenderedEnemies().toString());
         gameRender.refreshScreen();
     }
 }

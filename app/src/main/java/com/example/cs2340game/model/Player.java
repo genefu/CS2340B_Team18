@@ -1,30 +1,34 @@
 package com.example.cs2340game.model;
 
+import androidx.core.math.MathUtils;
+
 public class Player {
     private static Player playerInstance;
+    private int health;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
-    private String id;
+    private String name;
     private int speed;
     private Avatar avatar;
 
 
     // Constructor
-    private Player(String id) {
+    private Player(String name) {
         updateDifficultyStats(Model.Difficulty.MEDIUM);
+        this.health = baseHealth;
         speed = 100;
-        this.id = id;
+        this.name = name;
         avatar = Avatar.getInstance("sprite1");
     }
 
     //Creates (if not already created) and returns the player instance
-    public static Player getInstance(String id) {
+    public static Player getInstance(String name) {
         if (playerInstance == null) {
             synchronized (Model.class) {
                 synchronized (Player.class) {
                     if (playerInstance == null) {
-                        playerInstance = new Player(id);
+                        playerInstance = new Player(name);
                     }
                 }
             }
@@ -49,22 +53,32 @@ public class Player {
         switch (difficulty) {
         case EASY:
             baseHealth = 100;
+            baseDefense = 125;
             baseStrength = 100;
             break;
         case HARD:
             baseHealth = 25;
+            baseDefense = 75;
             baseStrength = 25;
             break;
         default:
             baseHealth = 50;
+            baseDefense = 100;
             baseStrength = 50;
             break;
         }
     }
 
+    public void removeHealth(int damage) {
+        health = MathUtils.clamp(health - damage * (200 - baseDefense), 0, baseHealth);
+        if (health == 0) {
+            //TODO GAME OVER
+        }
+    }
+
     // Getter for total health
     public int getHealth() {
-        return baseHealth;
+        return health;
     }
 
     // Getter for total strength
@@ -72,7 +86,7 @@ public class Player {
         return baseStrength;
     }
 
-    // Getter for player id
+    // Getter for player name
     public String getName() {
         return name;
     }

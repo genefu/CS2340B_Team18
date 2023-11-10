@@ -56,6 +56,9 @@ public class Tile {
     public boolean isWater() {
         return type == 1;
     }
+
+    public boolean isLand() { return type == 2; }
+
     public boolean isExit() {
         return type == 4;
     }

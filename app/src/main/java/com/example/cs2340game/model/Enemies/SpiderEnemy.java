@@ -1,44 +1,54 @@
-package com.example.cs2340game.model;
+package com.example.cs2340game.model.Enemies;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.core.math.MathUtils;
 
+import com.example.cs2340game.model.Collidable;
+import com.example.cs2340game.model.Movable;
+import com.example.cs2340game.model.Tile;
+import com.example.cs2340game.model.MovementStrategies.Vector;
 import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
 
-public class E4Siren extends Enemy implements Movable, Collidable {
-    final private String SPRITE = "siren";
-    final private int ENEMY_SIZE = 64;
+public class SpiderEnemy extends Enemy implements Movable, Collidable, Comparable<Enemy> {
+    final private String SPRITE = "spider";
+    private int health;
     private int baseHealth;
     private int baseDefense;
-    private int baseStrength;
-    private String id;
+    private int strength;
+    private int id;
     private int speed;
     private Vector movementVector;
-    private MovementStrategy movementStrategy;
     private HashSet<Vector> appliedVectors;
     private Direction directionFacing;
     private int posX; //position of center x
     private int posY; //position of center y
-
-    public E4Siren(String name, MovementStrategy movementStrategy, int posX, int posY) {
+    public SpiderEnemy(int id, int posX, int posY) {
+        speed = 100;
         this.id = id;
-        baseHealth = 40;
-        this.baseDefense = 0;
-        this.baseStrength = 10;
-        this.speed = 40;
+        this.baseHealth = 40;
+        this.health = baseHealth;
+        this.baseDefense = 10;
+        this.strength = 20;
+        this.speed = 30;
         movementVector = new Vector();
-        this.movementStrategy = movementStrategy;
         appliedVectors = new HashSet<>();
         this.directionFacing = Direction.UP;
         this.posX = posX;
         this.posY = posY;
     }
 
+    @Override
     public void attack() {
         //TO BE IMPLEMENTED
     }
 
+    @Override
     public void applyVector(Vector v) {
         //Log.d("keyPress", "Applied Vector");
         if (appliedVectors.add(v)) {
@@ -48,6 +58,7 @@ public class E4Siren extends Enemy implements Movable, Collidable {
         }
     }
 
+    @Override
     public void removeVector(Vector v) {
         //Log.d("keyPress", "Removed Vector");
         if (appliedVectors.remove(v)) {
@@ -57,42 +68,40 @@ public class E4Siren extends Enemy implements Movable, Collidable {
         }
     }
 
+    @Override
     public void clearVectors() {
         appliedVectors.clear();
         movementVector = new Vector();
     }
 
+    @Override
     public void updateDirection() {
         double x = movementVector.getX();
         double y = -movementVector.getY();
         if (y > 0 && x == 0) {
-            directionFacing = Movable.Direction.UP;
+            directionFacing = Direction.UP;
         } else if (y > 0 && x > 0) {
-            directionFacing = Movable.Direction.UP_RIGHT;
+            directionFacing = Direction.UP_RIGHT;
         } else if (y == 0 && x > 0) {
-            directionFacing = Movable.Direction.RIGHT;
+            directionFacing = Direction.RIGHT;
         } else if (y < 0 && x > 0) {
-            directionFacing = Movable.Direction.DOWN_RIGHT;
+            directionFacing = Direction.DOWN_RIGHT;
         } else if (y < 0 && x == 0) {
-            directionFacing = Movable.Direction.DOWN;
+            directionFacing = Direction.DOWN;
         } else if (y < 0 && x < 0) {
-            directionFacing = Movable.Direction.DOWN_LEFT;
+            directionFacing = Direction.DOWN_LEFT;
         } else if (y == 0 && x < 0) {
-            directionFacing = Movable.Direction.LEFT;
+            directionFacing = Direction.LEFT;
         } else if (y > 0 && x < 0) {
-            directionFacing = Movable.Direction.UP_LEFT;
+            directionFacing = Direction.UP_LEFT;
         }
     }
 
-    public void setMovementStrategy(MovementStrategy movementStrategy) {
-        this.movementStrategy = movementStrategy;
-    }
-
+    @Override
     public void updatePosition() {
         int[] temp = new int[]{posX, posY};
-        movementStrategy.move(movementVector, temp);
-        posX = temp[0];
-        posY = temp[1];
+        posX += (int) (movementVector.getX() * speed);
+        posY += (int) (movementVector.getY() * speed);
         //Log.d("collision", "Before: " + posX + " " + posY);
         Collidable.CollisionBox collisionBox;
         collisionBox = checkCollision();
@@ -102,24 +111,26 @@ public class E4Siren extends Enemy implements Movable, Collidable {
         //Log.d("collision", "After: " + posX + " " + posY);
     }
 
-    public Collidable.CollisionBox checkCollision() {
+    @Override
+    public CollisionBox checkCollision() {
         Tile[][] tileMap = MapLayout.getInstance().getTileMap();
         Tile[] coveredTiles = getTileCoverage(tileMap);
         for (int i = 0; i < 4; i++) {
-            if (coveredTiles[i].isWall()) {
+            if (coveredTiles[i].isWall() || coveredTiles[i].isWater()) {
                 switch (i) {
-                    case 0: return Collidable.CollisionBox.TOP_LEFT;
-                    case 1: return Collidable.CollisionBox.TOP_RIGHT;
-                    case 2: return Collidable.CollisionBox.BOTTOM_LEFT;
-                    case 3: return Collidable.CollisionBox.BOTTOM_RIGHT;
+                    case 0: return CollisionBox.TOP_LEFT;
+                    case 1: return CollisionBox.TOP_RIGHT;
+                    case 2: return CollisionBox.BOTTOM_LEFT;
+                    case 3: return CollisionBox.BOTTOM_RIGHT;
                     default: throw new IllegalArgumentException("Invalid collision box");
                 }
             }
         }
-        return Collidable.CollisionBox.NONE;
+        return CollisionBox.NONE;
     }
 
-    public void moveToValidPosition(Collidable.CollisionBox collisionBox) {
+    @Override
+    public void moveToValidPosition(CollisionBox collisionBox) {
         int baseX;
         int baseY;
         switch (collisionBox) {
@@ -178,6 +189,7 @@ public class E4Siren extends Enemy implements Movable, Collidable {
         }
     }
 
+    @Override
     // Returns the set of all tiles that the avatar is currently on top of
     public Tile[] getTileCoverage(Tile[][] tileMap) {
         Tile[] tilesCovered = new Tile[4];
@@ -193,23 +205,45 @@ public class E4Siren extends Enemy implements Movable, Collidable {
         return tilesCovered;
     }
 
-    // Getter for total health
+    @Override
+    public int getDistance(int x, int y) {
+        return (int) Math.sqrt((posX - x) * (posX - x) + (posY - y) * (posY - y));
+    }
+
+    @Override
     public int getHealth() {
-        return baseHealth;
+        return health;
     }
 
-    // Getter for total strength
-    public int getStrength() {
-        return baseStrength;
+    @Override
+    public int getStrength() { return strength; }
+
+    @Override
+    public int getPosX() {
+        return posX;
     }
 
+    @Override
+    public int getPosY() {
+        return posY;
+    }
+
+    @Override
     // Getter for player name
-    public String getID() {
+    public int getID() {
         return id;
     }
 
-    // Setter for player avatar
-    public void setID(String id) {
-        this.id = id;
+    @Override
+    public Bitmap getBitmap(Context context) {
+        Resources res = context.getResources();
+        return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(SPRITE,
+                "drawable", context.getPackageName())), Tile.TILE_SIZE, Tile.TILE_SIZE, false);
+    }
+
+    @Override
+    public int compareTo(Enemy enemy) {
+        return (this.strength - enemy.getStrength()) * 100 + this.id;
     }
 }
+

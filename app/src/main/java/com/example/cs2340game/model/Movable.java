@@ -1,5 +1,7 @@
 package com.example.cs2340game.model;
 
+import com.example.cs2340game.model.MovementStrategies.Vector;
+
 public interface Movable {
     enum Direction {
         UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT
@@ -12,8 +14,6 @@ public interface Movable {
     public void clearVectors();
 
     public void updateDirection();
-
-    public void setMovementStrategy(MovementStrategy movementStrategy);
 
     public void updatePosition();
 }
