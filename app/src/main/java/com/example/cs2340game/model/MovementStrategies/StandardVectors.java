@@ -1,4 +1,4 @@
-package com.example.cs2340game.model;
+package com.example.cs2340game.model.MovementStrategies;
 
 public class StandardVectors {
     public static final Vector UP_VECTOR = new Vector(0, -1);

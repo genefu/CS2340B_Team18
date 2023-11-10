@@ -1,4 +1,4 @@
-package com.example.cs2340game.model;
+package com.example.cs2340game.model.MovementStrategies;
 
 public class Vector implements Comparable<Vector> {
     private double x;

@@ -38,6 +38,14 @@ public class GameViewModel extends BaseObservable {
         return model.getScore().getScoreValue();
     }
 
+    public int getInvincibilityTime() {
+        return player.getAvatar().getInvincibilityTime();
+    }
+
+    public void updatePlayerInvincibility() {
+        player.getAvatar().updateInvincibility();
+    }
+
     // Gets the string for the current time
     // Updates seconds, minutes, and hours to be correct
     public String getTime() {
