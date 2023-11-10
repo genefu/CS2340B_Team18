@@ -1,6 +1,6 @@
 package com.example.cs2340game.model;
 
-public class E2Factory implements EnemyFactory{
+public class E2Factory extends EnemyFactory{
 
     @Override
     public Enemy createEnemy()  {
