@@ -7,7 +7,8 @@ import com.example.cs2340game.views.MapLayout;
 import java.util.HashSet;
 
 public class E1Spider extends Enemy implements Movable, Collidable {
-    final private String sprite = "spider";
+    final private String SPRITE = "spider";
+    final private int ENEMY_SIZE = 64;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
@@ -26,6 +27,12 @@ public class E1Spider extends Enemy implements Movable, Collidable {
         this.baseDefense = 10;
         this.baseStrength = 20;
         this.speed = 30;
+        movementVector = new Vector();
+        this.movementStrategy = movementStrategy;
+        appliedVectors = new HashSet<>();
+        this.directionFacing = Direction.UP;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public void attack() {

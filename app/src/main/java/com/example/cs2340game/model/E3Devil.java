@@ -7,7 +7,8 @@ import com.example.cs2340game.views.MapLayout;
 import java.util.HashSet;
 
 public class E3Devil extends Enemy implements Movable, Collidable {
-    final private String sprite = "devil";
+    final private String SPRITE = "devil";
+    final private int ENEMY_SIZE = 64;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
@@ -20,12 +21,18 @@ public class E3Devil extends Enemy implements Movable, Collidable {
     private int posX; //position of center x
     private int posY; //position of center y
 
-    public E3Devil(String id) {
+    public E3Devil(String id, MovementStrategy movementStrategy, int posX, int posY) {
         this.id = id;
         baseHealth = 200;
         this.baseDefense = 10;
         this.baseStrength = 15;
         this.speed = 12;
+        movementVector = new Vector();
+        this.movementStrategy = movementStrategy;
+        appliedVectors = new HashSet<>();
+        this.directionFacing = Direction.UP;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public E3Devil(){

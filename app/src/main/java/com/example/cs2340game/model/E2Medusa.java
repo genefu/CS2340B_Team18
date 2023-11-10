@@ -7,7 +7,8 @@ import com.example.cs2340game.views.MapLayout;
 import java.util.HashSet;
 
 public class E2Medusa extends Enemy implements Movable, Collidable {
-    final private String sprite = "medusa";
+    final private String SPRITE = "medusa";
+    final private int ENEMY_SIZE = 64;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
@@ -20,16 +21,18 @@ public class E2Medusa extends Enemy implements Movable, Collidable {
     private int posX; //position of center x
     private int posY; //position of center y
 
-    public E2Medusa(String id) {
+    public E2Medusa(String id, MovementStrategy movementStrategy, int posX, int posY) {
         this.id = id;
         baseHealth = 1;
         this.baseDefense = 10;
         this.baseStrength = 1000;
         this.speed = 30;
-    }
-
-    public E2Medusa() {
-        this("Medusa");
+        movementVector = new Vector();
+        this.movementStrategy = movementStrategy;
+        appliedVectors = new HashSet<>();
+        this.directionFacing = Direction.UP;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public void attack() {

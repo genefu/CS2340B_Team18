@@ -7,7 +7,8 @@ import com.example.cs2340game.views.MapLayout;
 import java.util.HashSet;
 
 public class E4Siren extends Enemy implements Movable, Collidable {
-    final private String sprite = "siren";
+    final private String SPRITE = "siren";
+    final private int ENEMY_SIZE = 64;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
@@ -20,16 +21,18 @@ public class E4Siren extends Enemy implements Movable, Collidable {
     private int posX; //position of center x
     private int posY; //position of center y
 
-    public E4Siren(String name) {
+    public E4Siren(String name, MovementStrategy movementStrategy, int posX, int posY) {
         this.id = id;
         baseHealth = 40;
         this.baseDefense = 0;
         this.baseStrength = 10;
         this.speed = 40;
-    }
-
-    public E4Siren(){
-        this("Siren");
+        movementVector = new Vector();
+        this.movementStrategy = movementStrategy;
+        appliedVectors = new HashSet<>();
+        this.directionFacing = Direction.UP;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public void attack() {
