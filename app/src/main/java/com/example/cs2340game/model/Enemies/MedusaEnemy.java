@@ -39,8 +39,8 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
         movementVector = new Vector();
         appliedVectors = new HashSet<>();
         this.directionFacing = Direction.UP;
-        this.posX = posX;
-        this.posY = posY;
+        this.posX = ENEMY_SIZE / 2 + posX;
+        this.posY = ENEMY_SIZE / 2 + posY;
     }
 
     @Override
