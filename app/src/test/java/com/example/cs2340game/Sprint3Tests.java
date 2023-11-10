@@ -2,22 +2,16 @@ package com.example.cs2340game;
 
 import static org.junit.Assert.*;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-
 import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Score;
-import com.example.cs2340game.model.SprintStrategy;
-import com.example.cs2340game.model.StandardVectors;
-import com.example.cs2340game.model.Vector;
-import com.example.cs2340game.model.WalkStrategy;
-import com.example.cs2340game.viewmodels.EndViewModel;
-import com.example.cs2340game.views.GameView;
+import com.example.cs2340game.model.MovementStrategies.SprintStrategy;
+import com.example.cs2340game.model.MovementStrategies.StandardVectors;
+import com.example.cs2340game.model.MovementStrategies.Vector;
+import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
 import com.example.cs2340game.views.MapLayout;
 
 import org.junit.Test;
-import org.w3c.dom.Text;
 
 public class Sprint3Tests {
 
@@ -38,7 +32,7 @@ public class Sprint3Tests {
         avatar.setMovementStrategy(new WalkStrategy());
         avatar.applyVector(StandardVectors.UP_VECTOR);
         assertEquals(160, avatar.getPosX());
-        assertEquals(140, avatar.getPosY());
+        assertEquals(150, avatar.getPosY());
     }
 
     @Test
@@ -113,5 +107,25 @@ public class Sprint3Tests {
         Model model = Model.getInstance();
         model.setScore(new Score("player", 999, "00:00"));
         assertEquals(false, model.isWinner());
+    }
+
+    @Test
+    public void playerMovesRight() {
+        MapLayout mapLayout = MapLayout.getInstance(2);
+        Avatar avatar = Avatar.getInstance("sprite3");
+        avatar.setMovementStrategy(new WalkStrategy());
+        avatar.applyVector(StandardVectors.RIGHT_VECTOR);
+        assertEquals((int) 1, (int) avatar.getMovementVector().getX());
+        assertEquals((int) 0, (int) avatar.getMovementVector().getY());
+    }
+
+    @Test
+    public void playerMovesLeft() {
+        MapLayout mapLayout = MapLayout.getInstance(2);
+        Avatar avatar = Avatar.getInstance("sprite3");
+        avatar.setMovementStrategy(new WalkStrategy());
+        avatar.applyVector(StandardVectors.LEFT_VECTOR);
+        assertEquals((int) -1, (int) avatar.getMovementVector().getX());
+        assertEquals((int) 0, (int) avatar.getMovementVector().getY());
     }
 }

@@ -1,7 +1,10 @@
 package com.example.cs2340game.model;
 
+import androidx.core.math.MathUtils;
+
 public class Player {
     private static Player playerInstance;
+    private int health;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
@@ -13,6 +16,7 @@ public class Player {
     // Constructor
     private Player(String name) {
         updateDifficultyStats(Model.Difficulty.MEDIUM);
+        this.health = baseHealth;
         speed = 100;
         this.name = name;
         avatar = Avatar.getInstance("sprite1");
@@ -49,22 +53,32 @@ public class Player {
         switch (difficulty) {
         case EASY:
             baseHealth = 100;
+            baseDefense = 125;
             baseStrength = 100;
             break;
         case HARD:
             baseHealth = 25;
+            baseDefense = 75;
             baseStrength = 25;
             break;
         default:
             baseHealth = 50;
+            baseDefense = 100;
             baseStrength = 50;
             break;
         }
     }
 
+    public void removeHealth(int damage) {
+        health = MathUtils.clamp(health - (int) (damage * (200 - baseDefense) / 100), 0, baseHealth);
+        if (health == 0) {
+            //TODO GAME OVER
+        }
+    }
+
     // Getter for total health
     public int getHealth() {
-        return baseHealth;
+        return health;
     }
 
     // Getter for total strength

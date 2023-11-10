@@ -23,7 +23,17 @@ public class EndView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.win_view);
+        setContentView(R.layout.end_view);
+
+        leaderboardPlayers = new TextView[10];
+        leaderboardScores = new TextView[10];
+        leaderboardTimes = new TextView[10];
+        winStatus = (TextView) findViewById(R.id.win_status);
+        addLeaderboardTextViews();
+        currentScore = (TextView) findViewById(R.id.currentScore);
+
+        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores,
+                winStatus, leaderboardTimes, currentScore);
     }
 
     //Adds all leaderboard text views to their respective arrays
@@ -65,18 +75,5 @@ public class EndView extends AppCompatActivity {
     //Switches view to WelcomeView
     public void toWelcomeView(View view) {
         startActivity(new Intent(EndView.this, WelcomeView.class));
-    }
-
-    public void toLeaderboard(View view) {
-        setContentView(R.layout.end_view);
-        leaderboardPlayers = new TextView[10];
-        leaderboardScores = new TextView[10];
-        leaderboardTimes = new TextView[10];
-        winStatus = (TextView) findViewById(R.id.win_status);
-        addLeaderboardTextViews();
-        currentScore = (TextView) findViewById(R.id.currentScore);
-
-        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores,
-                winStatus, leaderboardTimes, currentScore);
     }
 }

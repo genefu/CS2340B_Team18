@@ -1,6 +1,12 @@
 package com.example.cs2340game.model;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
+
+import com.example.cs2340game.model.Enemies.Enemy;
+
+import java.util.HashSet;
 import java.util.TreeSet;
 
 //Main Model
@@ -16,6 +22,7 @@ public class Model {
     private Difficulty difficulty;
     private Leaderboard leaderboard;
     private Player player;
+    private TreeSet<Enemy> renderedEnemies; //Sorted based on damage to player
     private int screenWidth;
     private int screenHeight;
 
@@ -31,6 +38,7 @@ public class Model {
         //leaderboard in descending order
         this.leaderboard = Leaderboard.getInstance();
         this.player = Player.getInstance(null);
+        this.renderedEnemies = new TreeSet<>();
         //increments when objectives met (kill enemy, beat room), and lowers over time
         this.score = new Score(player.getName(), 20, "");
         //testLeaderboard(leaderboard);
@@ -85,6 +93,15 @@ public class Model {
         return score.getScoreValue() > WIN_THRESHOLD; //TODO get real win condition
     }
 
+    public void addEnemy(Enemy enemy) {
+        renderedEnemies.add(enemy);
+    }
+
+    public void clearEnemies() {
+        Log.d("EnemiesC", "enemies cleared");
+        renderedEnemies.clear();
+    }
+
     public int getScreenWidth() {
         return screenWidth;
     }
@@ -105,6 +122,9 @@ public class Model {
     // Getter for playerName
     public String getPlayerName() {
         return player.getName();
+    }
+    public TreeSet<Enemy> getRenderedEnemies() {
+        return renderedEnemies;
     }
 
     // Getter for score
