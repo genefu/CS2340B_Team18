@@ -7,11 +7,16 @@ import android.graphics.BitmapFactory;
 
 import androidx.core.math.MathUtils;
 
+import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
+import com.example.cs2340game.model.MovementStrategies.Vector;
+import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
 import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
+import java.util.TreeSet;
 
-public class Avatar {
+public class Avatar implements Movable, Collidable {
     private static Avatar avatarInstance;
     public static final int AVATAR_SIZE = 64;
     private Vector movementVector;
@@ -20,15 +25,9 @@ public class Avatar {
     private String sprite;
     private boolean isOnExit;
     private Direction directionFacing;
+    private int invincibilityTime;
     private int posX; //position of center x
     private int posY; //position of center y
-    enum Direction {
-        UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT
-    }
-
-    enum CollisionBox {
-        TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT, BOTTOM_LEFT, NONE
-    }
 
     private Avatar(String sprite, MovementStrategy movementStrategy) {
         movementVector = new Vector();
@@ -37,9 +36,8 @@ public class Avatar {
         this.sprite = sprite;
         this.directionFacing = Direction.UP;
         this.posX = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 17;
-        //TODO replace with room 1 starting position
         this.posY = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 17;
-        //TODO replace with room 1 starting position
+        this.invincibilityTime = 0;
         isOnExit = false;
     }
 
@@ -123,12 +121,30 @@ public class Avatar {
         posX = temp[0];
         posY = temp[1];
         //Log.d("collision", "Before: " + posX + " " + posY);
-        CollisionBox collisionBox;
+        Collidable.CollisionBox collisionBox;
         collisionBox = checkCollision();
-        if (collisionBox != CollisionBox.NONE) {
+        if (collisionBox != Collidable.CollisionBox.NONE) {
             moveToValidPosition(collisionBox);
         }
         //Log.d("collision", "After: " + posX + " " + posY);
+    }
+
+    public void updateInvincibility() {
+        if (invincibilityTime > 0) {
+            invincibilityTime--;
+        }
+    }
+
+    public void checkEnemyCollision(TreeSet<Enemy> enemies) {
+        if (invincibilityTime > 0) {
+            return;
+        }
+        for (Enemy e: enemies) {
+            if (e.getDistance(posX, posY) < 60) {
+                invincibilityTime += 40;
+                Player.getInstance().removeHealth(e.getStrength());
+            }
+        }
     }
 
     public CollisionBox checkCollision() {
@@ -212,6 +228,21 @@ public class Avatar {
         }
     }
 
+    // Returns the set of all tiles that the avatar is currently on top of
+    public Tile[] getTileCoverage(Tile[][] tileMap) {
+        Tile[] tilesCovered = new Tile[4];
+        int top = MathUtils.clamp((int) ((posY - 32) / Tile.TILE_SIZE), 0, 19);
+        int left = MathUtils.clamp((int) ((posX - 32) / Tile.TILE_SIZE), 0, 33);
+
+        int bottom = MathUtils.clamp((int) ((posY + 31) / Tile.TILE_SIZE), 0, 19);
+        int right = MathUtils.clamp((int) ((posX + 31) / Tile.TILE_SIZE), 0, 33);
+        tilesCovered[0] = (tileMap[top][left]); // Top left corner
+        tilesCovered[1] = (tileMap[top][right]); // Top right corner
+        tilesCovered[2] = (tileMap[bottom][left]); // Bottom left corner
+        tilesCovered[3] = (tileMap[bottom][right]); // Bottom right corner
+        return tilesCovered;
+    }
+
     public boolean isOnExit() {
         return isOnExit;
     }
@@ -255,24 +286,13 @@ public class Avatar {
         movementVector = v;
     }
 
+    public int getInvincibilityTime() {
+        return invincibilityTime;
+    }
+
     public Bitmap getBitMap(Context context) {
         Resources res = context.getResources();
         return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
                 "drawable", context.getPackageName())), Tile.TILE_SIZE, Tile.TILE_SIZE, false);
-    }
-
-    // Returns the set of all tiles that the avatar is currently on top of
-    public Tile[] getTileCoverage(Tile[][] tileMap) {
-        Tile[] tilesCovered = new Tile[4];
-        int top = MathUtils.clamp((int) ((posY - 32) / Tile.TILE_SIZE), 0, 19);
-        int left = MathUtils.clamp((int) ((posX - 32) / Tile.TILE_SIZE), 0, 33);
-
-        int bottom = MathUtils.clamp((int) ((posY + 31) / Tile.TILE_SIZE), 0, 19);
-        int right = MathUtils.clamp((int) ((posX + 31) / Tile.TILE_SIZE), 0, 33);
-        tilesCovered[0] = (tileMap[top][left]); // Top left corner
-        tilesCovered[1] = (tileMap[top][right]); // Top right corner
-        tilesCovered[2] = (tileMap[bottom][left]); // Bottom left corner
-        tilesCovered[3] = (tileMap[bottom][right]); // Bottom right corner
-        return tilesCovered;
     }
 }

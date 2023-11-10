@@ -1,6 +1,11 @@
 package com.example.cs2340game.views;
 
 import com.example.cs2340game.model.Avatar;
+import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.Enemies.DevilFactory;
+import com.example.cs2340game.model.Enemies.MedusaFactory;
+import com.example.cs2340game.model.Enemies.SirenFactory;
+import com.example.cs2340game.model.Enemies.SpiderFactory;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Player;
 import com.example.cs2340game.model.Tile;
@@ -8,6 +13,10 @@ import com.example.cs2340game.model.Tile;
 public class MapLayout {
     private static MapLayout mapLayoutInstance;
     private Model model;
+    private SpiderFactory spiderFactory;
+    private MedusaFactory medusaFactory;
+    private DevilFactory devilFactory;
+    private SirenFactory sirenFactory;
     private int viewWidth;
     private int viewHeight;
     private int tileSize;
@@ -31,6 +40,11 @@ public class MapLayout {
 
         //Log.d("tileSize", (viewHeight / 20) + " " + (viewWidth / 34) + " " + (screenHeight / 20));
         tileSize = (int) (viewHeight / 20);
+
+        this.spiderFactory = SpiderFactory.getInstance();
+        this.medusaFactory = MedusaFactory.getInstance();
+        this.devilFactory = DevilFactory.getInstance();
+        this.sirenFactory = SirenFactory.getInstance();
 
         setScreen(screen);
     }
@@ -64,6 +78,7 @@ public class MapLayout {
     public void setScreen(int screen) {
         Avatar avatar = Avatar.getInstance();
         int[][] mapLayout = new int[20][34];
+        int offset = Enemy.ENEMY_SIZE / 2;
         switch (screen) {
         case 1:
             mapLayout = new int[][]
@@ -108,6 +123,11 @@ public class MapLayout {
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
             avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 17);
+            model.clearEnemies();
+            model.addEnemy(spiderFactory.createEnemy(1,Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
+            model.addEnemy(spiderFactory.createEnemy(2,Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
+            model.addEnemy(spiderFactory.createEnemy(3,Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
+            model.addEnemy(medusaFactory.createEnemy(4,Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
             break;
         case 2:
             mapLayout = new int[][]
@@ -152,6 +172,9 @@ public class MapLayout {
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
             avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
+            model.clearEnemies();
+            model.addEnemy(medusaFactory.createEnemy(1,Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
+            model.addEnemy(sirenFactory.createEnemy(2,Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
             break;
         case 3:
             mapLayout = new int[][]
@@ -196,6 +219,12 @@ public class MapLayout {
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
             avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
+            model.clearEnemies();
+            model.addEnemy(sirenFactory.createEnemy(1,Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
+            model.addEnemy(sirenFactory.createEnemy(2,Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
+            model.addEnemy(sirenFactory.createEnemy(3,Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
+            model.addEnemy(devilFactory.createEnemy(4,Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 1));
+            model.addEnemy(devilFactory.createEnemy(5,Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 3));
             break;
         default:
             break;
