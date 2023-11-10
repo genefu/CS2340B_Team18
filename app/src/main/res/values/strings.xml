@@ -9,7 +9,7 @@
     <string name="quit_button">Quit</string>
 
     <!--Welcome View Strings-->
-    <string name="welcome_game_title">Quick Jenna</string>
+    <string name="welcome_game_title">[Dungeon Game]</string>
 
     <!--Config View Strings-->
     <string name="config_name_hint">Enter Your Name:</string>

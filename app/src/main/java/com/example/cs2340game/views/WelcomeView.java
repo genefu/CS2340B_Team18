@@ -19,7 +19,6 @@ import com.example.cs2340game.viewmodels.WelcomeViewModel;
 public class WelcomeView extends AppCompatActivity {
     private WelcomeViewModel viewModel;
     private MediaPlayer mediaPlayer;
-
     //Displays the viewds
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +28,10 @@ public class WelcomeView extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.welcome_view);
-
         mediaPlayer = MediaPlayer.create(this, R.raw.spooky);
         mediaPlayer.setVolume(200.0f, 200.0f);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
-
         viewModel = new WelcomeViewModel();
 
         Display display = getWindowManager().getDefaultDisplay();
