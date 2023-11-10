@@ -1,20 +1,18 @@
 package com.example.cs2340game.model;
 
-public class E4Siren implements Enemy{
-    private static E4Siren sirenInstance;
+public class E4Siren extends Enemy {
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
-    private String name;
+    private String id;
     private int speed;
-    private Avatar avatar;
 
     public void attack() {
         //TO BE IMPLEMENTED
     }
 
     public E4Siren(String name) {
-        this.name = name;
+        this.id = id;
         baseHealth = 40;
         this.baseDefense = 0;
         this.baseStrength = 10;
@@ -22,36 +20,7 @@ public class E4Siren implements Enemy{
     }
 
     public E4Siren(){
-        this.baseHealth = 40;
-        this.baseDefense = 0;
-        this.baseStrength = 10;
-        this.name = "Medusa";
-        this.speed = 40;
-    }
-
-    public static E4Siren getInstance(String name) {
-        if (sirenInstance == null) {
-            synchronized (Model.class) {
-                synchronized (E4Siren.class) {
-                    if (sirenInstance == null) {
-                        sirenInstance = new E4Siren(name);
-                    }
-                }
-            }
-        }
-        return sirenInstance;
-    }
-
-    public static E4Siren getInstance() {
-        if (sirenInstance == null) {
-            synchronized (E4Siren.class) {
-                if (sirenInstance == null) {
-                    throw new IllegalArgumentException(
-                            "Player doesn't exist, needs a name parameter");
-                }
-            }
-        }
-        return sirenInstance;
+        this("Siren");
     }
 
     // Getter for total health
@@ -65,17 +34,12 @@ public class E4Siren implements Enemy{
     }
 
     // Getter for player name
-    public String getName() {
-        return name;
-    }
-
-    // Getter for player avatar
-    public Avatar getAvatar() {
-        return avatar;
+    public String getID() {
+        return id;
     }
 
     // Setter for player avatar
-    public void setName(String name) {
-        this.name = name;
+    public void setID(String id) {
+        this.id = id;
     }
 }

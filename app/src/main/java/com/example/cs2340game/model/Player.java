@@ -5,26 +5,26 @@ public class Player {
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
-    private String name;
+    private String id;
     private int speed;
     private Avatar avatar;
 
 
     // Constructor
-    private Player(String name) {
+    private Player(String id) {
         updateDifficultyStats(Model.Difficulty.MEDIUM);
         speed = 100;
-        this.name = name;
+        this.id = id;
         avatar = Avatar.getInstance("sprite1");
     }
 
     //Creates (if not already created) and returns the player instance
-    public static Player getInstance(String name) {
+    public static Player getInstance(String id) {
         if (playerInstance == null) {
             synchronized (Model.class) {
                 synchronized (Player.class) {
                     if (playerInstance == null) {
-                        playerInstance = new Player(name);
+                        playerInstance = new Player(id);
                     }
                 }
             }
@@ -72,7 +72,7 @@ public class Player {
         return baseStrength;
     }
 
-    // Getter for player name
+    // Getter for player id
     public String getName() {
         return name;
     }

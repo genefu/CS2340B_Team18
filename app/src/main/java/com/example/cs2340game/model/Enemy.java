@@ -1,6 +1,5 @@
 package com.example.cs2340game.model;
 
-public interface Enemy {
-
-    void attack();
+public abstract class Enemy {
+    abstract void attack();
 }
