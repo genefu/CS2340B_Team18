@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import androidx.core.math.MathUtils;
 
 import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.MovementStrategies.Collidable;
+import com.example.cs2340game.model.MovementStrategies.Movable;
 import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
 import com.example.cs2340game.model.MovementStrategies.Vector;
 import com.example.cs2340game.model.MovementStrategies.WalkStrategy;

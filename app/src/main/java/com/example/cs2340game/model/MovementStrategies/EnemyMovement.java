@@ -1,4 +1,4 @@
-package com.example.cs2340game.model;
+package com.example.cs2340game.model.MovementStrategies;
 
 import static com.example.cs2340game.model.StandardVectors.DOWNLEFT_VECTOR;
 import static com.example.cs2340game.model.StandardVectors.DOWNRIGHT_VECTOR;
@@ -9,8 +9,15 @@ import static com.example.cs2340game.model.StandardVectors.UPLEFT_VECTOR;
 import static com.example.cs2340game.model.StandardVectors.UPRIGHT_VECTOR;
 import static com.example.cs2340game.model.StandardVectors.UP_VECTOR;
 
+import com.example.cs2340game.model.Avatar;
+import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.MovementStrategies.Movable;
+import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
+import com.example.cs2340game.model.MovementStrategies.Vector;
 
-public class EnemyMovement {
+
+public class EnemyMovement implements Movable {
 
     private Vector movementVector;
     private enemyDirection directionFacing;
@@ -29,13 +36,6 @@ public class EnemyMovement {
         movementStrategy = new WalkStrategy();
     }
 
-    public void startingPosition() {
-        movementVector = new Vector(Math.random());
-        /* this meant to place the enemy in a starting position that is some tiles away from the
-        player starting position */
-        enemy.posX = avatar.getPosX() + movementVector.getX();
-        enemy.posY = avatar.getPosY() + movementVector.getY();
-    }
 
     public void movement() {
         if (avatar.getPosX() < enemy.getPosX() + 192 && avatar.getPosX() > enemy.getPosX() - 192) {
@@ -92,6 +92,22 @@ public class EnemyMovement {
             updateDirection();
         }
     }
+
+    @Override
+    public void applyVector(Vector v) {
+
+    }
+
+    @Override
+    public void removeVector(Vector v) {
+
+    }
+
+    @Override
+    public void clearVectors() {
+
+    }
+
     public void updateDirection() {
         double x = movementVector.getX();
         double y = -movementVector.getY();
@@ -112,6 +128,11 @@ public class EnemyMovement {
         } else if (y > 0 && x < 0) {
             directionFacing = enemyDirection.UP_LEFT;
         }
+    }
+
+    @Override
+    public void updatePosition() {
+
     }
 
 }
