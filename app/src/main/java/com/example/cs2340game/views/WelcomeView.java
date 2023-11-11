@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.media.MediaPlayer;
+import android.window.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
