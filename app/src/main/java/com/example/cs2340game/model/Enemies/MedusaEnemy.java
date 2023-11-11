@@ -16,7 +16,7 @@ import com.example.cs2340game.views.MapLayout;
 import java.util.HashSet;
 
 public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparable<Enemy> {
-    final private String SPRITE = "medusa";
+    private final String sprite = "medusa";
     private int health;
     private int baseHealth;
     private int baseDefense;
@@ -118,11 +118,11 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
         for (int i = 0; i < 4; i++) {
             if (coveredTiles[i].isWall() || coveredTiles[i].isWater()) {
                 switch (i) {
-                    case 0: return Collidable.CollisionBox.TOP_LEFT;
-                    case 1: return Collidable.CollisionBox.TOP_RIGHT;
-                    case 2: return Collidable.CollisionBox.BOTTOM_LEFT;
-                    case 3: return Collidable.CollisionBox.BOTTOM_RIGHT;
-                    default: throw new IllegalArgumentException("Invalid collision box");
+                case 0: return Collidable.CollisionBox.TOP_LEFT;
+                case 1: return Collidable.CollisionBox.TOP_RIGHT;
+                case 2: return Collidable.CollisionBox.BOTTOM_LEFT;
+                case 3: return Collidable.CollisionBox.BOTTOM_RIGHT;
+                default: throw new IllegalArgumentException("Invalid collision box");
                 }
             }
         }
@@ -134,58 +134,58 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
         int baseX;
         int baseY;
         switch (collisionBox) {
-            case TOP_LEFT:
-                baseX = posX - 32;
-                baseY = posY - 32;
-                break;
-            case TOP_RIGHT:
-                baseX = posX + 31;
-                baseY = posY - 32;
-                break;
-            case BOTTOM_LEFT:
-                baseX = posX - 32;
-                baseY = posY + 31;
-                break;
-            case BOTTOM_RIGHT:
-                baseX = posX + 31;
-                baseY = posY + 31;
-                break;
-            default:
-                return;
+        case TOP_LEFT:
+            baseX = posX - 32;
+            baseY = posY - 32;
+            break;
+        case TOP_RIGHT:
+            baseX = posX + 31;
+            baseY = posY - 32;
+            break;
+        case BOTTOM_LEFT:
+            baseX = posX - 32;
+            baseY = posY + 31;
+            break;
+        case BOTTOM_RIGHT:
+            baseX = posX + 31;
+            baseY = posY + 31;
+            break;
+        default:
+            return;
         }
         //Log.d("collision", "BaseXY: " + baseX + " " + baseY);
         //Log.d("collision", collisionBox.toString() + " " + directionFacing.toString());
         switch (directionFacing) {
-            case UP:
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
-            case UP_RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
-            case RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN_RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN:
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN_LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                break;
-            case UP_LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
-            default:
-                break;
+        case UP:
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        case UP_RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        case RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN_RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN:
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN_LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            break;
+        case UP_LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        default:
+            break;
         }
     }
 
@@ -216,7 +216,8 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
     }
 
     @Override
-    public int getStrength() { return strength; }
+    public int getStrength() {
+        return strength; }
 
     @Override
     public int getPosX() {
@@ -237,7 +238,7 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
     @Override
     public Bitmap getBitmap(Context context) {
         Resources res = context.getResources();
-        return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(SPRITE,
+        return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
                 "drawable", context.getPackageName())), Tile.TILE_SIZE, Tile.TILE_SIZE, false);
     }
 

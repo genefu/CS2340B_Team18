@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 import com.example.cs2340game.model.Enemies.Enemy;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.TreeSet;
 
 //Main Model

@@ -124,10 +124,10 @@ public class MapLayout {
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
             avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 17);
             model.clearEnemies();
-            model.addEnemy(spiderFactory.createEnemy(1,Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
-            model.addEnemy(spiderFactory.createEnemy(2,Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
-            model.addEnemy(spiderFactory.createEnemy(3,Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
-            model.addEnemy(medusaFactory.createEnemy(4,Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
+            model.addEnemy(spiderFactory.createEnemy(1, Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
+            model.addEnemy(spiderFactory.createEnemy(2, Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
+            model.addEnemy(spiderFactory.createEnemy(3, Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
+            model.addEnemy(medusaFactory.createEnemy(4, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
             break;
         case 2:
             mapLayout = new int[][]
@@ -173,8 +173,8 @@ public class MapLayout {
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
             avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
             model.clearEnemies();
-            model.addEnemy(medusaFactory.createEnemy(1,Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
-            model.addEnemy(sirenFactory.createEnemy(2,Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
+            model.addEnemy(medusaFactory.createEnemy(1, Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
+            model.addEnemy(sirenFactory.createEnemy(2, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
             break;
         case 3:
             mapLayout = new int[][]
@@ -220,11 +220,11 @@ public class MapLayout {
                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}};
             avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
             model.clearEnemies();
-            model.addEnemy(sirenFactory.createEnemy(1,Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
-            model.addEnemy(sirenFactory.createEnemy(2,Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
-            model.addEnemy(sirenFactory.createEnemy(3,Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
-            model.addEnemy(devilFactory.createEnemy(4,Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 1));
-            model.addEnemy(devilFactory.createEnemy(5,Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 3));
+            model.addEnemy(sirenFactory.createEnemy(1, Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
+            model.addEnemy(sirenFactory.createEnemy(2, Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
+            model.addEnemy(sirenFactory.createEnemy(3, Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
+            model.addEnemy(devilFactory.createEnemy(4, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 1));
+            model.addEnemy(devilFactory.createEnemy(5, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 3));
             break;
         default:
             break;

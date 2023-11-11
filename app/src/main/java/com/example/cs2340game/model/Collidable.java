@@ -1,8 +1,8 @@
 package com.example.cs2340game.model;
 
-import androidx.core.math.MathUtils;
+//import androidx.core.math.MathUtils;
 
-import com.example.cs2340game.views.MapLayout;
+//import com.example.cs2340game.views.MapLayout;
 
 public interface Collidable {
     enum CollisionBox {

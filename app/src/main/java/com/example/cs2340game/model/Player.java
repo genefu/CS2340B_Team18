@@ -70,10 +70,11 @@ public class Player {
     }
 
     public void removeHealth(int damage) {
-        health = MathUtils.clamp(health - (int) (damage * (200 - baseDefense) / 100), 0, baseHealth);
-        if (health == 0) {
-            //TODO GAME OVER
-        }
+        health = MathUtils.clamp(health - (int) (damage * (200 - baseDefense) / 100),
+                0, baseHealth);
+        //if (health == 0) {
+        //TODO GAME OVER
+        //}
     }
 
     // Getter for total health
