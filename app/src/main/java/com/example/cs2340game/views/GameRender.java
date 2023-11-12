@@ -84,7 +84,7 @@ public class GameRender {
     }
 
     public void drawEnemies() {
-        TreeSet<Enemy> enemySet = model.getRenderedEnemies();
+        TreeSet<Enemy> enemySet = model.getUpdatedRenderedEnemies();
         int[] gameViewPosition = new int[2];
         gameView.getLocationOnScreen(gameViewPosition);
         int yOffset = gameViewPosition[1];

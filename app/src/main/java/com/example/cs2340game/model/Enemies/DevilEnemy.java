@@ -1,5 +1,14 @@
 package com.example.cs2340game.model.Enemies;
 
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.DOWNLEFT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.DOWNRIGHT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.DOWN_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.LEFT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.RIGHT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.UPLEFT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.UPRIGHT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.UP_VECTOR;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -7,15 +16,20 @@ import android.graphics.BitmapFactory;
 
 import androidx.core.math.MathUtils;
 
+import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.MovementStrategies.Collidable;
+import com.example.cs2340game.model.MovementStrategies.EnemyMovable;
 import com.example.cs2340game.model.MovementStrategies.Movable;
+import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
+import com.example.cs2340game.model.MovementStrategies.SprintStrategy;
+import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
 import com.example.cs2340game.model.Tile;
 import com.example.cs2340game.model.MovementStrategies.Vector;
 import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
 
-public class DevilEnemy extends Enemy implements Movable, Collidable, Comparable<Enemy> {
+public class DevilEnemy extends Enemy implements Movable, Collidable, Comparable<Enemy>, EnemyMovable {
     final private String SPRITE = "devil";
     private int health;
     private int baseHealth;
@@ -28,6 +42,8 @@ public class DevilEnemy extends Enemy implements Movable, Collidable, Comparable
     private Direction directionFacing;
     private int posX; //position of center x
     private int posY; //position of center y
+    private Avatar avatar;
+    private WalkStrategy WalkStrategy;
 
     public DevilEnemy(int id, int posX, int posY) {
         this.id = id;
@@ -41,6 +57,8 @@ public class DevilEnemy extends Enemy implements Movable, Collidable, Comparable
         this.directionFacing = Direction.UP;
         this.posX = ENEMY_SIZE / 2 + posX;
         this.posY = ENEMY_SIZE / 2 + posY;
+        this.avatar = Avatar.getInstance();
+        this.WalkStrategy = new WalkStrategy();
     }
 
     @Override
@@ -244,5 +262,91 @@ public class DevilEnemy extends Enemy implements Movable, Collidable, Comparable
     @Override
     public int compareTo(Enemy enemy) {
         return (this.strength - enemy.getStrength()) * 100 + this.id;
+    }
+
+    @Override
+    public void movement() {
+        if (avatar.getPosX() < this.getPosX() + 192 && avatar.getPosX() > this.getPosX() - 192) {
+            if (avatar.getPosY() < this.getPosX() + 192 && avatar.getPosY() > this.getPosY() - 192) {
+                combatMovement();
+            }
+        }
+        else {
+            basicMovement();
+        }
+    }
+
+    @Override
+    public void combatMovement() {
+        if (avatar.getPosX() < this.getPosX() && avatar.getPosY() < this.getPosY()) {
+            movementVector = DOWNLEFT_VECTOR;
+        } else if (avatar.getPosX() < this.getPosX() && avatar.getPosY() > this.getPosY()) {
+            movementVector = UPLEFT_VECTOR;
+        } else if (avatar.getPosX() > this.getPosX() && avatar.getPosY() < this.getPosY()) {
+            movementVector = DOWNRIGHT_VECTOR;
+        } else if (avatar.getPosX() > this.getPosX() && avatar.getPosY() > this.getPosY()) {
+            movementVector = UPRIGHT_VECTOR;
+        } else if (avatar.getPosX() == this.getPosX() && avatar.getPosY() < this.getPosY()) {
+            movementVector = DOWN_VECTOR;
+        } else if (avatar.getPosX() == this.getPosX() && avatar.getPosY() > this.getPosY()) {
+            movementVector = UP_VECTOR;
+        } else if (avatar.getPosX() < this.getPosX() && avatar.getPosY() == this.getPosY()) {
+            movementVector = LEFT_VECTOR;
+        } else if (avatar.getPosX() > this.getPosX() && avatar.getPosY() == this.getPosY()) {
+            movementVector = RIGHT_VECTOR;
+        }
+        int[] temp = new int[]{posX, posY};
+        WalkStrategy.move(movementVector, temp);
+        posX = temp[0];
+        posY = temp[1];
+        updatePosition();
+        updateDirection();
+    }
+
+    @Override
+    public void basicMovement() {
+        double randomMovement = 100 * Math.random();
+        int randomVector = (int) (8 * Math.random());
+        switch (randomVector) {
+            case 0:
+                movementVector = UP_VECTOR;
+                break;
+            case 1:
+                movementVector = DOWN_VECTOR;
+                break;
+            case 2:
+                movementVector = LEFT_VECTOR;
+                break;
+            case 3:
+                movementVector = RIGHT_VECTOR;
+                break;
+            case 4:
+                movementVector = UPLEFT_VECTOR;
+                break;
+            case 5:
+                movementVector = UPRIGHT_VECTOR;
+                break;
+            case 6:
+                movementVector = DOWNLEFT_VECTOR;
+                break;
+            case 7:
+                movementVector = DOWNRIGHT_VECTOR;
+                break;
+        }
+        if (randomMovement > 95) {
+            int[] temp = new int[]{posX, posY};
+            WalkStrategy.move(movementVector, temp);
+            posX = temp[0];
+            posY = temp[1];
+            updateDirection();
+            updatePosition();
+        }
+    }
+
+    public void setPosX(int x) {
+        posX = x;
+    }
+    public void setPosY(int y) {
+        posY = y;
     }
 }

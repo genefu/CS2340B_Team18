@@ -4,7 +4,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.cs2340game.model.Enemies.DevilEnemy;
 import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.Enemies.MedusaEnemy;
+import com.example.cs2340game.model.Enemies.SirenEnemy;
+import com.example.cs2340game.model.Enemies.SpiderEnemy;
 
 import java.util.HashSet;
 import java.util.TreeSet;
@@ -100,6 +104,26 @@ public class Model {
     public void clearEnemies() {
         Log.d("EnemiesC", "enemies cleared");
         renderedEnemies.clear();
+    }
+    public TreeSet<Enemy> getUpdatedRenderedEnemies() {
+        return updateEnemyPos();
+    }
+    public TreeSet<Enemy> updateEnemyPos() {
+        for (Enemy e: renderedEnemies) {
+            if (e instanceof SpiderEnemy) {
+                ((SpiderEnemy) e).movement();
+            }
+            if (e instanceof MedusaEnemy) {
+                ((MedusaEnemy) e).movement();
+            }
+            if (e instanceof DevilEnemy) {
+                ((DevilEnemy) e).movement();
+            }
+            if (e instanceof SirenEnemy) {
+                ((SirenEnemy) e).movement();
+            }
+        }
+        return renderedEnemies;
     }
 
     public int getScreenWidth() {
