@@ -1,7 +1,8 @@
-package com.example.cs2340game.model;
+package com.example.cs2340game.model.MovementStrategies;
 
 import androidx.core.math.MathUtils;
 
+import com.example.cs2340game.model.Tile;
 import com.example.cs2340game.views.MapLayout;
 
 public interface Collidable {
