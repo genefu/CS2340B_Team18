@@ -3,6 +3,10 @@ package com.example.cs2340game;
 import static org.junit.Assert.assertEquals;
 
 import com.example.cs2340game.model.Avatar;
+import com.example.cs2340game.model.Enemies.DevilEnemy;
+import com.example.cs2340game.model.Enemies.DevilFactory;
+import com.example.cs2340game.model.Enemies.MedusaEnemy;
+import com.example.cs2340game.model.Enemies.MedusaFactory;
 import com.example.cs2340game.model.Enemies.SpiderEnemy;
 import com.example.cs2340game.model.Enemies.SpiderFactory;
 import com.example.cs2340game.model.Model;
@@ -60,5 +64,32 @@ public class Sprint4Tests {
         avatar.checkEnemyCollision(model.getRenderedEnemies());
         assertEquals(0, player.getHealth());
         assertEquals(false, model.isWinner());
+    }
+  
+    @Test
+    public void medusaCollision() {
+        Avatar avatar = Avatar.getInstance("sprite1");
+        Player player = Player.getInstance("name");
+        Model model = Model.getInstance();
+        MedusaFactory medusaFactory = MedusaFactory.getInstance();
+        MedusaEnemy medusa = (MedusaEnemy) medusaFactory.createEnemy(1, 0, 0);
+        model.addEnemy(medusa);
+        avatar.setPosition(0, 0);
+        avatar.checkEnemyCollision(model.getRenderedEnemies());
+        assertEquals(0, player.getHealth());
+    }
+
+    @Test
+    public void devilCollision() {
+        Avatar avatar = Avatar.getInstance("sprite1");
+        Player player = Player.getInstance("name");
+        Model model = Model.getInstance();
+        DevilFactory devilFactory = DevilFactory.getInstance();
+        DevilEnemy devil = (DevilEnemy) devilFactory.createEnemy(1, 0, 0);
+        model.addEnemy(devil);
+        avatar.setPosition(0, 0);
+        avatar.checkEnemyCollision(model.getRenderedEnemies());
+        assertEquals(35, player.getHealth());
+
     }
 }

@@ -16,7 +16,7 @@ import com.example.cs2340game.model.Enemies.Enemy;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Tile;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.TreeSet;
 
 public class GameRender {
@@ -84,11 +84,11 @@ public class GameRender {
     }
 
     public void drawEnemies() {
-        TreeSet<Enemy> enemySet = model.getRenderedEnemies();
+        TreeSet<Enemy> enemySet = model.getUpdatedRenderedEnemies();
         int[] gameViewPosition = new int[2];
         gameView.getLocationOnScreen(gameViewPosition);
         int yOffset = gameViewPosition[1];
-        for(Enemy e: enemySet) {
+        for (Enemy e: enemySet) {
             Bitmap enemyBitmap = e.getBitmap(context);
             canvas.drawBitmap(enemyBitmap, gameViewPosition[0] + e.getPosX()
                     - Avatar.AVATAR_SIZE / 2, gameViewPosition[1] + e.getPosY()
