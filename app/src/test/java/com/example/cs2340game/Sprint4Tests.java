@@ -36,6 +36,36 @@ public class Sprint4Tests {
         Assert.assertEquals(true, spider.getDistance(avatar.getPosX(), avatar.getPosY()) < 60);
     }
 
+    public void spiderCollision() {
+        Avatar avatar = Avatar.getInstance("sprite1");
+        Player player = Player.getInstance("name");
+        Model model = Model.getInstance();
+        SpiderFactory spiderFactory = SpiderFactory.getInstance();
+        SpiderEnemy spider = (SpiderEnemy) spiderFactory.createEnemy(1, 0, 0);
+        model.addEnemy(spider);
+        avatar.setPosition(0, 0);
+        avatar.checkEnemyCollision(model.getRenderedEnemies());
+        assertEquals(30, player.getHealth());
+    }
+
+    public void losesWhenAllHealthLost() {
+        Avatar avatar = Avatar.getInstance("sprite1");
+        Player player = Player.getInstance("name");
+        Model model = Model.getInstance();
+        SpiderFactory spiderFactory = SpiderFactory.getInstance();
+        SpiderEnemy spider = (SpiderEnemy) spiderFactory.createEnemy(1, 0, 0);
+        model.addEnemy(spider);
+        avatar.setPosition(0, 0);
+        avatar.setPosition(100, 0);
+        avatar.setPosition(0, 0);
+        avatar.setPosition(100, 0);
+        avatar.setPosition(0, 0);
+        avatar.setPosition(100, 0);
+        avatar.checkEnemyCollision(model.getRenderedEnemies());
+        assertEquals(0, player.getHealth());
+        assertEquals(false, model.isWinner());
+    }
+  
     @Test
     public void medusaCollision() {
         Avatar avatar = Avatar.getInstance("sprite1");
@@ -60,5 +90,6 @@ public class Sprint4Tests {
         avatar.setPosition(0, 0);
         avatar.checkEnemyCollision(model.getRenderedEnemies());
         assertEquals(35, player.getHealth());
+
     }
 }
