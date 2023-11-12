@@ -1,4 +1,4 @@
-package com.example.cs2340game.model;
+package com.example.cs2340game.model.MovementStrategies;
 
 import com.example.cs2340game.model.MovementStrategies.Vector;
 
