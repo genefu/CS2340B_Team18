@@ -10,7 +10,7 @@ import com.example.cs2340game.model.Enemies.MedusaEnemy;
 import com.example.cs2340game.model.Enemies.SirenEnemy;
 import com.example.cs2340game.model.Enemies.SpiderEnemy;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.TreeSet;
 
 //Main Model
