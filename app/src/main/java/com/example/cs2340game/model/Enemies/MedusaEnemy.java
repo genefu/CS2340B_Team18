@@ -27,8 +27,9 @@ import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
 
-public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparable<Enemy>, EnemyMovable {
-    final private String sprite = "medusa";
+public class MedusaEnemy extends Enemy implements Movable,
+        Collidable, Comparable<Enemy>, EnemyMovable {
+    private final String sprite = "medusa";
     private final Avatar avatar;
 
     private int health;
@@ -42,7 +43,7 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
     private Direction directionFacing;
     private int posX; //position of center x
     private int posY; //position of center y
-    private WalkStrategy WalkStrategy;
+    private WalkStrategy walkStrategy;
 
     public MedusaEnemy(int id, int posX, int posY) {
         this.id = id;
@@ -57,7 +58,7 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
         this.posX = ENEMY_SIZE / 2 + posX;
         this.posY = ENEMY_SIZE / 2 + posY;
         this.avatar = Avatar.getInstance();
-        this.WalkStrategy = new WalkStrategy();
+        this.walkStrategy = new WalkStrategy();
     }
 
     @Override
@@ -267,11 +268,11 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
     @Override
     public void movement() {
         if (avatar.getPosX() < this.getPosX() + 192 && avatar.getPosX() > this.getPosX() - 192) {
-            if (avatar.getPosY() < this.getPosX() + 192 && avatar.getPosY() > this.getPosY() - 192) {
+            if (avatar.getPosY()
+                    < this.getPosX() + 192 && avatar.getPosY() > this.getPosY() - 192) {
                 combatMovement();
             }
-        }
-        else {
+        } else {
             basicMovement();
         }
     }
@@ -307,30 +308,32 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
         double randomMovement = 100 * Math.random();
         int randomVector = (int) (8 * Math.random());
         switch (randomVector) {
-            case 0:
-                movementVector = UP_VECTOR;
-                break;
-            case 1:
-                movementVector = DOWN_VECTOR;
-                break;
-            case 2:
-                movementVector = LEFT_VECTOR;
-                break;
-            case 3:
-                movementVector = RIGHT_VECTOR;
-                break;
-            case 4:
-                movementVector = UPLEFT_VECTOR;
-                break;
-            case 5:
-                movementVector = UPRIGHT_VECTOR;
-                break;
-            case 6:
-                movementVector = DOWNLEFT_VECTOR;
-                break;
-            case 7:
-                movementVector = DOWNRIGHT_VECTOR;
-                break;
+        case 0:
+            movementVector = UP_VECTOR;
+            break;
+        case 1:
+            movementVector = DOWN_VECTOR;
+            break;
+        case 2:
+            movementVector = LEFT_VECTOR;
+            break;
+        case 3:
+            movementVector = RIGHT_VECTOR;
+            break;
+        case 4:
+            movementVector = UPLEFT_VECTOR;
+            break;
+        case 5:
+            movementVector = UPRIGHT_VECTOR;
+            break;
+        case 6:
+            movementVector = DOWNLEFT_VECTOR;
+            break;
+        case 7:
+            movementVector = DOWNRIGHT_VECTOR;
+            break;
+        default:
+            break;
         }
         if (randomMovement > 95) {
             int[] temp = new int[]{posX, posY};
