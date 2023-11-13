@@ -1,12 +1,15 @@
 package com.example.cs2340game;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.Enemies.DevilEnemy;
 import com.example.cs2340game.model.Enemies.DevilFactory;
 import com.example.cs2340game.model.Enemies.MedusaEnemy;
 import com.example.cs2340game.model.Enemies.MedusaFactory;
+import com.example.cs2340game.model.Enemies.SirenEnemy;
+import com.example.cs2340game.model.Enemies.SirenFactory;
 import com.example.cs2340game.model.Enemies.SpiderEnemy;
 import com.example.cs2340game.model.Enemies.SpiderFactory;
 import com.example.cs2340game.model.Model;
@@ -91,5 +94,33 @@ public class Sprint4Tests {
         avatar.checkEnemyCollision(model.getRenderedEnemies());
         assertEquals(35, player.getHealth());
 
+    }
+
+    @Test
+    public void sirenCollision() {
+        Avatar avatar = Avatar.getInstance("sprite1");
+        Player player = Player.getInstance("name");
+        Model model = Model.getInstance();
+        SirenFactory sirenFactory = SirenFactory.getInstance();
+        SirenEnemy siren = (SirenEnemy) sirenFactory.createEnemy(1, 0, 0);
+        model.addEnemy(siren);
+        avatar.setPosition(0, 0);
+        avatar.checkEnemyCollision(model.getRenderedEnemies());
+        assertEquals(40, player.getHealth());
+    }
+
+    @Test
+    public void enemyMoveCloser() {
+        Avatar avatar = Avatar.getInstance("sprite1");
+        Player player = Player.getInstance("name");
+        Model model = Model.getInstance();
+        SirenFactory sirenFactory = SirenFactory.getInstance();
+        SirenEnemy siren = (SirenEnemy) sirenFactory.createEnemy(1, 1, 1);
+        model.addEnemy(siren);
+        avatar.setPosition(0, 0);
+        int x = 1;
+        int y = 1;
+        Assert.assertNotEquals(siren.getPosX(), x);
+        Assert.assertNotEquals(siren.getPosY(), y);
     }
 }
