@@ -1,6 +1,13 @@
 package com.example.cs2340game.model;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
+
 import androidx.core.math.MathUtils;
+
+import com.example.cs2340game.views.EndView;
+import com.example.cs2340game.views.GameView;
 
 public class Player {
     private static Player playerInstance;
@@ -77,9 +84,6 @@ public class Player {
     public void removeHealth(int damage) {
         health = MathUtils.clamp(health - (int) (damage * (200 - baseDefense) / 100),
                 0, baseHealth);
-        //if (health == 0) {
-        //TODO GAME OVER
-        //}
     }
 
     // Getter for total health
