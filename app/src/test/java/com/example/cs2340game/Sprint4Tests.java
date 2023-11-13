@@ -40,9 +40,11 @@ public class Sprint4Tests {
     }
 
     public void spiderCollision() {
+        Player.clearInstance();
         Avatar avatar = Avatar.getInstance("sprite1");
         Player player = Player.getInstance("name");
         Model model = Model.getInstance();
+        model.clearEnemies();
         SpiderFactory spiderFactory = SpiderFactory.getInstance();
         SpiderEnemy spider = (SpiderEnemy) spiderFactory.createEnemy(1, 0, 0);
         model.addEnemy(spider);
@@ -52,9 +54,11 @@ public class Sprint4Tests {
     }
 
     public void losesWhenAllHealthLost() {
+        Player.clearInstance();
         Avatar avatar = Avatar.getInstance("sprite1");
         Player player = Player.getInstance("name");
         Model model = Model.getInstance();
+        model.clearEnemies();
         SpiderFactory spiderFactory = SpiderFactory.getInstance();
         SpiderEnemy spider = (SpiderEnemy) spiderFactory.createEnemy(1, 0, 0);
         model.addEnemy(spider);
@@ -71,9 +75,11 @@ public class Sprint4Tests {
   
     @Test
     public void medusaCollision() {
+        Player.clearInstance();
         Avatar avatar = Avatar.getInstance("sprite1");
         Player player = Player.getInstance("name");
         Model model = Model.getInstance();
+        model.clearEnemies();
         MedusaFactory medusaFactory = MedusaFactory.getInstance();
         MedusaEnemy medusa = (MedusaEnemy) medusaFactory.createEnemy(1, 0, 0);
         model.addEnemy(medusa);
@@ -84,9 +90,11 @@ public class Sprint4Tests {
 
     @Test
     public void devilCollision() {
+        Player.clearInstance();
         Avatar avatar = Avatar.getInstance("sprite1");
         Player player = Player.getInstance("name");
         Model model = Model.getInstance();
+        model.clearEnemies();
         DevilFactory devilFactory = DevilFactory.getInstance();
         DevilEnemy devil = (DevilEnemy) devilFactory.createEnemy(1, 0, 0);
         model.addEnemy(devil);
@@ -98,9 +106,11 @@ public class Sprint4Tests {
 
     @Test
     public void sirenCollision() {
+        Player.clearInstance();
         Avatar avatar = Avatar.getInstance("sprite1");
         Player player = Player.getInstance("name");
         Model model = Model.getInstance();
+        model.clearEnemies();
         SirenFactory sirenFactory = SirenFactory.getInstance();
         SirenEnemy siren = (SirenEnemy) sirenFactory.createEnemy(1, 0, 0);
         model.addEnemy(siren);
@@ -111,6 +121,7 @@ public class Sprint4Tests {
 
     @Test
     public void enemyMoveCloser() {
+        Player.clearInstance();
         Avatar avatar = Avatar.getInstance("sprite1");
         Player player = Player.getInstance("name");
         Model model = Model.getInstance();

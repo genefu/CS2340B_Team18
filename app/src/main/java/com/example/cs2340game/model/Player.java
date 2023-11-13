@@ -4,14 +4,13 @@ import androidx.core.math.MathUtils;
 
 public class Player {
     private static Player playerInstance;
+    private Avatar avatar;
     private int health;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
     private String name;
     private int speed;
-    private Avatar avatar;
-
 
     // Constructor
     private Player(String name) {
@@ -46,6 +45,12 @@ public class Player {
             }
         }
         return playerInstance;
+    }
+
+    //for use in JUnits
+    public static void clearInstance() {
+        Avatar.clearInstance();
+        playerInstance = null;
     }
 
     // Updates the player stats based on the difficulty

@@ -102,7 +102,7 @@ public class Model {
     }
 
     public void clearEnemies() {
-        Log.d("EnemiesC", "enemies cleared");
+        //Log.d("EnemiesC", "enemies cleared");
         renderedEnemies.clear();
     }
     public TreeSet<Enemy> getUpdatedRenderedEnemies() {
