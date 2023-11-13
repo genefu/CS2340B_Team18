@@ -68,6 +68,11 @@ public class Avatar implements Movable, Collidable {
         return avatarInstance;
     }
 
+    //for use in JUnits
+    public static void clearInstance() {
+        avatarInstance = null;
+    }
+
     public void applyVector(Vector v) {
         //Log.d("keyPress", "Applied Vector");
         if (appliedVectors.add(v)) {
