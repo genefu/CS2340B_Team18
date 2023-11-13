@@ -34,6 +34,10 @@ public class EndView extends AppCompatActivity {
 
         viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores,
                 winStatus, leaderboardTimes, currentScore);
+
+        if (viewModel.isWinner()) {
+            winStatus.setText("YOU WIN!");
+        }
     }
 
     //Adds all leaderboard text views to their respective arrays

@@ -9,12 +9,14 @@ public class GameTimer {
     private Runnable runnable;
     private int ticks;
     private TimerListener listener;
+    private boolean running;
 
     //Constructor
     public GameTimer(TimerListener listener) {
         this.listener = listener;
         handler = new Handler(Looper.myLooper());
         startTimer();
+        running = true;
     }
 
     //Starts the timer
@@ -25,7 +27,11 @@ public class GameTimer {
             public void run() {
                 ticks++;
                 listener.onTimerUpdate(ticks);
-                handler.postDelayed(this, delayMilis); //updates game roughly 20 times a second
+                if (running) {
+                    handler.postDelayed(this, delayMilis); //updates game roughly 20 times a second
+                } else {
+                    handler.removeCallbacks(this);
+                }
             }
         };
 
@@ -34,7 +40,7 @@ public class GameTimer {
 
     // Stops the timer
     public void stopTimer() {
-        handler.removeCallbacks(runnable);
+        running = false;
     }
 
     //Getter for ticks

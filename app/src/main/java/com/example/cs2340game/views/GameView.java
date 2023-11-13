@@ -167,6 +167,12 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         //avatar.updatePosition();
         avatar.checkEnemyCollision(model.getRenderedEnemies());
         Log.d("Enemies", model.getRenderedEnemies().toString());
+        if (viewModel.getHealth() <= 0) {
+            Log.d("help", "going to end screen");
+            toEndView();
+            gameTimer.stopTimer();
+            return;
+        }
         gameRender.refreshScreen();
     }
 }

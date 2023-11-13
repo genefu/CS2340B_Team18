@@ -31,7 +31,7 @@ public class Model {
     private int screenHeight;
 
     public static final int LEADERBOARD_SIZE = 10;
-    public static final int WIN_THRESHOLD = 1000;
+    //public static final int WIN_THRESHOLD = 1000;
     public static final int REFRESH_RATE = 40;
 
 
@@ -94,7 +94,7 @@ public class Model {
 
     // Determines if the player won or lost
     public boolean isWinner() {
-        return score.getScoreValue() > WIN_THRESHOLD; //TODO get real win condition
+        return player.getHealth() > 0; //TODO get real win condition
     }
 
     public void addEnemy(Enemy enemy) {
