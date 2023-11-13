@@ -27,8 +27,9 @@ import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
 
-public class SpiderEnemy extends Enemy implements Movable, Collidable, Comparable<Enemy>, EnemyMovable {
-    final private String sprite = "spider";
+public class SpiderEnemy extends Enemy implements Movable,
+        Collidable, Comparable<Enemy>, EnemyMovable {
+    private final String sprite = "spider";
 
     private int health;
     private int baseHealth;
@@ -42,7 +43,7 @@ public class SpiderEnemy extends Enemy implements Movable, Collidable, Comparabl
     private int posX; //position of center x
     private int posY; //position of center y
     private Avatar avatar;
-    private WalkStrategy WalkStrategy;
+    private WalkStrategy walkStrategy;
     public SpiderEnemy(int id, int posX, int posY) {
         speed = 100;
         this.id = id;
@@ -57,7 +58,7 @@ public class SpiderEnemy extends Enemy implements Movable, Collidable, Comparabl
         this.posX = ENEMY_SIZE / 2 + posX;
         this.posY = ENEMY_SIZE / 2 + posY;
         this.avatar = Avatar.getInstance();
-        this.WalkStrategy = new WalkStrategy();
+        this.walkStrategy = new WalkStrategy();
     }
 
     @Override
@@ -267,11 +268,11 @@ public class SpiderEnemy extends Enemy implements Movable, Collidable, Comparabl
     @Override
     public void movement() {
         if (avatar.getPosX() < this.getPosX() + 192 && avatar.getPosX() > this.getPosX() - 192) {
-            if (avatar.getPosY() < this.getPosX() + 192 && avatar.getPosY() > this.getPosY() - 192) {
+            if (avatar.getPosY()
+                    < this.getPosX() + 192 && avatar.getPosY() > this.getPosY() - 192) {
                 combatMovement();
             }
-        }
-        else {
+        } else {
             basicMovement();
         }
     }
@@ -296,7 +297,7 @@ public class SpiderEnemy extends Enemy implements Movable, Collidable, Comparabl
             movementVector = RIGHT_VECTOR;
         }
         int[] temp = new int[]{posX, posY};
-        WalkStrategy.move(movementVector, temp);
+        walkStrategy.move(movementVector, temp);
         posX = temp[0];
         posY = temp[1];
         updateDirection();
@@ -307,34 +308,36 @@ public class SpiderEnemy extends Enemy implements Movable, Collidable, Comparabl
         double randomMovement = 100 * Math.random();
         int randomVector = (int) (8 * Math.random());
         switch (randomVector) {
-            case 0:
-                movementVector = UP_VECTOR;
-                break;
-            case 1:
-                movementVector = DOWN_VECTOR;
-                break;
-            case 2:
-                movementVector = LEFT_VECTOR;
-                break;
-            case 3:
-                movementVector = RIGHT_VECTOR;
-                break;
-            case 4:
-                movementVector = UPLEFT_VECTOR;
-                break;
-            case 5:
-                movementVector = UPRIGHT_VECTOR;
-                break;
-            case 6:
-                movementVector = DOWNLEFT_VECTOR;
-                break;
-            case 7:
-                movementVector = DOWNRIGHT_VECTOR;
-                break;
+        case 0:
+            movementVector = UP_VECTOR;
+            break;
+        case 1:
+            movementVector = DOWN_VECTOR;
+            break;
+        case 2:
+            movementVector = LEFT_VECTOR;
+            break;
+        case 3:
+            movementVector = RIGHT_VECTOR;
+            break;
+        case 4:
+            movementVector = UPLEFT_VECTOR;
+            break;
+        case 5:
+            movementVector = UPRIGHT_VECTOR;
+            break;
+        case 6:
+            movementVector = DOWNLEFT_VECTOR;
+            break;
+        case 7:
+            movementVector = DOWNRIGHT_VECTOR;
+            break;
+        default:
+            break;
         }
         if (randomMovement > 95) {
             int[] temp = new int[]{posX, posY};
-            WalkStrategy.move(movementVector, temp);
+            walkStrategy.move(movementVector, temp);
             posX = temp[0];
             posY = temp[1];
             updateDirection();
