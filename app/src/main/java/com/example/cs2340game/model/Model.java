@@ -15,8 +15,6 @@ import java.util.TreeSet;
 
 //Main Model
 public class Model {
-    @Nullable
-    private static String playerName;
     private static Model modelInstance;
     private Score score;
     public enum Difficulty {
@@ -63,6 +61,10 @@ public class Model {
         return modelInstance;
     }
 
+    public static void clearInstance() {
+        modelInstance = null;
+    }
+
     //for testing, implement later to have model save highest score/most recent score
     public void setScore(Score score) {
         this.score = score;
@@ -94,7 +96,7 @@ public class Model {
 
     // Determines if the player won or lost
     public boolean isWinner() {
-        return player.getHealth() > 0; //TODO get real win condition
+        return player.getHealth() > 0;
     }
 
     public void addEnemy(Enemy enemy) {
