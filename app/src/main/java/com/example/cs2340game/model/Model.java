@@ -1,8 +1,8 @@
 package com.example.cs2340game.model;
 
-import android.util.Log;
+//import android.util.Log;
 
-import androidx.annotation.Nullable;
+//import androidx.annotation.Nullable;
 
 import com.example.cs2340game.model.Enemies.DevilEnemy;
 import com.example.cs2340game.model.Enemies.Enemy;

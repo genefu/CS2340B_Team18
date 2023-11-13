@@ -1,13 +1,13 @@
 package com.example.cs2340game.model;
 
-import static androidx.core.content.ContextCompat.startActivity;
+//import static androidx.core.content.ContextCompat.startActivity;
 
-import android.content.Intent;
+//import android.content.Intent;
 
 import androidx.core.math.MathUtils;
 
-import com.example.cs2340game.views.EndView;
-import com.example.cs2340game.views.GameView;
+//import com.example.cs2340game.views.EndView;
+//import com.example.cs2340game.views.GameView;
 
 public class Player {
     private static Player playerInstance;
