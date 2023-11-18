@@ -91,14 +91,14 @@ public class MapLayout {
             break;
         case 2:
             mapLayout = createScreen2();
-            avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
+            avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 17);
             model.clearEnemies();
             model.addEnemy(medusaFactory.createEnemy(1, Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
             model.addEnemy(sirenFactory.createEnemy(2, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
             break;
         case 3:
             mapLayout = createScreen3();
-            avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 2);
+            avatar.setPosition(Tile.TILE_SIZE * 1, Tile.TILE_SIZE * 14);
             model.clearEnemies();
             model.addEnemy(sirenFactory.createEnemy(1, Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
             model.addEnemy(sirenFactory.createEnemy(2, Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
