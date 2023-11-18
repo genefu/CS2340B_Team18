@@ -68,6 +68,15 @@ public class Avatar implements Movable, Collidable {
         return avatarInstance;
     }
 
+    //for restarting game
+    public void resetAvatar() {
+        movementVector = new Vector();
+        appliedVectors = new HashSet<>();
+        this.directionFacing = Direction.UP;
+        this.invincibilityTime = 0;
+        isOnExit = false;
+    }
+
     //for use in JUnits
     public static void clearInstance() {
         avatarInstance = null;
