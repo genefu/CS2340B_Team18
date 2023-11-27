@@ -18,6 +18,7 @@ public class Player {
     private int baseStrength;
     private String name;
     private int speed;
+    private int enemiesDefeated;
 
     // Constructor
     private Player(String name) {
@@ -26,6 +27,7 @@ public class Player {
         speed = 100;
         this.name = name;
         avatar = Avatar.getInstance("sprite1");
+        enemiesDefeated = 0;
     }
 
     //Creates (if not already created) and returns the player instance
@@ -111,4 +113,13 @@ public class Player {
         this.name = name;
     }
 
+    // Getter for enemies defeated
+    public int getEnemiesDefeated() {
+        return enemiesDefeated;
+    }
+
+    // Update defeated enemies (for score implementation)
+    public void addDefeatedEnemies(int defeated) {
+        enemiesDefeated += defeated;
+    }
 }
