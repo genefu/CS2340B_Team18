@@ -54,6 +54,13 @@ public class Player {
         return playerInstance;
     }
 
+    //for restarting game
+    public void restartPlayer() {
+        updateDifficultyStats(Model.getInstance().getDifficulty());
+        health = baseHealth;
+        speed = 100;
+    }
+
     //for use in JUnits
     public static void clearInstance() {
         Avatar.clearInstance();
