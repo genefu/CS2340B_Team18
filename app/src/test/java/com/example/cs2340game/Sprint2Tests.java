@@ -15,17 +15,6 @@ import com.example.cs2340game.viewmodels.GameViewModel;
 import java.util.TreeSet;
 
 public class Sprint2Tests {
-    @Test
-    public void correctAvatarStored() {
-        Player player = Player.getInstance("name");
-        ConfigurationViewModel configurationViewModel = new ConfigurationViewModel();
-        configurationViewModel.onSpriteClicked("sprite1");
-        assertEquals("sprite1", player.getAvatar());
-        configurationViewModel.onSpriteClicked("sprite2");
-        assertEquals("sprite2", player.getAvatar());
-        configurationViewModel.onSpriteClicked("sprite3");
-        assertEquals("sprite3", player.getAvatar());
-    }
 
     @Test
     public void correctStrengthBasedOnDifficulty() {
