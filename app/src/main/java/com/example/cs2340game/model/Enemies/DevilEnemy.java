@@ -252,10 +252,10 @@ public class DevilEnemy extends Enemy implements Movable,
     // Getter for player name
     public int getID() {
         return id;
-    }
+    } //get player id
 
     @Override
-    public Bitmap getBitmap(Context context) {
+    public Bitmap getBitmap(Context context) { //gets the bitmap for the game
         Resources res = context.getResources();
         return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
                 "drawable", context.getPackageName())), Tile.TILE_SIZE, Tile.TILE_SIZE, false);
