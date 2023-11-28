@@ -96,6 +96,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         startActivity(new Intent(GameView.this, EndView.class));
     }
 
+    //Applies pos vector depending on key pressed
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.d("keyPress", keyCode + " down");
