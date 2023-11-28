@@ -16,7 +16,7 @@ import com.example.cs2340game.model.Enemies.Enemy;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Tile;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.TreeSet;
 
 public class GameRender {
@@ -38,6 +38,8 @@ public class GameRender {
 
         refreshScreen();
     }
+
+    //draws the entire bitmap
     public void drawMap() {
         Tile[][] tileMap = mapLayout.getTileMap();
 
@@ -83,12 +85,13 @@ public class GameRender {
                 - Avatar.AVATAR_SIZE / 2 - yOffset, null);
     }
 
+    //draws all enemies on the map
     public void drawEnemies() {
-        TreeSet<Enemy> enemySet = model.getRenderedEnemies();
+        TreeSet<Enemy> enemySet = model.getUpdatedRenderedEnemies();
         int[] gameViewPosition = new int[2];
         gameView.getLocationOnScreen(gameViewPosition);
         int yOffset = gameViewPosition[1];
-        for(Enemy e: enemySet) {
+        for (Enemy e: enemySet) {
             Bitmap enemyBitmap = e.getBitmap(context);
             canvas.drawBitmap(enemyBitmap, gameViewPosition[0] + e.getPosX()
                     - Avatar.AVATAR_SIZE / 2, gameViewPosition[1] + e.getPosY()
@@ -96,6 +99,7 @@ public class GameRender {
         }
     }
 
+    //redraws map, avatar, and enemies
     public void refreshScreen() {
         drawMap();
         drawAvatar();
@@ -108,6 +112,8 @@ public class GameRender {
         gameView.invalidate();
     }
 
+
+    //shows tile pos of avatar
     public void showTilePositions() {
         for (int row = 0; row < 20; row++) {
             for (int col = 0; col < 34; col++) {
@@ -116,6 +122,7 @@ public class GameRender {
             }
         }
     }
+
 
     public MapLayout getMapLayout() {
         return mapLayout;

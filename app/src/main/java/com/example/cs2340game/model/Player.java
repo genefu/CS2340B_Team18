@@ -1,17 +1,24 @@
 package com.example.cs2340game.model;
 
+//import static androidx.core.content.ContextCompat.startActivity;
+
+//import android.content.Intent;
+
 import androidx.core.math.MathUtils;
+
+//import com.example.cs2340game.views.EndView;
+//import com.example.cs2340game.views.GameView;
 
 public class Player {
     private static Player playerInstance;
+    private Avatar avatar;
     private int health;
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
     private String name;
     private int speed;
-    private Avatar avatar;
-
+    private int enemiesDefeated;
 
     // Constructor
     private Player(String name) {
@@ -20,6 +27,7 @@ public class Player {
         speed = 100;
         this.name = name;
         avatar = Avatar.getInstance("sprite1");
+        enemiesDefeated = 0;
     }
 
     //Creates (if not already created) and returns the player instance
@@ -36,7 +44,7 @@ public class Player {
         return playerInstance;
     }
 
-    public static Player getInstance() {
+    public static Player getInstance() { //gets instance of player
         if (playerInstance == null) {
             synchronized (Player.class) {
                 if (playerInstance == null) {
@@ -46,6 +54,19 @@ public class Player {
             }
         }
         return playerInstance;
+    }
+
+    //for restarting game
+    public void restartPlayer() {
+        updateDifficultyStats(Model.getInstance().getDifficulty());
+        health = baseHealth;
+        speed = 100;
+    }
+
+    //for use in JUnits
+    public static void clearInstance() {
+        Avatar.clearInstance();
+        playerInstance = null;
     }
 
     // Updates the player stats based on the difficulty
@@ -70,10 +91,8 @@ public class Player {
     }
 
     public void removeHealth(int damage) {
-        health = MathUtils.clamp(health - (int) (damage * (200 - baseDefense) / 100), 0, baseHealth);
-        if (health == 0) {
-            //TODO GAME OVER
-        }
+        health = MathUtils.clamp(health - (int) (damage * (200 - baseDefense) / 100),
+                0, baseHealth);
     }
 
     // Getter for total health
@@ -101,4 +120,13 @@ public class Player {
         this.name = name;
     }
 
+    // Getter for enemies defeated
+    public int getEnemiesDefeated() {
+        return enemiesDefeated;
+    }
+
+    // Update defeated enemies (for score implementation)
+    public void addDefeatedEnemies(int defeated) {
+        enemiesDefeated += defeated;
+    }
 }

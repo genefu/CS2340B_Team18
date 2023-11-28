@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cs2340game.R;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.Player;
 import com.example.cs2340game.viewmodels.ConfigurationViewModel;
 //import com.google.android.material.button.MaterialButton;
 
@@ -62,6 +63,7 @@ public class ConfigurationView extends AppCompatActivity implements
     public void toGameView(View view) {
         Log.d("iwantdeath", "Going to Game View");
         String playerName = nameSender.getText().toString();
+        viewModel.resetGame();
         model.setPlayerName(playerName);
         gameTimer.stopTimer();
         model.getScore().setScoreValue(20);

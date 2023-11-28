@@ -20,11 +20,24 @@ public class EndView extends AppCompatActivity {
     private TextView currentScore;
 
     //Displays the view
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win_view);
-    }
+        leaderboardPlayers = new TextView[10];
+        leaderboardScores = new TextView[10];
+        leaderboardTimes = new TextView[10];
+        //winStatus = (TextView) findViewById(R.id.win_status);
+        addLeaderboardTextViews();
+        //currentScore = (TextView) findViewById(R.id.currentScore);
+
+        viewModel = new EndViewModel(leaderboardPlayers, leaderboardScores,
+                winStatus, leaderboardTimes, currentScore);
+
+        if (viewModel.isWinner()) {
+            winStatus.setText("YOU WIN!");
+        }
+    }*/
 
     //Adds all leaderboard text views to their respective arrays
     public void addLeaderboardTextViews() {

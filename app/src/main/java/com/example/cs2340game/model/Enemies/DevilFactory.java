@@ -9,7 +9,7 @@ public class DevilFactory extends EnemyFactory {
 
     }
 
-    public static DevilFactory getInstance() {
+    public static DevilFactory getInstance() { //get instance of enemy devil
         if (factoryInstance == null) {
             synchronized (Model.class) {
                 synchronized (Player.class) {

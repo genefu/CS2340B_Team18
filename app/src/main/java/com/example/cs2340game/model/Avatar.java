@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import androidx.core.math.MathUtils;
 
 import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.MovementStrategies.Collidable;
+import com.example.cs2340game.model.MovementStrategies.Movable;
 import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
 import com.example.cs2340game.model.MovementStrategies.Vector;
 import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
@@ -64,6 +66,20 @@ public class Avatar implements Movable, Collidable {
             }
         }
         return avatarInstance;
+    }
+
+    //for restarting game
+    public void resetAvatar() {
+        movementVector = new Vector();
+        appliedVectors = new HashSet<>();
+        this.directionFacing = Direction.UP;
+        this.invincibilityTime = 0;
+        isOnExit = false;
+    }
+
+    //for use in JUnits
+    public static void clearInstance() {
+        avatarInstance = null;
     }
 
     public void applyVector(Vector v) {

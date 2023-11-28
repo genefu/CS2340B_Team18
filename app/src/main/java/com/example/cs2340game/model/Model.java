@@ -1,18 +1,20 @@
 package com.example.cs2340game.model;
 
-import android.util.Log;
+//import android.util.Log;
 
-import androidx.annotation.Nullable;
+//import androidx.annotation.Nullable;
 
+import com.example.cs2340game.model.Enemies.DevilEnemy;
 import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.Enemies.MedusaEnemy;
+import com.example.cs2340game.model.Enemies.SirenEnemy;
+import com.example.cs2340game.model.Enemies.SpiderEnemy;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.TreeSet;
 
 //Main Model
 public class Model {
-    @Nullable
-    private static String playerName;
     private static Model modelInstance;
     private Score score;
     public enum Difficulty {
@@ -27,7 +29,7 @@ public class Model {
     private int screenHeight;
 
     public static final int LEADERBOARD_SIZE = 10;
-    public static final int WIN_THRESHOLD = 1000;
+    //public static final int WIN_THRESHOLD = 1000;
     public static final int REFRESH_RATE = 40;
 
 
@@ -57,6 +59,10 @@ public class Model {
             }
         }
         return modelInstance;
+    }
+
+    public static void clearInstance() {
+        modelInstance = null;
     }
 
     //for testing, implement later to have model save highest score/most recent score
@@ -90,7 +96,7 @@ public class Model {
 
     // Determines if the player won or lost
     public boolean isWinner() {
-        return score.getScoreValue() > WIN_THRESHOLD; //TODO get real win condition
+        return player.getHealth() > 0;
     }
 
     public void addEnemy(Enemy enemy) {
@@ -98,8 +104,28 @@ public class Model {
     }
 
     public void clearEnemies() {
-        Log.d("EnemiesC", "enemies cleared");
+        //Log.d("EnemiesC", "enemies cleared");
         renderedEnemies.clear();
+    }
+    public TreeSet<Enemy> getUpdatedRenderedEnemies() {
+        return updateEnemyPos();
+    }
+    public TreeSet<Enemy> updateEnemyPos() {
+        for (Enemy e: renderedEnemies) {
+            if (e instanceof SpiderEnemy) {
+                ((SpiderEnemy) e).movement();
+            }
+            if (e instanceof MedusaEnemy) {
+                ((MedusaEnemy) e).movement();
+            }
+            if (e instanceof DevilEnemy) {
+                ((DevilEnemy) e).movement();
+            }
+            if (e instanceof SirenEnemy) {
+                ((SirenEnemy) e).movement();
+            }
+        }
+        return renderedEnemies;
     }
 
     public int getScreenWidth() {

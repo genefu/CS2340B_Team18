@@ -1,5 +1,14 @@
 package com.example.cs2340game.model.Enemies;
 
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.DOWNLEFT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.DOWNRIGHT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.DOWN_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.LEFT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.RIGHT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.UPLEFT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.UPRIGHT_VECTOR;
+import static com.example.cs2340game.model.MovementStrategies.StandardVectors.UP_VECTOR;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -7,16 +16,22 @@ import android.graphics.BitmapFactory;
 
 import androidx.core.math.MathUtils;
 
-import com.example.cs2340game.model.Collidable;
-import com.example.cs2340game.model.Movable;
+import com.example.cs2340game.model.Avatar;
+import com.example.cs2340game.model.MovementStrategies.Collidable;
+import com.example.cs2340game.model.MovementStrategies.EnemyMovable;
+import com.example.cs2340game.model.MovementStrategies.Movable;
+import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
 import com.example.cs2340game.model.Tile;
 import com.example.cs2340game.model.MovementStrategies.Vector;
 import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
 
-public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparable<Enemy> {
-    final private String SPRITE = "medusa";
+public class MedusaEnemy extends Enemy implements Movable,
+        Collidable, Comparable<Enemy>, EnemyMovable {
+    private final String sprite = "medusa";
+    private final Avatar avatar;
+
     private int health;
     private int baseHealth;
     private int baseDefense;
@@ -28,6 +43,7 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
     private Direction directionFacing;
     private int posX; //position of center x
     private int posY; //position of center y
+    private WalkStrategy walkStrategy;
 
     public MedusaEnemy(int id, int posX, int posY) {
         this.id = id;
@@ -41,6 +57,8 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
         this.directionFacing = Direction.UP;
         this.posX = ENEMY_SIZE / 2 + posX;
         this.posY = ENEMY_SIZE / 2 + posY;
+        this.avatar = Avatar.getInstance();
+        this.walkStrategy = new WalkStrategy();
     }
 
     @Override
@@ -118,11 +136,11 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
         for (int i = 0; i < 4; i++) {
             if (coveredTiles[i].isWall() || coveredTiles[i].isWater()) {
                 switch (i) {
-                    case 0: return Collidable.CollisionBox.TOP_LEFT;
-                    case 1: return Collidable.CollisionBox.TOP_RIGHT;
-                    case 2: return Collidable.CollisionBox.BOTTOM_LEFT;
-                    case 3: return Collidable.CollisionBox.BOTTOM_RIGHT;
-                    default: throw new IllegalArgumentException("Invalid collision box");
+                case 0: return Collidable.CollisionBox.TOP_LEFT;
+                case 1: return Collidable.CollisionBox.TOP_RIGHT;
+                case 2: return Collidable.CollisionBox.BOTTOM_LEFT;
+                case 3: return Collidable.CollisionBox.BOTTOM_RIGHT;
+                default: throw new IllegalArgumentException("Invalid collision box");
                 }
             }
         }
@@ -134,58 +152,58 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
         int baseX;
         int baseY;
         switch (collisionBox) {
-            case TOP_LEFT:
-                baseX = posX - 32;
-                baseY = posY - 32;
-                break;
-            case TOP_RIGHT:
-                baseX = posX + 31;
-                baseY = posY - 32;
-                break;
-            case BOTTOM_LEFT:
-                baseX = posX - 32;
-                baseY = posY + 31;
-                break;
-            case BOTTOM_RIGHT:
-                baseX = posX + 31;
-                baseY = posY + 31;
-                break;
-            default:
-                return;
+        case TOP_LEFT:
+            baseX = posX - 32;
+            baseY = posY - 32;
+            break;
+        case TOP_RIGHT:
+            baseX = posX + 31;
+            baseY = posY - 32;
+            break;
+        case BOTTOM_LEFT:
+            baseX = posX - 32;
+            baseY = posY + 31;
+            break;
+        case BOTTOM_RIGHT:
+            baseX = posX + 31;
+            baseY = posY + 31;
+            break;
+        default:
+            return;
         }
         //Log.d("collision", "BaseXY: " + baseX + " " + baseY);
         //Log.d("collision", collisionBox.toString() + " " + directionFacing.toString());
         switch (directionFacing) {
-            case UP:
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
-            case UP_RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
-            case RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN_RIGHT:
-                posX -= baseX % Tile.TILE_SIZE + 1;
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN:
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case DOWN_LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                posY -= baseY % Tile.TILE_SIZE + 1;
-                break;
-            case LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                break;
-            case UP_LEFT:
-                posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
-                posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
-                break;
-            default:
-                break;
+        case UP:
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        case UP_RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        case RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN_RIGHT:
+            posX -= baseX % Tile.TILE_SIZE + 1;
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN:
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case DOWN_LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            posY -= baseY % Tile.TILE_SIZE + 1;
+            break;
+        case LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            break;
+        case UP_LEFT:
+            posX += Tile.TILE_SIZE - baseX % Tile.TILE_SIZE;
+            posY += Tile.TILE_SIZE - baseY % Tile.TILE_SIZE;
+            break;
+        default:
+            break;
         }
     }
 
@@ -216,7 +234,8 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
     }
 
     @Override
-    public int getStrength() { return strength; }
+    public int getStrength() {
+        return strength; }
 
     @Override
     public int getPosX() {
@@ -237,12 +256,97 @@ public class MedusaEnemy extends Enemy implements Movable, Collidable, Comparabl
     @Override
     public Bitmap getBitmap(Context context) {
         Resources res = context.getResources();
-        return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(SPRITE,
+        return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
                 "drawable", context.getPackageName())), Tile.TILE_SIZE, Tile.TILE_SIZE, false);
     }
 
     @Override
     public int compareTo(Enemy enemy) {
         return (this.strength - enemy.getStrength()) * 100 + this.id;
+    }
+
+    @Override
+    public void movement() {
+        if (avatar.getPosX() < this.getPosX() + 192 && avatar.getPosX() > this.getPosX() - 192) {
+            if (avatar.getPosY()
+                    < this.getPosX() + 192 && avatar.getPosY() > this.getPosY() - 192) {
+                combatMovement();
+            }
+        } else {
+            basicMovement();
+        }
+    }
+
+    @Override
+    public void combatMovement() {
+        if (avatar.getPosX() < this.getPosX() && avatar.getPosY() < this.getPosY()) {
+            movementVector = DOWNLEFT_VECTOR;
+        } else if (avatar.getPosX() < this.getPosX() && avatar.getPosY() > this.getPosY()) {
+            movementVector = UPLEFT_VECTOR;
+        } else if (avatar.getPosX() > this.getPosX() && avatar.getPosY() < this.getPosY()) {
+            movementVector = DOWNRIGHT_VECTOR;
+        } else if (avatar.getPosX() > this.getPosX() && avatar.getPosY() > this.getPosY()) {
+            movementVector = UPRIGHT_VECTOR;
+        } else if (avatar.getPosX() == this.getPosX() && avatar.getPosY() < this.getPosY()) {
+            movementVector = DOWN_VECTOR;
+        } else if (avatar.getPosX() == this.getPosX() && avatar.getPosY() > this.getPosY()) {
+            movementVector = UP_VECTOR;
+        } else if (avatar.getPosX() < this.getPosX() && avatar.getPosY() == this.getPosY()) {
+            movementVector = LEFT_VECTOR;
+        } else if (avatar.getPosX() > this.getPosX() && avatar.getPosY() == this.getPosY()) {
+            movementVector = RIGHT_VECTOR;
+        }
+        int[] temp = new int[]{posX, posY};
+        walkStrategy.move(movementVector, temp);
+        posX = temp[0];
+        posY = temp[1];
+        updateDirection();
+    }
+
+    @Override
+    public void basicMovement() {
+        double randomMovement = 100 * Math.random();
+        int randomVector = (int) (8 * Math.random());
+        switch (randomVector) {
+        case 0:
+            movementVector = UP_VECTOR;
+            break;
+        case 1:
+            movementVector = DOWN_VECTOR;
+            break;
+        case 2:
+            movementVector = LEFT_VECTOR;
+            break;
+        case 3:
+            movementVector = RIGHT_VECTOR;
+            break;
+        case 4:
+            movementVector = UPLEFT_VECTOR;
+            break;
+        case 5:
+            movementVector = UPRIGHT_VECTOR;
+            break;
+        case 6:
+            movementVector = DOWNLEFT_VECTOR;
+            break;
+        case 7:
+            movementVector = DOWNRIGHT_VECTOR;
+            break;
+        default:
+            break;
+        }
+        if (randomMovement > 95) {
+            int[] temp = new int[]{posX, posY};
+            walkStrategy.move(movementVector, temp);
+            posX = temp[0];
+            posY = temp[1];
+            updateDirection();
+        }
+    }
+    public void setPosX(int x) {
+        posX = x;
+    }
+    public void setPosY(int y) {
+        posY = y;
     }
 }

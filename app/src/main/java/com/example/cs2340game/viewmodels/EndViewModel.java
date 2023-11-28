@@ -46,6 +46,10 @@ public class EndViewModel extends BaseObservable {
         return leaderboard;
     }
 
+    public boolean isWinner() {
+        return model.isWinner();
+    }
+
     // actions to be performed
     // when user clicks a button
     public void onButtonClicked() {
