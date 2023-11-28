@@ -131,6 +131,11 @@ public class Model {
         //Log.d("EnemiesC", "enemies cleared");
         renderedEnemies.clear();
     }
+
+    public void clearPowerUps() {
+        renderedPowerUps.clear();
+    }
+
     public TreeSet<Enemy> getUpdatedRenderedEnemies() {
         return updateEnemyPos();
     }

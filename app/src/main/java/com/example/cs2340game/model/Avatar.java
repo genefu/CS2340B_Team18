@@ -293,6 +293,10 @@ public class Avatar implements Movable, Collidable {
         return movementVector;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
+
     public Direction getDirectionFacing() {
         return directionFacing;
     }

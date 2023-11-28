@@ -85,6 +85,7 @@ public class MapLayout {
             mapLayout = createScreen1();
             avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 17);
             model.clearEnemies();
+            model.clearPowerUps();
             model.addEnemy(spiderFactory.createEnemy(1, Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
             model.addEnemy(spiderFactory.createEnemy(2, Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
             model.addEnemy(spiderFactory.createEnemy(3, Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
@@ -95,18 +96,22 @@ public class MapLayout {
             mapLayout = createScreen2();
             avatar.setPosition(Tile.TILE_SIZE * 2, Tile.TILE_SIZE * 17);
             model.clearEnemies();
+            model.clearPowerUps();
             model.addEnemy(medusaFactory.createEnemy(1, Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
             model.addEnemy(sirenFactory.createEnemy(2, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
+            model.addPowerUp(new PowerUpSprite(1, Tile.TILE_SIZE * 6, Tile.TILE_SIZE * 6, "powerup_score"));
             break;
         case 3:
             mapLayout = createScreen3();
             avatar.setPosition(Tile.TILE_SIZE * 1, Tile.TILE_SIZE * 14);
             model.clearEnemies();
+            model.clearPowerUps();
             model.addEnemy(sirenFactory.createEnemy(1, Tile.TILE_SIZE * 8, Tile.TILE_SIZE * 8));
             model.addEnemy(sirenFactory.createEnemy(2, Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
             model.addEnemy(sirenFactory.createEnemy(3, Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
             model.addEnemy(devilFactory.createEnemy(4, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 1));
             model.addEnemy(devilFactory.createEnemy(5, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 3));
+            model.addPowerUp(new PowerUpSprite(1, Tile.TILE_SIZE * 6, Tile.TILE_SIZE * 6, "powerup_range"));
             break;
         default:
             break;
