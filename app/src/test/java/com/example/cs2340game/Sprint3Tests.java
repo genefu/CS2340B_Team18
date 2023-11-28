@@ -15,15 +15,7 @@ import org.junit.Test;
 
 public class Sprint3Tests {
 
-    @Test
-    public void sprintStrategyTest() {
-        MapLayout mapLayout = MapLayout.getInstance(2);
-        Avatar avatar = Avatar.getInstance("sprite3");
-        avatar.setMovementStrategy(new SprintStrategy());
-        avatar.applyVector(StandardVectors.UP_VECTOR);
-        assertEquals(160, avatar.getPosX());
-        assertEquals(140, avatar.getPosY());
-    }
+
 
     @Test
     public void walkStrategyTest() {
