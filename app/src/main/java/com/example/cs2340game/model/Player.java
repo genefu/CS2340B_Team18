@@ -44,7 +44,7 @@ public class Player {
         return playerInstance;
     }
 
-    public static Player getInstance() {
+    public static Player getInstance() { //gets instance of player
         if (playerInstance == null) {
             synchronized (Player.class) {
                 if (playerInstance == null) {
