@@ -16,6 +16,7 @@ import com.example.cs2340game.R;
 import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.Player;
 import com.example.cs2340game.model.Score;
 import com.example.cs2340game.model.MovementStrategies.SprintStrategy;
 import com.example.cs2340game.model.MovementStrategies.StandardVectors;
@@ -38,6 +39,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private String date;
     private int currentRoom;
     private Avatar avatar;
+    private Player player;
 
     //Displays the view
     @Override
@@ -45,6 +47,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_view);
         this.model = Model.getInstance();
+        player = Player.getInstance();
 
         viewModel = new GameViewModel();
         nameTextView = findViewById(R.id.nameReceiver);
@@ -58,7 +61,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         timeTextView = findViewById(R.id.TimeText);
         timeTextView.setText("Time: " + viewModel.getTime());
         playerSprite = findViewById(R.id.player_sprite);
-        avatar = model.getPlayer().getAvatar();
+        avatar = player.getAvatar();
         int id = this.getResources().getIdentifier(avatar.getSprite(),
                 "drawable", this.getPackageName());
         playerSprite.setImageResource(id);
@@ -96,6 +99,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         startActivity(new Intent(GameView.this, EndView.class));
     }
 
+    //Applies pos vector depending on key pressed
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.d("keyPress", keyCode + " down");
@@ -124,6 +128,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         return out;
     }
 
+    //applies pos vector when key is not pressed
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         boolean out = super.onKeyUp(keyCode, event);
@@ -151,6 +156,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
     }
 
+    //Switches to endview once players health reaches 0
     @Override
     public void onTimerUpdate(int ticks) {
         Log.d("iwantdeath", "invincibility:" + viewModel.getInvincibilityTime());
@@ -161,6 +167,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
                 viewModel.incrementSecond();
             }
         }
+        if (viewModel.getEnemiesDefeated() != player.getEnemiesDefeated()) { //checking if enemies defeated has changed
+            viewModel.updateScore(player.getEnemiesDefeated() - viewModel.getEnemiesDefeated());
+        }
+        viewModel.setEnemiesDefeated(player.getEnemiesDefeated()); //update enemies defeated in viewmodel
         healthTextView.setText("Health: " + viewModel.getHealth());
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());

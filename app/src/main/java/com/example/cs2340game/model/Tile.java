@@ -64,7 +64,7 @@ public class Tile {
         return type == 4;
     }
 
-    public HashSet<Tile> getSurroundingTiles(Tile[][] tileMap) {
+    public HashSet<Tile> getSurroundingTiles(Tile[][] tileMap) { //determines which tile to place
         HashSet<Tile> surroundingTiles = new HashSet<>();
         for (int r = -1; r < 3; r++) {
             for (int c = -1; c < 3; c++) {

@@ -118,6 +118,7 @@ public class MapLayout {
         avatar.resetOnExit();
     }
 
+    //creates the first screen with the correct tiles
     private int[][] createScreen1() {
         int[][] mapLayout = new int[20][34];
         mapLayout = new int[][]
