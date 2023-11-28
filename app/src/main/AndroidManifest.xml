@@ -24,6 +24,8 @@
         <activity android:name=".views.ConfigurationView" />
         <activity android:name=".views.GameView"/>
         <activity android:name=".views.EndView"/>
+        <activity android:name=".views.WinView"/>
+        <activity android:name=".views.LoseView"/>
     </application>
 
 </manifest>

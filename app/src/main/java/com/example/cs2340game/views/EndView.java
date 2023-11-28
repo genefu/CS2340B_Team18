@@ -24,7 +24,6 @@ public class EndView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_view);
-
         leaderboardPlayers = new TextView[10];
         leaderboardScores = new TextView[10];
         leaderboardTimes = new TextView[10];

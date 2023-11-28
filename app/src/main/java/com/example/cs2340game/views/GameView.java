@@ -79,7 +79,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     public void switchRoom() {
         currentRoom++;
         if (currentRoom == 4) {
-            toEndView();
+            toWinView();
         } else {
             //gameRender = new GameRender(gameView, currentRoom + "", this);
             gameRender.getMapLayout().setScreen(currentRoom);
@@ -89,14 +89,24 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     }
 
     //Switches view to EndView
-    public void toEndView() {
+    public void toWinView() {
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
         model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
         model.getScore().setPlayerName(model.getPlayerName());
         model.getScore().setDateTime(date);
-        startActivity(new Intent(GameView.this, EndView.class));
+        startActivity(new Intent(GameView.this, WinView.class));
+    }
+
+    public void toLoseView() {
+        //record score when button is pressed (will later change to when player completes level)
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+        date = dateFormat.format(Calendar.getInstance().getTime());
+        model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
+        model.getScore().setPlayerName(model.getPlayerName());
+        model.getScore().setDateTime(date);
+        startActivity(new Intent(GameView.this, LoseView.class));
     }
 
     //Applies pos vector depending on key pressed
@@ -179,8 +189,8 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         Log.d("Enemies", model.getRenderedEnemies().toString());
         if (viewModel.getHealth() <= 0) {
             Log.d("help", "going to end screen");
-            toEndView();
             gameTimer.stopTimer();
+            toLoseView();
             return;
         }
         gameRender.refreshScreen();

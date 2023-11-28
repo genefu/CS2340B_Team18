@@ -2,9 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#AAFFFFFF"
+    android:background="@drawable/vertical"
     tools:context=".views.WelcomeView">
-
     <data>
 
         <variable
@@ -18,17 +17,6 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome_game_title"
-            android:textColor="#700000"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toTopOf="@id/midLine"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
 
         <Button
             android:id="@+id/startBtn"
