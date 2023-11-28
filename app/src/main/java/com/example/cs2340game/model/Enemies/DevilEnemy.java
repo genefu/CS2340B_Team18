@@ -234,6 +234,14 @@ public class DevilEnemy extends Enemy implements Movable,
         return health;
     } //gets health
 
+    public void setHealth(int h) {
+        if (h < 0) {
+            health = 0;
+        } else {
+            health = 0;
+        }
+    }
+
     @Override
     public int getStrength() { //gets strength
         return strength; }
