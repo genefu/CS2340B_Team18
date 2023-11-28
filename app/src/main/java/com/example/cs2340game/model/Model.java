@@ -176,6 +176,7 @@ public class Model {
     public String getPlayerName() {
         return player.getName();
     }
+    //getter for rendered enemies
     public TreeSet<Enemy> getRenderedEnemies() {
         return renderedEnemies;
     }
@@ -184,7 +185,7 @@ public class Model {
     public Score getScore() {
         return score;
     }
-
+    //setter for screenwidth
     public void setScreenWidth(int screenWidth) {
         this.screenWidth = screenWidth;
     }

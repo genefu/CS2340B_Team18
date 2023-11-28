@@ -11,7 +11,7 @@ public class GameTimer {
     private TimerListener listener;
     private boolean running;
 
-    //Constructor
+    //Constructor for the gamer timer
     public GameTimer(TimerListener listener) {
         this.listener = listener;
         handler = new Handler(Looper.myLooper());
