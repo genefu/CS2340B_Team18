@@ -119,6 +119,7 @@ public class GameRender {
         }
     }
 
+
     public MapLayout getMapLayout() {
         return mapLayout;
     }
