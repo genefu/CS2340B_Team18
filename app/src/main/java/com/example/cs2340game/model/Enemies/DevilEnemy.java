@@ -226,16 +226,16 @@ public class DevilEnemy extends Enemy implements Movable,
 
     @Override
     public int getDistance(int x, int y) {
-        return (int) Math.sqrt((posX - x) * (posX - x) + (posY - y) * (posY - y));
+        return (int) Math.sqrt((posX - x) * (posX - x) + (posY - y) * (posY - y)); //gets the distance
     }
 
     @Override
     public int getHealth() {
         return health;
-    }
+    } //gets health
 
     @Override
-    public int getStrength() {
+    public int getStrength() { //gets strength
         return strength; }
 
     @Override
@@ -252,10 +252,10 @@ public class DevilEnemy extends Enemy implements Movable,
     // Getter for player name
     public int getID() {
         return id;
-    }
+    } //get player id
 
     @Override
-    public Bitmap getBitmap(Context context) {
+    public Bitmap getBitmap(Context context) { //gets the bitmap for the game
         Resources res = context.getResources();
         return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
                 "drawable", context.getPackageName())), Tile.TILE_SIZE, Tile.TILE_SIZE, false);

@@ -38,6 +38,8 @@ public class GameRender {
 
         refreshScreen();
     }
+
+    //draws the entire bitmap
     public void drawMap() {
         Tile[][] tileMap = mapLayout.getTileMap();
 
@@ -109,6 +111,8 @@ public class GameRender {
         gameView.invalidate();
     }
 
+
+    //shows tile pos of avatar
     public void showTilePositions() {
         for (int row = 0; row < 20; row++) {
             for (int col = 0; col < 34; col++) {
@@ -117,6 +121,7 @@ public class GameRender {
             }
         }
     }
+
 
     public MapLayout getMapLayout() {
         return mapLayout;
