@@ -9,7 +9,7 @@ public class Leaderboard {
     private Leaderboard() {
         leaderboard = new TreeSet<>();
     }
-
+    //constructor for leaderboard
     public static Leaderboard getInstance() {
         if (leaderboardInstance == null) {
             synchronized (Leaderboard.class) {
