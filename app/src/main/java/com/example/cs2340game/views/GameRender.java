@@ -96,6 +96,7 @@ public class GameRender {
         }
     }
 
+
     public void refreshScreen() {
         drawMap();
         drawAvatar();
@@ -108,6 +109,8 @@ public class GameRender {
         gameView.invalidate();
     }
 
+
+    //shows tile pos of avatar
     public void showTilePositions() {
         for (int row = 0; row < 20; row++) {
             for (int col = 0; col < 34; col++) {
