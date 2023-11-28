@@ -12,11 +12,13 @@ public class GameViewModel extends BaseObservable {
     private int secondsPassed;
     private int minutesPassed;
     private int hoursPassed;
+    private int enemiesDefeated;
     //Constructor
     public GameViewModel() {
         this.model = Model.getInstance();
-        player = model.getPlayer();
+        player = Player.getInstance();
         secondsPassed = 0;
+        enemiesDefeated = player.getEnemiesDefeated();
     }
 
     public void switchRoom() {
@@ -80,5 +82,19 @@ public class GameViewModel extends BaseObservable {
     // Adds 1 second to secondsPassed
     public void incrementSecond() {
         secondsPassed++;
+    }
+
+    // Setter for enemies defeated
+    public void setEnemiesDefeated(int enemiesDefeated) {//don't update this outside of GameView
+        this.enemiesDefeated = enemiesDefeated;
+    }
+
+    // Getter for enemies defeated
+    public int getEnemiesDefeated() {//don't use this outside of GameView
+        return enemiesDefeated;
+    }
+
+    public void updateScore(int difference) {
+        model.getScore().setScoreValue(model.getScore().getScoreValue() + (4 * difference)); //adds 4 points for each new enemy defeated
     }
 }
