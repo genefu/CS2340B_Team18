@@ -2,6 +2,7 @@ package com.example.cs2340game.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,7 @@ public class LoseView extends AppCompatActivity {
         setContentView(R.layout.lose_view);
     }
 
-    public void toEndView() {
+    public void toEndView(View view) {
         startActivity(new Intent(LoseView.this, EndView.class));
     }
 }

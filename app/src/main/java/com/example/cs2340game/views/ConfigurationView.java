@@ -60,7 +60,7 @@ public class ConfigurationView extends AppCompatActivity implements
     }
 
     //Switches view to GameView
-    public void toGameView(View view) {
+    public void toGameView() {
         Log.d("iwantdeath", "Going to Game View");
         String playerName = nameSender.getText().toString();
         viewModel.resetGame();
@@ -107,7 +107,7 @@ public class ConfigurationView extends AppCompatActivity implements
             char3.setImageResource(R.drawable.sprite3_highlighted);
         } else if (view.getId() == R.id.next_button) {
             Log.d("gameTick", "Detected next button");
-            toGameView(view);
+            toGameView();
         }
     }
 
