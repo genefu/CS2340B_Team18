@@ -8,10 +8,12 @@ public class ScoreUpDecorator extends PowerUpDecorator{
     @Override
     public void applyPowerUp() {
         super.applyPowerUp();
+        super.getPlayer().setScoreMultiplier(1.5);
     }
 
     @Override
     public void removePowerUp() {
         super.removePowerUp();
+        super.getPlayer().setScoreMultiplier(1);
     }
 }

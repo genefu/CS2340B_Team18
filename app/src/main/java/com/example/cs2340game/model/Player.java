@@ -18,6 +18,7 @@ public class Player {
     private int baseStrength;
     private String name;
     private int enemiesDefeated;
+    private double scoreMultiplier;
 
     // Constructor
     private Player(String name) {
@@ -26,6 +27,7 @@ public class Player {
         this.name = name;
         avatar = Avatar.getInstance("sprite1");
         enemiesDefeated = 0;
+        scoreMultiplier = 1;
     }
 
     //Creates (if not already created) and returns the player instance
@@ -119,6 +121,14 @@ public class Player {
 
     public void setSpeed(double speed) {
         avatar.setSpeed(speed);
+    }
+
+    public void setScoreMultiplier(double scoreMultiplier) {
+        this.scoreMultiplier = scoreMultiplier;
+    }
+
+    public double getScoreMultiplier() {
+        return scoreMultiplier;
     }
 
     // Getter for enemies defeated

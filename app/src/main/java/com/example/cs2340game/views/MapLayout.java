@@ -8,6 +8,7 @@ import com.example.cs2340game.model.Enemies.SirenFactory;
 import com.example.cs2340game.model.Enemies.SpiderFactory;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Player;
+import com.example.cs2340game.model.Powerups.PowerUpSprite;
 import com.example.cs2340game.model.Tile;
 
 public class MapLayout {
@@ -88,6 +89,7 @@ public class MapLayout {
             model.addEnemy(spiderFactory.createEnemy(2, Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 8));
             model.addEnemy(spiderFactory.createEnemy(3, Tile.TILE_SIZE * 9, Tile.TILE_SIZE * 10));
             model.addEnemy(medusaFactory.createEnemy(4, Tile.TILE_SIZE * 16, Tile.TILE_SIZE * 4));
+            model.addPowerUp(new PowerUpSprite(1, Tile.TILE_SIZE * 6, Tile.TILE_SIZE * 6, "powerup_speed"));
             break;
         case 2:
             mapLayout = createScreen2();
