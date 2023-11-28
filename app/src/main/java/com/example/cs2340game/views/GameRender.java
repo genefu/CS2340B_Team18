@@ -38,6 +38,8 @@ public class GameRender {
 
         refreshScreen();
     }
+
+    //draws the entire bitmap
     public void drawMap() {
         Tile[][] tileMap = mapLayout.getTileMap();
 
