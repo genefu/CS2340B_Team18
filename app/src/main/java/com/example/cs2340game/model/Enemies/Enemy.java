@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 
 public abstract class Enemy {
     public static final int ENEMY_SIZE = 64;
-    public abstract void attack();
+    public abstract void attack(); //TBD
     public abstract int getDistance(int x, int y);
     public abstract int getHealth();
     public abstract int getStrength();
