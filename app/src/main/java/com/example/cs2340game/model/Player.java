@@ -41,7 +41,7 @@ public class Player {
         }
         return playerInstance;
     }
-
+    //singleton instance usage
     public static Player getInstance() {
         if (playerInstance == null) {
             synchronized (Player.class) {
