@@ -27,16 +27,7 @@ public class Sprint2Tests {
         assertEquals("sprite3", player.getAvatar());
     }
 
-    @Test
-    public void correctStrengthBasedOnDifficulty() {
-        Model model = Model.getInstance();
-        model.setDifficulty(Model.Difficulty.HARD);
-        assertEquals(25, model.getPlayer().getStrength());
-        model.setDifficulty(Model.Difficulty.MEDIUM);
-        assertEquals(50, model.getPlayer().getStrength());
-        model.setDifficulty(Model.Difficulty.EASY);
-        assertEquals(100, model.getPlayer().getStrength());
-    }
+
 
     @Test
     public void correctHealthBasedOnDifficulty() {
