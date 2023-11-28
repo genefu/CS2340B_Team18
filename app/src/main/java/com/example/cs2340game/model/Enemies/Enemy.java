@@ -8,6 +8,7 @@ public abstract class Enemy {
     public abstract void attack(); //TBD
     public abstract int getDistance(int x, int y);
     public abstract int getHealth();
+    public abstract void setHealth(int h);
     public abstract int getStrength();
     public abstract int getPosX();
     public abstract int getPosY();

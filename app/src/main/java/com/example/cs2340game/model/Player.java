@@ -6,6 +6,8 @@ package com.example.cs2340game.model;
 
 import androidx.core.math.MathUtils;
 
+import com.example.cs2340game.model.Enemies.Enemy;
+
 //import com.example.cs2340game.views.EndView;
 //import com.example.cs2340game.views.GameView;
 
@@ -42,6 +44,10 @@ public class Player {
             }
         }
         return playerInstance;
+    }
+
+    public void attack(Enemy enemy) {
+        enemy.setHealth(0);
     }
 
     public static Player getInstance() { //gets instance of player

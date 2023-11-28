@@ -233,6 +233,14 @@ public class MedusaEnemy extends Enemy implements Movable,
         return health;
     }
 
+    public void setHealth(int h) {
+        if (h < 0) {
+            health = 0;
+        } else {
+            health = 0;
+        }
+    }
+
     @Override
     public int getStrength() {
         return strength; }
