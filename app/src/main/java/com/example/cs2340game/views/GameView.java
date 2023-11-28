@@ -151,6 +151,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
     }
 
+    //Switches to endview once players health reaches 0
     @Override
     public void onTimerUpdate(int ticks) {
         Log.d("iwantdeath", "invincibility:" + viewModel.getInvincibilityTime());
