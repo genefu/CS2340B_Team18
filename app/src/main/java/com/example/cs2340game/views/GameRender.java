@@ -85,6 +85,7 @@ public class GameRender {
                 - Avatar.AVATAR_SIZE / 2 - yOffset, null);
     }
 
+    //draws all enemies on the map
     public void drawEnemies() {
         TreeSet<Enemy> enemySet = model.getUpdatedRenderedEnemies();
         int[] gameViewPosition = new int[2];
