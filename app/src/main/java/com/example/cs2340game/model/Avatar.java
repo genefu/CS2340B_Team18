@@ -25,9 +25,9 @@ public class Avatar implements Movable, Collidable {
     private MovementStrategy movementStrategy;
     private HashSet<Vector> appliedVectors;
     private String sprite;
-    private boolean isOnExit;
+    private boolean isOnExit; // if avatar is on the exit tile
     private Direction directionFacing;
-    private int invincibilityTime;
+    private int invincibilityTime; // cannot lose health from attack
     private int posX; //position of center x
     private int posY; //position of center y
 
