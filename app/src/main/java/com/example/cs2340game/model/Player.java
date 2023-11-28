@@ -17,13 +17,11 @@ public class Player {
     private int baseDefense;
     private int baseStrength;
     private String name;
-    private int speed;
 
     // Constructor
     private Player(String name) {
         updateDifficultyStats(Model.Difficulty.MEDIUM);
         this.health = baseHealth;
-        speed = 100;
         this.name = name;
         avatar = Avatar.getInstance("sprite1");
     }
@@ -58,7 +56,6 @@ public class Player {
     public void restartPlayer() {
         updateDifficultyStats(Model.getInstance().getDifficulty());
         health = baseHealth;
-        speed = 100;
     }
 
     //for use in JUnits
@@ -116,6 +113,10 @@ public class Player {
     // Setter for player avatar
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setSpeed(double speed) {
+        avatar.setSpeed(speed);
     }
 
 }

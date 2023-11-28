@@ -30,6 +30,7 @@ public class Avatar implements Movable, Collidable {
     private int invincibilityTime;
     private int posX; //position of center x
     private int posY; //position of center y
+    private double speed;
 
     private Avatar(String sprite, MovementStrategy movementStrategy) {
         movementVector = new Vector();
@@ -41,6 +42,7 @@ public class Avatar implements Movable, Collidable {
         this.posY = AVATAR_SIZE / 2 + Tile.TILE_SIZE * 17;
         this.invincibilityTime = 0;
         isOnExit = false;
+        this.speed = 1;
     }
 
     public static Avatar getInstance(String sprite) {
@@ -134,8 +136,8 @@ public class Avatar implements Movable, Collidable {
     public void updatePosition() {
         int[] temp = new int[]{posX, posY};
         movementStrategy.move(movementVector, temp);
-        posX = temp[0];
-        posY = temp[1];
+        posX = (int) (temp[0] * speed);
+        posY = (int) (temp[1] * speed);
         //Log.d("collision", "Before: " + posX + " " + posY);
         Collidable.CollisionBox collisionBox;
         collisionBox = checkCollision();
@@ -301,6 +303,8 @@ public class Avatar implements Movable, Collidable {
     public void setMovementVector(Vector v) {
         movementVector = v;
     }
+
+    public void setSpeed(double speed) { this.speed = speed; }
 
     public int getInvincibilityTime() {
         return invincibilityTime;
