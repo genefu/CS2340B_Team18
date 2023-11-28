@@ -14,9 +14,12 @@ import com.example.cs2340game.R;
 import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.Enemies.Enemy;
 import com.example.cs2340game.model.Model;
+import com.example.cs2340game.model.Powerups.PowerUp;
+import com.example.cs2340game.model.Powerups.PowerUpSprite;
 import com.example.cs2340game.model.Tile;
 
 //import java.util.HashSet;
+import java.util.HashSet;
 import java.util.TreeSet;
 
 public class GameRender {
@@ -99,11 +102,26 @@ public class GameRender {
         }
     }
 
+    //draws all powerups on the map
+    public void drawPowerUps() {
+        HashSet<PowerUpSprite> powerUpSet = model.getRenderedPowerUps();
+        int[] gameViewPosition = new int[2];
+        gameView.getLocationOnScreen(gameViewPosition);
+        int yOffset = gameViewPosition[1];
+        for (PowerUpSprite p: powerUpSet) {
+            Bitmap powerUpBitmap = p.getBitMap(context);
+            canvas.drawBitmap(powerUpBitmap, gameViewPosition[0] + p.getPosX()
+                    - Avatar.AVATAR_SIZE / 2, gameViewPosition[1] + p.getPosY()
+                    - Avatar.AVATAR_SIZE / 2 - yOffset, null);
+        }
+    }
+
     //redraws map, avatar, and enemies
     public void refreshScreen() {
         drawMap();
         drawAvatar();
         drawEnemies();
+        drawPowerUps();
         showTilePositions();
 
         gameView.setImageBitmap(Bitmap.createScaledBitmap(new BitmapDrawable(context.getResources(),

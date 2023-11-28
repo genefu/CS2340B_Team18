@@ -17,17 +17,17 @@ public class Player {
     private int baseDefense;
     private int baseStrength;
     private String name;
-    private int speed;
     private int enemiesDefeated;
+    private double scoreMultiplier;
 
     // Constructor
     private Player(String name) {
         updateDifficultyStats(Model.Difficulty.MEDIUM);
         this.health = baseHealth;
-        speed = 100;
         this.name = name;
         avatar = Avatar.getInstance("sprite1");
         enemiesDefeated = 0;
+        scoreMultiplier = 1;
     }
 
     //Creates (if not already created) and returns the player instance
@@ -60,7 +60,6 @@ public class Player {
     public void restartPlayer() {
         updateDifficultyStats(Model.getInstance().getDifficulty());
         health = baseHealth;
-        speed = 100;
     }
 
     //for use in JUnits
@@ -118,6 +117,18 @@ public class Player {
     // Setter for player avatar
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setSpeed(double speed) {
+        avatar.setSpeed(speed);
+    }
+
+    public void setScoreMultiplier(double scoreMultiplier) {
+        this.scoreMultiplier = scoreMultiplier;
+    }
+
+    public double getScoreMultiplier() {
+        return scoreMultiplier;
     }
 
     // Getter for enemies defeated

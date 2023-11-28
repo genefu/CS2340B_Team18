@@ -95,6 +95,6 @@ public class GameViewModel extends BaseObservable {
     }
 
     public void updateScore(int difference) {
-        model.getScore().setScoreValue(model.getScore().getScoreValue() + (4 * difference)); //adds 4 points for each new enemy defeated
+        model.getScore().setScoreValue(model.getScore().getScoreValue() + (int) (4 * difference * player.getScoreMultiplier())); //adds 4 points for each new enemy defeated
     }
 }

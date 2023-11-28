@@ -9,8 +9,10 @@ import com.example.cs2340game.model.Enemies.Enemy;
 import com.example.cs2340game.model.Enemies.MedusaEnemy;
 import com.example.cs2340game.model.Enemies.SirenEnemy;
 import com.example.cs2340game.model.Enemies.SpiderEnemy;
+import com.example.cs2340game.model.Powerups.PowerUpSprite;
 
 //import java.util.HashSet;
+import java.util.HashSet;
 import java.util.TreeSet;
 
 //Main Model
@@ -25,6 +27,7 @@ public class Model {
     private Leaderboard leaderboard;
     private Player player;
     private TreeSet<Enemy> renderedEnemies; //Sorted based on damage to player
+    private HashSet<PowerUpSprite> renderedPowerUps;
     private int screenWidth;
     private int screenHeight;
 
@@ -41,6 +44,7 @@ public class Model {
         this.leaderboard = Leaderboard.getInstance();
         this.player = Player.getInstance(null);
         this.renderedEnemies = new TreeSet<>();
+        this.renderedPowerUps = new HashSet<>();
         //increments when objectives met (kill enemy, beat room), and lowers over time
         this.score = new Score(player.getName(), 20, "");
         //testLeaderboard(leaderboard);
@@ -103,6 +107,26 @@ public class Model {
         renderedEnemies.add(enemy);
     }
 
+    public void removeEnemy(int id) {
+        for(Enemy e: renderedEnemies) {
+            if (e.getID() == id) {
+                renderedEnemies.remove(e);
+                return;
+            }
+        }
+    }
+
+    public void addPowerUp(PowerUpSprite powerUp) { renderedPowerUps.add(powerUp); }
+
+    public void removePowerUp(int id) {
+        for(PowerUpSprite p: renderedPowerUps) {
+            if (p.getID() == id) {
+                renderedPowerUps.remove(p);
+                return;
+            }
+        }
+    }
+
     public void clearEnemies() {
         //Log.d("EnemiesC", "enemies cleared");
         renderedEnemies.clear();
@@ -128,6 +152,9 @@ public class Model {
         return renderedEnemies;
     }
 
+    public HashSet<PowerUpSprite> getRenderedPowerUps() {
+        return renderedPowerUps;
+    }
     public int getScreenWidth() {
         return screenWidth;
     }
