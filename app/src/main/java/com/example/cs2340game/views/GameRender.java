@@ -96,6 +96,7 @@ public class GameRender {
         }
     }
 
+    //redraws map, avatar, and enemies
     public void refreshScreen() {
         drawMap();
         drawAvatar();
