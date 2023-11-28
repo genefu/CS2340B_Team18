@@ -127,6 +127,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         return out;
     }
 
+    //applies pos vector when key is not pressed
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         boolean out = super.onKeyUp(keyCode, event);
