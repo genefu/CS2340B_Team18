@@ -17,6 +17,10 @@ public class LoseView extends AppCompatActivity {
         setContentView(R.layout.lose_view);
     }
 
+    public void toLeaderboard(View view) {
+        startActivity(new Intent(LoseView.this, EndView.class));
+    }
+
     public void toEndView(View view) {
         startActivity(new Intent(LoseView.this, EndView.class));
     }
