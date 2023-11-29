@@ -56,6 +56,7 @@ public class Player {
         return playerInstance;
     }
 
+
     //for restarting game
     public void restartPlayer() {
         updateDifficultyStats(Model.getInstance().getDifficulty());

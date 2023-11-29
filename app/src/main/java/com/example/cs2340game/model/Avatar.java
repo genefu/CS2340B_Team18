@@ -13,6 +13,13 @@ import com.example.cs2340game.model.MovementStrategies.Movable;
 import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
 import com.example.cs2340game.model.MovementStrategies.Vector;
 import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
+import com.example.cs2340game.model.Powerups.BasicPowerUp;
+import com.example.cs2340game.model.Powerups.PowerUp;
+import com.example.cs2340game.model.Powerups.PowerUpDecorator;
+import com.example.cs2340game.model.Powerups.PowerUpSprite;
+import com.example.cs2340game.model.Powerups.RangeUpDecorator;
+import com.example.cs2340game.model.Powerups.ScoreUpDecorator;
+import com.example.cs2340game.model.Powerups.SpeedUpDecorator;
 import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
@@ -161,6 +168,26 @@ public class Avatar implements Movable, Collidable {
             if (e.getDistance(posX, posY) < 60) {
                 invincibilityTime += 40;
                 Player.getInstance().removeHealth(e.getStrength());
+            }
+        }
+    }
+
+    public void checkPowerUpCollision(HashSet<PowerUpSprite> powerUps) {
+        for (PowerUpSprite p: powerUps) {
+            if (p.getDistance(posX,posY) < 60) {
+                int powerUp = p.checkPowerUp();
+                BasicPowerUp basic = new BasicPowerUp(Player.getInstance());
+                PowerUpDecorator power = new PowerUpDecorator(basic);
+                if (powerUp == 0) {
+                    SpeedUpDecorator speedPowerUp = new SpeedUpDecorator(power);
+                    speedPowerUp.applyPowerUp();
+                } else if (powerUp == 1) {
+                    ScoreUpDecorator scorePowerUp = new ScoreUpDecorator(power);
+                    scorePowerUp.applyPowerUp();
+                } else if (powerUp == 2) {
+                    RangeUpDecorator rangePowerUp = new RangeUpDecorator(power);
+                    rangePowerUp.applyPowerUp();
+                }
             }
         }
     }
