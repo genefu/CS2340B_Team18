@@ -17,6 +17,7 @@ import android.graphics.BitmapFactory;
 import androidx.core.math.MathUtils;
 
 import com.example.cs2340game.model.Avatar;
+import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.MovementStrategies.Collidable;
 import com.example.cs2340game.model.MovementStrategies.EnemyMovable;
 import com.example.cs2340game.model.MovementStrategies.Movable;
@@ -44,6 +45,7 @@ public class MedusaEnemy extends Enemy implements Movable,
     private int posX; //position of center x
     private int posY; //position of center y
     private WalkStrategy walkStrategy;
+    private Model model;
 
     public MedusaEnemy(int id, int posX, int posY) {
         this.id = id;
@@ -59,6 +61,7 @@ public class MedusaEnemy extends Enemy implements Movable,
         this.posY = ENEMY_SIZE / 2 + posY;
         this.avatar = Avatar.getInstance();
         this.walkStrategy = new WalkStrategy();
+        model = Model.getInstance();
     }
 
     @Override
@@ -343,7 +346,13 @@ public class MedusaEnemy extends Enemy implements Movable,
         }
         if (randomMovement > 95) {
             int[] temp = new int[]{posX, posY};
-            walkStrategy.move(movementVector, temp, 1);
+            Double speed = 1.0;
+            if (model.getDifficulty() == Model.Difficulty.EASY) {
+                speed = 0.7;
+            } else if (model.getDifficulty() == Model.Difficulty.HARD) {
+                speed = 1.3;
+            }
+            walkStrategy.move(movementVector, temp, speed);
             posX = temp[0];
             posY = temp[1];
             updateDirection();
