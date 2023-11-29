@@ -24,11 +24,17 @@ public class Score implements Comparable<Score> {
 
     //Setter for score
     public int getScoreValue() {
-        return score; }
+        return score;
+    }
 
     //Getter for score
     public void setScoreValue(int score) {
-        this.score = score; }
+        this.score = score;
+    }
+
+    public void addScoreValue(int score, double scoreMultiplier) {
+        this.score += (int) (4 * score * scoreMultiplier);
+    }
 
     //getter for date/time
     public String getDateTime() {
