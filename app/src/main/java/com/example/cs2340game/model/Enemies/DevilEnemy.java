@@ -114,6 +114,7 @@ public class DevilEnemy extends Enemy implements Movable,
         } else if (y > 0 && x < 0) {
             directionFacing = Movable.Direction.UP_LEFT;
         }
+        //UPDATE MAKE SO PLAYER DOESN'T GET TOO CLOSE
     }
 
     @Override

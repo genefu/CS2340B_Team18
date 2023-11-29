@@ -33,4 +33,6 @@ public class Sprint5Tests {
         s.applyPowerUp();
         Assert.assertEquals(1.2, player.getAvatar().getSpeed(), .1);
     }
+
+    public void enemyHealthZeroWhenAttacked()
 }

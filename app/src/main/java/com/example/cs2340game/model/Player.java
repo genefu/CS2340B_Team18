@@ -47,7 +47,8 @@ public class Player {
     }
 
     public void attack(Enemy enemy) {
-        enemy.setHealth(0);
+        //TBI
+
     }
 
     public static Player getInstance() { //gets instance of player

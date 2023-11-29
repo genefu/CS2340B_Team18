@@ -130,6 +130,9 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             avatar.applyVector(StandardVectors.RIGHT_VECTOR);
             out = true;
         }
+        if (keyCode == KeyEvent.KEYCODE_SPACE) {
+            playerSprite = findViewById(R.id.player_sprite);
+        }
         if (event.isShiftPressed()) {
             avatar.setMovementStrategy(new SprintStrategy());
         } else {
@@ -165,6 +168,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         return out;
 
     }
+
 
     //Switches to endview once players health reaches 0
     @Override
