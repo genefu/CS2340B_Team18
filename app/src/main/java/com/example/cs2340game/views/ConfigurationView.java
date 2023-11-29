@@ -132,4 +132,8 @@ public class ConfigurationView extends AppCompatActivity implements
         Log.d("iwantdeath", "tick: " + ticks);
         updateNextButton();
     }
+
+    public void toHowTo(View view) {
+        startActivity(new Intent(this, HowToView.class));
+    }
 }
