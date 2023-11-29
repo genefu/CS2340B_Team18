@@ -10,8 +10,8 @@ public class ScoreUpDecorator extends PowerUpDecorator {
     @Override
     public void applyPowerUp() {
         super.applyPowerUp();
-        super.getPlayer().setScoreMultiplier(1.5);
-        Log.d("powerup", "Score up!");
+        super.getPlayer().setScoreMultiplier(2);
+        Log.d("powerup", "Score up! Player score multiplier is now " + getPlayer().getScoreMultiplier());
     }
 
     @Override

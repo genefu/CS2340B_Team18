@@ -1,5 +1,7 @@
 package com.example.cs2340game.viewmodels;
 
+import android.util.Log;
+
 import androidx.databinding.BaseObservable;
 
 import com.example.cs2340game.model.Model;
@@ -44,6 +46,10 @@ public class GameViewModel extends BaseObservable {
         return player.getAvatar().getInvincibilityTime();
     }
 
+    public String getAttackCircle() {
+        return model.getAttackCircle();
+    }
+
     public void updatePlayer() {
         player.update();
     }
@@ -71,6 +77,10 @@ public class GameViewModel extends BaseObservable {
         this.hoursPassed = hoursPassed;
     }
 
+    public void setAttackCircle(String attackCircle) {
+        model.setAttackCircle(attackCircle);
+    }
+
     // Subtracts 1 point from score until it hits 0
     public void decrementScore() {
         int currentScore = model.getScore().getScoreValue();
@@ -95,6 +105,7 @@ public class GameViewModel extends BaseObservable {
     }
 
     public void updateScore(int difference) {
+        Log.d("Powerup", "Enemy killed, score multiplier " + player.getScoreMultiplier());
         model.getScore().addScoreValue(difference, player.getScoreMultiplier()); //adds 4 points for each new enemy defeated
     }
 }

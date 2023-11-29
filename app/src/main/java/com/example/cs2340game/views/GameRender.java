@@ -118,7 +118,7 @@ public class GameRender {
 
     public void drawAttackRing() {
         Resources res = context.getResources();
-        Bitmap ringBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier("attack_circle",
+        Bitmap ringBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(model.getAttackCircle(),
                 "drawable", context.getPackageName())), Tile.TILE_SIZE * 3, Tile.TILE_SIZE * 3, false);
         Avatar avatar = model.getPlayer().getAvatar();
         canvas.drawBitmap(ringBitmap, avatar.getPosX() - (int) (Tile.TILE_SIZE * 1.5), avatar.getPosY() - (int) (Tile.TILE_SIZE * 1.5), null);

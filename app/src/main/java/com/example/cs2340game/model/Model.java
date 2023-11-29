@@ -28,6 +28,7 @@ public class Model {
     }
 
     private Difficulty difficulty;
+    private String attackCircle;
     private Leaderboard leaderboard;
     private Player player;
     private TreeSet<Enemy> renderedEnemies; //Sorted based on damage to player
@@ -49,6 +50,7 @@ public class Model {
         this.player = Player.getInstance(null);
         this.renderedEnemies = new TreeSet<>();
         this.renderedPowerUps = new HashSet<>();
+        this.attackCircle = "attack_circle";
         //increments when objectives met (kill enemy, beat room), and lowers over time
         this.score = new Score(player.getName(), 20, "");
         //testLeaderboard(leaderboard);
@@ -173,6 +175,9 @@ public class Model {
     public HashSet<PowerUpSprite> getRenderedPowerUps() {
         return renderedPowerUps;
     }
+    public String getAttackCircle() {
+        return attackCircle;
+    }
     public int getScreenWidth() {
         return screenWidth;
     }
@@ -202,6 +207,10 @@ public class Model {
     // Getter for score
     public Score getScore() {
         return score;
+    }
+
+    public void setAttackCircle(String attackCircle) {
+        this.attackCircle = attackCircle;
     }
     //setter for screenwidth
     public void setScreenWidth(int screenWidth) {
