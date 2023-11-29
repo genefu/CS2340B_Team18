@@ -2,6 +2,7 @@ package com.example.cs2340game.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,9 @@ public class WinView extends AppCompatActivity {
         setContentView(R.layout.win_view);
     }
 
+    public void toLeaderboard(View view) {
+        startActivity(new Intent(WinView.this, EndView.class));
+    }
     public void toEndView() {
         startActivity(new Intent(WinView.this, EndView.class));
     }
