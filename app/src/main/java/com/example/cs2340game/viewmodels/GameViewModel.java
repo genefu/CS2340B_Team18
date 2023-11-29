@@ -44,8 +44,8 @@ public class GameViewModel extends BaseObservable {
         return player.getAvatar().getInvincibilityTime();
     }
 
-    public void updatePlayerInvincibility() {
-        player.getAvatar().updateInvincibility();
+    public void updatePlayer() {
+        player.update();
     }
 
     // Gets the string for the current time

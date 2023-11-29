@@ -54,7 +54,7 @@ public class GameRender {
 
         for (int row = 0; row < 20; row++) {
             for (int col = 0; col < 34; col++) {
-                Log.d("bruh", row + " " + col);
+                //Log.d("bruh", row + " " + col);
                 Tile tile = tileMap[row][col];
                 switch (tile.getType()) {
                 case 1: canvas.drawBitmap(waterTile,

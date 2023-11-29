@@ -143,9 +143,9 @@ public class Avatar implements Movable, Collidable {
 
     public void updatePosition() {
         int[] temp = new int[]{posX, posY};
-        movementStrategy.move(movementVector, temp);
-        posX = (int) (temp[0] * speed);
-        posY = (int) (temp[1] * speed);
+        movementStrategy.move(movementVector, temp, speed);
+        posX = (int) (temp[0]);
+        posY = (int) (temp[1]);
         //Log.d("collision", "Before: " + posX + " " + posY);
         Collidable.CollisionBox collisionBox;
         collisionBox = checkCollision();
@@ -177,34 +177,27 @@ public class Avatar implements Movable, Collidable {
         for (PowerUpSprite p: powerUps) {
             if (p.getDistance(posX, posY) < 60) {
                 int powerUp = p.checkPowerUp();
-                BasicPowerUp basic = new BasicPowerUp(Player.getInstance());
-                PowerUpDecorator power = new PowerUpDecorator(basic);
                 if (powerUp == 0) {
-                    SpeedUpDecorator speedPowerUp = new SpeedUpDecorator(power);
-                    speedPowerUp.applyPowerUp();
                     if (sprite.equals("sprite1")) {
-                        setSprite("sprite1BLUE");
+                        setSprite("sprite1blue");
                     } else if (sprite.equals("sprite2")) {
-                        setSprite("sprite2BLUE");
-                    } else {
-                        setSprite("sprite3BLUE");
+                        setSprite("sprite2blue");
+                    } else if (sprite.equals("sprite3")) {
+                        setSprite("sprite3blue");
                     }
-                    return p.getID();
+                    return p.checkPowerUp();
                 } else if (powerUp == 1) {
-                    ScoreUpDecorator scorePowerUp = new ScoreUpDecorator(power);
-                    scorePowerUp.applyPowerUp();
                     if (sprite.equals("sprite1")) {
-                        setSprite("sprite1YELLOW");
+                        setSprite("sprite1yellow");
                     } else if (sprite.equals("sprite2")) {
-                        setSprite("sprite2YELLOW");
-                    } else {
-                        setSprite("sprite3YELLOW");
+                        setSprite("sprite2yellow");
+                    } else if (sprite.equals("sprite3")) {
+                        setSprite("sprite3yellow");
                     }
-                    return p.getID();
+                    return p.checkPowerUp();
                 } else if (powerUp == 2) {
-                    RangeUpDecorator rangePowerUp = new RangeUpDecorator(power);
-                    rangePowerUp.applyPowerUp();
-                    return p.getID();
+                    //TODO Range increase
+                    return p.checkPowerUp();
                 }
             }
         }

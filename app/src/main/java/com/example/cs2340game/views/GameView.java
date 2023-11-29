@@ -17,6 +17,7 @@ import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Player;
+import com.example.cs2340game.model.Powerups.BasicPowerUp;
 import com.example.cs2340game.model.Score;
 import com.example.cs2340game.model.MovementStrategies.SprintStrategy;
 import com.example.cs2340game.model.MovementStrategies.StandardVectors;
@@ -78,6 +79,9 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     //switches view to second game screen
     public void switchRoom() {
         currentRoom++;
+        player.getPowerUp().removePowerUp();
+        player.setPowerUp(new BasicPowerUp(Player.getInstance()));
+        avatar.setSprite(avatar.getSprite().substring(0, 7));
         if (currentRoom == 4) {
             toEndView();
         } else {
@@ -160,7 +164,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     @Override
     public void onTimerUpdate(int ticks) {
         Log.d("iwantdeath", "invincibility:" + viewModel.getInvincibilityTime());
-        viewModel.updatePlayerInvincibility();
+        viewModel.updatePlayer();
         if (ticks % 20 - tickOffset % 20 == 0) { //every half second
             viewModel.decrementScore();
             if (ticks % 40 - tickOffset == 0) { //every second
@@ -178,7 +182,9 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         avatar.checkEnemyCollision(model.getRenderedEnemies());
         int collectedPowerUp = avatar.checkPowerUpCollision(model.getRenderedPowerUps());
         if (collectedPowerUp != -1) {
-            model.removePowerUp(collectedPowerUp);
+            model.removePowerUp(1);
+            player.applyPowerUp(collectedPowerUp);
+            //Log.d("powerup", "applied powerup");
         }
         Log.d("Enemies", model.getRenderedEnemies().toString());
         if (viewModel.getHealth() <= 0) {
