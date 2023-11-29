@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.media.MediaPlayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,10 +12,14 @@ import com.example.cs2340game.R;
 import com.example.cs2340game.viewmodels.EndViewModel;
 
 public class LoseView extends AppCompatActivity {
+    private MediaPlayer soundEffect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lose_view);
+        soundEffect = MediaPlayer.create(this, R.raw.losseffect);
+        soundEffect.setVolume(200.0f, 200.0f);
+        soundEffect.start();
     }
 
     public void toLeaderboard(View view) {

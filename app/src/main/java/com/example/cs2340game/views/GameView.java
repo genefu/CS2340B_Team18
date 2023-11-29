@@ -47,6 +47,9 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private Avatar avatar;
     private Player player;
     private MediaPlayer mediaPlayer;
+    private MediaPlayer enemyKill;
+    private MediaPlayer takeDamage;
+
 
     //Displays the view
     @Override
@@ -56,6 +59,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         this.model = Model.getInstance();
         player = Player.getInstance();
         mediaPlayer = MediaPlayer.create(this, R.raw.caretaker);
+        enemyKill = MediaPlayer.create(this, R.raw.enemykill);
+        takeDamage = MediaPlayer.create(this, R.raw.takedamage);
+        takeDamage.setVolume(200.0f, 200.0f);
+        enemyKill.setVolume(200.0f, 200.0f);
         mediaPlayer.setVolume(200.0f, 200.0f);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
@@ -140,6 +147,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     public void killEnemies(TreeSet<Enemy> enemies) {
         for (Enemy e: enemies) {
             if (e.getDistance(avatar.getPosX(), avatar.getPosY()) < 86) {
+                enemyKill.start();
                 model.removeEnemy(e.getID());
                 viewModel.updateScore(1);
             }
@@ -226,7 +234,9 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());
         //avatar.updatePosition();
-        avatar.checkEnemyCollision(model.getRenderedEnemies());
+        if (avatar.checkEnemyCollision(model.getRenderedEnemies())) {
+            takeDamage.start();
+        }
         int collectedPowerUp = avatar.checkPowerUpCollision(model.getRenderedPowerUps());
         if (collectedPowerUp != -1) {
             model.removePowerUp(1);
