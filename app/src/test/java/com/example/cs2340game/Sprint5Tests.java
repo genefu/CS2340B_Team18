@@ -50,6 +50,18 @@ public class Sprint5Tests {
     }
 
     @Test
+    public void rangeUp() {
+        Model.clearInstance();
+        Model model = Model.getInstance();
+        RangeUpDecorator s = new RangeUpDecorator(new BasicPowerUp(model.getPlayer()));
+        SpiderFactory spiderFactory = SpiderFactory.getInstance();
+        model.addEnemy(spiderFactory.createEnemy(1, Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
+        model.addEnemy(spiderFactory.createEnemy(2, Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
+        model.removeEnemy(1);
+        assertEquals(1, model.getRenderedEnemies().size());
+    }
+
+    @Test
     public void scoreDecreaseWithTime() {
         Model.clearInstance();
         Model model = Model.getInstance();
@@ -106,6 +118,17 @@ public class Sprint5Tests {
 
     @Test
     public void removeSpider() {
+        Model.clearInstance();
+        Model model = Model.getInstance();
+        SpiderFactory spiderFactory = SpiderFactory.getInstance();
+        model.addEnemy(spiderFactory.createEnemy(1, Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
+        model.addEnemy(spiderFactory.createEnemy(2, Tile.TILE_SIZE * 12, Tile.TILE_SIZE * 10));
+        model.removeEnemy(1);
+        assertEquals(1, model.getRenderedEnemies().size());
+    }
+
+    @Test
+    public void enemyDies() {
         Model.clearInstance();
         Model model = Model.getInstance();
         SpiderFactory spiderFactory = SpiderFactory.getInstance();
