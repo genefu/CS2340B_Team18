@@ -4,9 +4,13 @@ package com.example.cs2340game.model;
 
 //import androidx.annotation.Nullable;
 
+import android.util.Log;
+
 import com.example.cs2340game.model.Enemies.DevilEnemy;
 import com.example.cs2340game.model.Enemies.Enemy;
+import com.example.cs2340game.model.Enemies.EnemyFactory;
 import com.example.cs2340game.model.Enemies.MedusaEnemy;
+import com.example.cs2340game.model.Enemies.MedusaFactory;
 import com.example.cs2340game.model.Enemies.SirenEnemy;
 import com.example.cs2340game.model.Enemies.SpiderEnemy;
 import com.example.cs2340game.model.Powerups.PowerUpSprite;
@@ -126,12 +130,14 @@ public class Model {
     public void addPowerUp(PowerUpSprite powerUp) { renderedPowerUps.add(powerUp); }
 
     public void removePowerUp(int id) {
+        HashSet<PowerUpSprite> copy = new HashSet<>();
         for(PowerUpSprite p: renderedPowerUps) {
-            if (p.getID() == id) {
-                renderedPowerUps.remove(p);
-                return;
+            if (p.getID() != id) {
+                copy.add(p);
             }
         }
+        renderedPowerUps = copy;
+        Log.d("powerup", "Removed powerup id " + id + ", hashset is now size " + renderedPowerUps.size());
     }
 
     public void clearEnemies() {

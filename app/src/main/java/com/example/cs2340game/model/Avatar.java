@@ -13,6 +13,13 @@ import com.example.cs2340game.model.MovementStrategies.Movable;
 import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
 import com.example.cs2340game.model.MovementStrategies.Vector;
 import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
+import com.example.cs2340game.model.Powerups.BasicPowerUp;
+import com.example.cs2340game.model.Powerups.PowerUp;
+import com.example.cs2340game.model.Powerups.PowerUpDecorator;
+import com.example.cs2340game.model.Powerups.PowerUpSprite;
+import com.example.cs2340game.model.Powerups.RangeUpDecorator;
+import com.example.cs2340game.model.Powerups.ScoreUpDecorator;
+import com.example.cs2340game.model.Powerups.SpeedUpDecorator;
 import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
@@ -31,6 +38,7 @@ public class Avatar implements Movable, Collidable {
     private int posX; //position of center x
     private int posY; //position of center y
     private double speed;
+
 
     private Avatar(String sprite, MovementStrategy movementStrategy) {
         movementVector = new Vector();
@@ -135,9 +143,9 @@ public class Avatar implements Movable, Collidable {
 
     public void updatePosition() {
         int[] temp = new int[]{posX, posY};
-        movementStrategy.move(movementVector, temp);
-        posX = (int) (temp[0] * speed);
-        posY = (int) (temp[1] * speed);
+        movementStrategy.move(movementVector, temp, speed);
+        posX = (int) (temp[0]);
+        posY = (int) (temp[1]);
         //Log.d("collision", "Before: " + posX + " " + posY);
         Collidable.CollisionBox collisionBox;
         collisionBox = checkCollision();
@@ -163,6 +171,37 @@ public class Avatar implements Movable, Collidable {
                 Player.getInstance().removeHealth(e.getStrength());
             }
         }
+    }
+
+    public int checkPowerUpCollision(HashSet<PowerUpSprite> powerUps) {
+        for (PowerUpSprite p: powerUps) {
+            if (p.getDistance(posX, posY) < 60) {
+                int powerUp = p.checkPowerUp();
+                if (powerUp == 0) {
+                    if (sprite.equals("sprite1")) {
+                        setSprite("sprite1blue");
+                    } else if (sprite.equals("sprite2")) {
+                        setSprite("sprite2blue");
+                    } else if (sprite.equals("sprite3")) {
+                        setSprite("sprite3blue");
+                    }
+                    return p.checkPowerUp();
+                } else if (powerUp == 1) {
+                    if (sprite.equals("sprite1")) {
+                        setSprite("sprite1yellow");
+                    } else if (sprite.equals("sprite2")) {
+                        setSprite("sprite2yellow");
+                    } else if (sprite.equals("sprite3")) {
+                        setSprite("sprite3yellow");
+                    }
+                    return p.checkPowerUp();
+                } else if (powerUp == 2) {
+                    //TODO Range increase
+                    return p.checkPowerUp();
+                }
+            }
+        }
+        return -1;
     }
 
     public CollisionBox checkCollision() {

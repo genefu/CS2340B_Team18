@@ -7,6 +7,7 @@ import androidx.databinding.BaseObservable;
 import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Player;
+import com.example.cs2340game.model.Powerups.BasicPowerUp;
 import com.example.cs2340game.views.MapLayout;
 
 //View Model for Configuration Screen
@@ -27,6 +28,9 @@ public class ConfigurationViewModel extends BaseObservable {
         map.setScreen(1);
         player.restartPlayer();
         avatar.resetAvatar();
+        player.getPowerUp().removePowerUp();
+        player.setPowerUp(new BasicPowerUp(Player.getInstance()));
+        avatar.setSprite(avatar.getSprite().substring(0, 7));
     }
 
     // Sets the difficulty based on the difficulty buttons

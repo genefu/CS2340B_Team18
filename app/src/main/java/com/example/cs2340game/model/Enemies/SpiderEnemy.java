@@ -305,7 +305,7 @@ public class SpiderEnemy extends Enemy implements Movable,
             movementVector = RIGHT_VECTOR;
         }
         int[] temp = new int[]{posX, posY};
-        walkStrategy.move(movementVector, temp);
+        walkStrategy.move(movementVector, temp, 1);
         posX = temp[0];
         posY = temp[1];
         updateDirection();
@@ -345,7 +345,7 @@ public class SpiderEnemy extends Enemy implements Movable,
         }
         if (randomMovement > 95) {
             int[] temp = new int[]{posX, posY};
-            walkStrategy.move(movementVector, temp);
+            walkStrategy.move(movementVector, temp, 1);
             posX = temp[0];
             posY = temp[1];
             updateDirection();
