@@ -30,8 +30,8 @@ import java.util.HashSet;
 public class MedusaEnemy extends Enemy implements Movable,
         Collidable, Comparable<Enemy>, EnemyMovable {
     private final String sprite = "medusa";
-    private final Avatar avatar;
 
+    private final Avatar avatar;
     private int health;
     private int baseHealth;
     private int baseDefense;
@@ -259,8 +259,6 @@ public class MedusaEnemy extends Enemy implements Movable,
         return Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(sprite,
                 "drawable", context.getPackageName())), Tile.TILE_SIZE, Tile.TILE_SIZE, false);
     }
-
-    @Override
     public int compareTo(Enemy enemy) {
         return (this.strength - enemy.getStrength()) * 100 + this.id;
     }
@@ -297,7 +295,7 @@ public class MedusaEnemy extends Enemy implements Movable,
             movementVector = RIGHT_VECTOR;
         }
         int[] temp = new int[]{posX, posY};
-        walkStrategy.move(movementVector, temp);
+        walkStrategy.move(movementVector, temp, 1);
         posX = temp[0];
         posY = temp[1];
         updateDirection();
@@ -337,12 +335,13 @@ public class MedusaEnemy extends Enemy implements Movable,
         }
         if (randomMovement > 95) {
             int[] temp = new int[]{posX, posY};
-            walkStrategy.move(movementVector, temp);
+            walkStrategy.move(movementVector, temp, 1);
             posX = temp[0];
             posY = temp[1];
             updateDirection();
         }
     }
+
     public void setPosX(int x) {
         posX = x;
     }

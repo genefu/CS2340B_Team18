@@ -8,7 +8,7 @@ public class BasicPowerUp extends PowerUp {
 
     public BasicPowerUp(Player player) {
         this.player = player;
-        timeRemaining = 60;
+        timeRemaining = 200;
     }
     @Override
     public void applyPowerUp() {
@@ -25,7 +25,9 @@ public class BasicPowerUp extends PowerUp {
     public boolean decrementTime() {
         timeRemaining--;
         if (timeRemaining == 0) {
-            removePowerUp();
+            player.getPowerUp().removePowerUp();
+            player.getAvatar().setSprite(player.getAvatar().getSprite().substring(0,7));
+            player.setPowerUp(new BasicPowerUp(Player.getInstance()));
             return false;
         }
         return true;

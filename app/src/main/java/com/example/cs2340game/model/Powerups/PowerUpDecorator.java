@@ -25,6 +25,10 @@ public class PowerUpDecorator extends PowerUp {
     }
 
     public Player getPlayer() {
+//        PowerUp test = powerUp;
+//        while (!(test instanceof BasicPowerUp)) {
+//            test = powerUp.getPowerUp();
+//        }
         return ((BasicPowerUp) this.powerUp).getPlayer();
     }
 }
