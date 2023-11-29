@@ -103,6 +103,12 @@ public class Model {
         return player.getHealth() > 0;
     }
 
+    public void attack(Enemy enemy) {
+        if (enemy.getDistance(enemy.getPosX(), enemy.getPosY()) <= 400) {
+            removeEnemy(enemy.getID());
+        }
+    }
+
     public void addEnemy(Enemy enemy) {
         renderedEnemies.add(enemy);
     }
