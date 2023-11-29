@@ -114,12 +114,13 @@ public class Model {
     }
 
     public void removeEnemy(int id) {
+        TreeSet<Enemy> copy = new TreeSet<>();
         for(Enemy e: renderedEnemies) {
-            if (e.getID() == id) {
-                renderedEnemies.remove(e);
-                return;
+            if (e.getID() != id) {
+                copy.add(e);
             }
         }
+        renderedEnemies = copy;
     }
 
     public void addPowerUp(PowerUpSprite powerUp) { renderedPowerUps.add(powerUp); }
