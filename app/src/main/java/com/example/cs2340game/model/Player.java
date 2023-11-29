@@ -4,7 +4,16 @@ package com.example.cs2340game.model;
 
 //import android.content.Intent;
 
+import android.util.Log;
+
 import androidx.core.math.MathUtils;
+
+import com.example.cs2340game.model.Powerups.BasicPowerUp;
+import com.example.cs2340game.model.Powerups.PowerUp;
+import com.example.cs2340game.model.Powerups.PowerUpDecorator;
+import com.example.cs2340game.model.Powerups.RangeUpDecorator;
+import com.example.cs2340game.model.Powerups.ScoreUpDecorator;
+import com.example.cs2340game.model.Powerups.SpeedUpDecorator;
 
 //import com.example.cs2340game.views.EndView;
 //import com.example.cs2340game.views.GameView;
@@ -12,6 +21,7 @@ import androidx.core.math.MathUtils;
 public class Player {
     private static Player playerInstance;
     private Avatar avatar;
+    private PowerUp powerUp;
     private int health;
     private int baseHealth;
     private int baseDefense;
@@ -23,6 +33,7 @@ public class Player {
     // Constructor
     private Player(String name) {
         updateDifficultyStats(Model.Difficulty.MEDIUM);
+        powerUp = new BasicPowerUp(this);
         this.health = baseHealth;
         this.name = name;
         avatar = Avatar.getInstance("sprite1");
@@ -56,6 +67,7 @@ public class Player {
         return playerInstance;
     }
 
+
     //for restarting game
     public void restartPlayer() {
         updateDifficultyStats(Model.getInstance().getDifficulty());
@@ -66,6 +78,20 @@ public class Player {
     public static void clearInstance() {
         Avatar.clearInstance();
         playerInstance = null;
+    }
+
+    public void applyPowerUp(int type) {
+        switch (type) {
+            case 0: powerUp = new SpeedUpDecorator(powerUp); break;
+            case 1: powerUp = new ScoreUpDecorator(powerUp); break;
+            case 2: powerUp = new RangeUpDecorator(powerUp); break;
+        }
+        Log.d("powerup", "applying powerup up type " + type);
+        powerUp.applyPowerUp();
+    }
+
+    public void setPowerUp(PowerUp powerUp) {
+        this.powerUp = powerUp;
     }
 
     // Updates the player stats based on the difficulty
@@ -87,6 +113,11 @@ public class Player {
             baseStrength = 50;
             break;
         }
+    }
+
+    public void update() {
+        avatar.updateInvincibility();
+        powerUp.decrementTime();
     }
 
     public void removeHealth(int damage) {
@@ -112,6 +143,10 @@ public class Player {
     // Getter for player avatar
     public Avatar getAvatar() {
         return avatar;
+    }
+
+    public PowerUp getPowerUp() {
+        return powerUp;
     }
 
     // Setter for player avatar
