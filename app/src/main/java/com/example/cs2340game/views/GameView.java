@@ -84,6 +84,18 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     //switches view to second game screen
     public void switchRoom() {
         currentRoom++;
+        if (currentRoom == 2) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.burningmemory);
+            mediaPlayer.setVolume(200.0f, 200.0f);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
+        if (currentRoom == 3) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.stage4);
+            mediaPlayer.setVolume(200.0f, 200.0f);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
         if (currentRoom == 4) {
             toWinView();
         } else {
