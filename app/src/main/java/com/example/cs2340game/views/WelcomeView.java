@@ -8,9 +8,7 @@ import android.view.Display;
 import android.view.View;
 import android.media.MediaPlayer;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.res.Configuration;
 
 import com.example.cs2340game.R;
 import com.example.cs2340game.model.Model;

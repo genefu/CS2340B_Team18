@@ -19,16 +19,16 @@ public class PowerUpSprite {
         this.sprite = sprite;
     }
 
-    public int checkPowerUp () {
+    public int checkPowerUp() {
         switch (sprite) {
-            case "powerup_speed":
-                return 0;
-            case "powerup_score":
-                return 1;
-            case "powerup_range":
-                return 2;
-            default:
-                return 0;
+        case "powerup_speed":
+            return 0;
+        case "powerup_score":
+            return 1;
+        case "powerup_range":
+            return 2;
+        default:
+            return 0;
         }
     }
 
@@ -44,7 +44,8 @@ public class PowerUpSprite {
         return id;
     }
     public int getDistance(int x, int y) {
-        return (int) Math.sqrt((posX - x) * (posX - x) + (posY - y) * (posY - y)); //gets the distance
+        return (int) Math.sqrt((posX - x) * (posX - x) + (posY - y) * (posY - y));
+        //gets the distance
     }
 
     public Bitmap getBitMap(Context context) {

@@ -146,7 +146,8 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
     public void killEnemies(TreeSet<Enemy> enemies) {
         for (Enemy e: enemies) {
-            if (e.getDistance(avatar.getPosX(), avatar.getPosY()) < (86.0 / 3) * player.getRange()) {
+            if (e.getDistance(avatar.getPosX(), avatar.getPosY())
+                    < (86.0 / 3) * player.getRange()) {
                 enemyKill.start();
                 model.removeEnemy(e.getID());
                 viewModel.updateScore(1);
@@ -229,7 +230,8 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
                 viewModel.incrementSecond();
             }
         }
-        viewModel.setEnemiesDefeated(player.getEnemiesDefeated()); //update enemies defeated in viewmodel
+        viewModel.setEnemiesDefeated(player.getEnemiesDefeated());
+        //update enemies defeated in viewmodel
         healthTextView.setText("Health: " + viewModel.getHealth());
         scoreTextView.setText("Score: " + Integer.toString(viewModel.getScore()));
         timeTextView.setText("Time: " + viewModel.getTime());

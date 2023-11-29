@@ -8,14 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import android.widget.ImageView;
 import com.example.cs2340game.R;
 import com.example.cs2340game.model.Avatar;
 import com.example.cs2340game.model.Enemies.Enemy;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Player;
-import com.example.cs2340game.model.Powerups.PowerUp;
 import com.example.cs2340game.model.Powerups.PowerUpSprite;
 import com.example.cs2340game.model.Tile;
 
@@ -122,9 +120,13 @@ public class GameRender {
         Player player = model.getPlayer();
         Avatar avatar = player.getAvatar();
 
-        Bitmap ringBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, res.getIdentifier(model.getAttackCircle(),
-                "drawable", context.getPackageName())), Tile.TILE_SIZE * player.getRange(), Tile.TILE_SIZE * player.getRange(), false);
-        canvas.drawBitmap(ringBitmap, avatar.getPosX() - (int) (Tile.TILE_SIZE * player.getRange() / 2.0), avatar.getPosY() - (int) (Tile.TILE_SIZE * player.getRange() / 2.0), null);
+        Bitmap ringBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res,
+                res.getIdentifier(model.getAttackCircle(),
+                "drawable", context.getPackageName())), Tile.TILE_SIZE * player.getRange(),
+                Tile.TILE_SIZE * player.getRange(), false);
+        canvas.drawBitmap(ringBitmap, avatar.getPosX()
+                        - (int) (Tile.TILE_SIZE * player.getRange() / 2.0),
+                avatar.getPosY() - (int) (Tile.TILE_SIZE * player.getRange() / 2.0), null);
 
     }
 

@@ -11,7 +11,8 @@ public class ScoreUpDecorator extends PowerUpDecorator {
     public void applyPowerUp() {
         super.applyPowerUp();
         super.getPlayer().setScoreMultiplier(2);
-        Log.d("powerup", "Score up! Player score multiplier is now " + getPlayer().getScoreMultiplier());
+        Log.d("powerup", "Score up! Player score multiplier is now "
+                + getPlayer().getScoreMultiplier());
     }
 
     @Override
