@@ -1,6 +1,6 @@
 package com.example.cs2340game.model.Powerups;
 
-public class ScoreUpDecorator extends PowerUpDecorator{
+public class ScoreUpDecorator extends PowerUpDecorator {
     public ScoreUpDecorator(PowerUp powerUp) {
         super(powerUp);
     }
