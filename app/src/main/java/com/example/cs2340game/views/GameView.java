@@ -176,7 +176,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         timeTextView.setText("Time: " + viewModel.getTime());
         //avatar.updatePosition();
         avatar.checkEnemyCollision(model.getRenderedEnemies());
-        avatar.checkPowerUpCollision(model.getRenderedPowerUps());
+        int collectedPowerUp = avatar.checkPowerUpCollision(model.getRenderedPowerUps());
+        if (collectedPowerUp != -1) {
+            model.removePowerUp(collectedPowerUp);
+        }
         Log.d("Enemies", model.getRenderedEnemies().toString());
         if (viewModel.getHealth() <= 0) {
             Log.d("help", "going to end screen");

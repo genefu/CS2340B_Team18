@@ -39,6 +39,7 @@ public class Avatar implements Movable, Collidable {
     private int posY; //position of center y
     private double speed;
 
+
     private Avatar(String sprite, MovementStrategy movementStrategy) {
         movementVector = new Vector();
         this.movementStrategy = movementStrategy;
@@ -172,24 +173,42 @@ public class Avatar implements Movable, Collidable {
         }
     }
 
-    public void checkPowerUpCollision(HashSet<PowerUpSprite> powerUps) {
+    public int checkPowerUpCollision(HashSet<PowerUpSprite> powerUps) {
         for (PowerUpSprite p: powerUps) {
-            if (p.getDistance(posX,posY) < 60) {
+            if (p.getDistance(posX, posY) < 60) {
                 int powerUp = p.checkPowerUp();
                 BasicPowerUp basic = new BasicPowerUp(Player.getInstance());
                 PowerUpDecorator power = new PowerUpDecorator(basic);
                 if (powerUp == 0) {
                     SpeedUpDecorator speedPowerUp = new SpeedUpDecorator(power);
                     speedPowerUp.applyPowerUp();
+                    if (sprite.equals("sprite1")) {
+                        setSprite("sprite1BLUE");
+                    } else if (sprite.equals("sprite2")) {
+                        setSprite("sprite2BLUE");
+                    } else {
+                        setSprite("sprite3BLUE");
+                    }
+                    return p.getID();
                 } else if (powerUp == 1) {
                     ScoreUpDecorator scorePowerUp = new ScoreUpDecorator(power);
                     scorePowerUp.applyPowerUp();
+                    if (sprite.equals("sprite1")) {
+                        setSprite("sprite1YELLOW");
+                    } else if (sprite.equals("sprite2")) {
+                        setSprite("sprite2YELLOW");
+                    } else {
+                        setSprite("sprite3YELLOW");
+                    }
+                    return p.getID();
                 } else if (powerUp == 2) {
                     RangeUpDecorator rangePowerUp = new RangeUpDecorator(power);
                     rangePowerUp.applyPowerUp();
+                    return p.getID();
                 }
             }
         }
+        return -1;
     }
 
     public CollisionBox checkCollision() {
