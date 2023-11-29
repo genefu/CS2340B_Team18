@@ -2,7 +2,7 @@ package com.example.cs2340game.model.Powerups;
 
 import android.util.Log;
 
-public class ScoreUpDecorator extends PowerUpDecorator{
+public class ScoreUpDecorator extends PowerUpDecorator {
     public ScoreUpDecorator(PowerUp powerUp) {
         super(powerUp);
     }

@@ -3,12 +3,14 @@ package com.example.cs2340game.views;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.icu.text.DateFormat;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +43,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private int currentRoom;
     private Avatar avatar;
     private Player player;
+    private MediaPlayer mediaPlayer;
 
     //Displays the view
     @Override
@@ -49,7 +52,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         setContentView(R.layout.game_view);
         this.model = Model.getInstance();
         player = Player.getInstance();
-
+        mediaPlayer = MediaPlayer.create(this, R.raw.caretaker);
+        mediaPlayer.setVolume(200.0f, 200.0f);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
         viewModel = new GameViewModel();
         nameTextView = findViewById(R.id.nameReceiver);
         nameTextView.setText(model.getPlayerName());
@@ -83,7 +89,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         player.setPowerUp(new BasicPowerUp(Player.getInstance()));
         avatar.setSprite(avatar.getSprite().substring(0, 7));
         if (currentRoom == 4) {
-            toEndView();
+            toWinView();
         } else {
             //gameRender = new GameRender(gameView, currentRoom + "", this);
             gameRender.getMapLayout().setScreen(currentRoom);
@@ -93,14 +99,27 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     }
 
     //Switches view to EndView
-    public void toEndView() {
+    public void toWinView() {
+        gameTimer.stopTimer();
+        mediaPlayer.release();
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
         model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
         model.getScore().setPlayerName(model.getPlayerName());
         model.getScore().setDateTime(date);
-        startActivity(new Intent(GameView.this, EndView.class));
+        startActivity(new Intent(GameView.this, WinView.class));
+    }
+
+    public void toLoseView() {
+        mediaPlayer.release();
+        //record score when button is pressed (will later change to when player completes level)
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+        date = dateFormat.format(Calendar.getInstance().getTime());
+        model.updateLeaderboard(new Score(model.getPlayerName(), viewModel.getScore(), date));
+        model.getScore().setPlayerName(model.getPlayerName());
+        model.getScore().setDateTime(date);
+        startActivity(new Intent(GameView.this, LoseView.class));
     }
 
     //Applies pos vector depending on key pressed
@@ -189,10 +208,18 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         Log.d("Enemies", model.getRenderedEnemies().toString());
         if (viewModel.getHealth() <= 0) {
             Log.d("help", "going to end screen");
-            toEndView();
             gameTimer.stopTimer();
+            toLoseView();
             return;
         }
         gameRender.refreshScreen();
+    }
+
+    public void pausePlay(View view) {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        } else {
+            mediaPlayer.start();
+        }
     }
 }
