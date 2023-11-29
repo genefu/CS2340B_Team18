@@ -141,6 +141,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         for (Enemy e: enemies) {
             if (e.getDistance(avatar.getPosX(), avatar.getPosY()) < 86) {
                 model.removeEnemy(e.getID());
+                viewModel.updateScore(1);
             }
         }
     }
@@ -169,6 +170,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         if (keyCode == KeyEvent.KEYCODE_F) {
             TreeSet<Enemy> enemies = model.getRenderedEnemies();
             killEnemies(enemies);
+            viewModel.setAttackCircle("attack_circle_filled");
             Log.d("attack", "presumably killed enemies");
         }
         if (event.isShiftPressed()) {
@@ -200,10 +202,6 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             avatar.removeVector(StandardVectors.RIGHT_VECTOR);
             out = true;
         }
-        if (keyCode == KeyEvent.KEYCODE_SPACE) {
-            playerSprite = findViewById(R.id.player_sprite);
-
-        }
         if (avatar.isOnExit()) {
             switchRoom();
         }
@@ -222,9 +220,6 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             if (ticks % 40 - tickOffset == 0) { //every second
                 viewModel.incrementSecond();
             }
-        }
-        if (viewModel.getEnemiesDefeated() != player.getEnemiesDefeated()) { //checking if enemies defeated has changed
-            viewModel.updateScore(player.getEnemiesDefeated() - viewModel.getEnemiesDefeated());
         }
         viewModel.setEnemiesDefeated(player.getEnemiesDefeated()); //update enemies defeated in viewmodel
         healthTextView.setText("Health: " + viewModel.getHealth());
@@ -246,6 +241,9 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             return;
         }
         gameRender.refreshScreen();
+        if (model.getAttackCircle().equals("attack_circle_filled")) {
+            model.setAttackCircle("attack_circle");
+        }
     }
 
     public void pausePlay(View view) {
