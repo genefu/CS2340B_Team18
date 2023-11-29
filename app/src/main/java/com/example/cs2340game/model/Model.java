@@ -107,18 +107,24 @@ public class Model {
         return player.getHealth() > 0;
     }
 
+    public void attack(Enemy enemy) {
+        if (enemy.getDistance(enemy.getPosX(), enemy.getPosY()) <= 400) {
+            removeEnemy(enemy.getID());
+        }
+    }
+
     public void addEnemy(Enemy enemy) {
         renderedEnemies.add(enemy);
     }
 
     public void removeEnemy(int id) {
-        TreeSet<Enemy> newEnemies = new TreeSet<>();
+        TreeSet<Enemy> copy = new TreeSet<>();
         for(Enemy e: renderedEnemies) {
             if (e.getID() != id) {
-                newEnemies.add(e);
+                copy.add(e);
             }
         }
-        renderedEnemies = newEnemies;
+        renderedEnemies = copy;
     }
 
     public void addPowerUp(PowerUpSprite powerUp) { renderedPowerUps.add(powerUp); }

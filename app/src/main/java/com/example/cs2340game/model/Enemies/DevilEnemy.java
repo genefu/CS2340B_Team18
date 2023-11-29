@@ -114,6 +114,7 @@ public class DevilEnemy extends Enemy implements Movable,
         } else if (y > 0 && x < 0) {
             directionFacing = Movable.Direction.UP_LEFT;
         }
+        //UPDATE MAKE SO PLAYER DOESN'T GET TOO CLOSE
     }
 
     @Override
@@ -233,6 +234,14 @@ public class DevilEnemy extends Enemy implements Movable,
     public int getHealth() {
         return health;
     } //gets health
+
+    public void setHealth(int h) {
+        if (h < 0) {
+            health = 0;
+        } else {
+            health = 0;
+        }
+    }
 
     @Override
     public int getStrength() { //gets strength

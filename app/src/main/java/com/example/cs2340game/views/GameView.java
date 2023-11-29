@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340game.R;
 import com.example.cs2340game.model.Avatar;
+import com.example.cs2340game.model.Enemies.Enemy;
 import com.example.cs2340game.model.GameTimer;
 import com.example.cs2340game.model.Model;
 import com.example.cs2340game.model.Player;
@@ -25,6 +26,8 @@ import com.example.cs2340game.model.MovementStrategies.SprintStrategy;
 import com.example.cs2340game.model.MovementStrategies.StandardVectors;
 import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
 import com.example.cs2340game.viewmodels.GameViewModel;
+
+import java.util.TreeSet;
 
 public class GameView extends AppCompatActivity implements GameTimer.TimerListener {
     private Model model;
@@ -134,6 +137,14 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         startActivity(new Intent(GameView.this, LoseView.class));
     }
 
+    public void killEnemies(TreeSet<Enemy> enemies) {
+        for (Enemy e: enemies) {
+            if (e.getDistance(avatar.getPosX(), avatar.getPosY()) < 86) {
+                model.removeEnemy(e.getID());
+            }
+        }
+    }
+
     //Applies pos vector depending on key pressed
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -154,6 +165,11 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         if (keyCode == KeyEvent.KEYCODE_D) {
             avatar.applyVector(StandardVectors.RIGHT_VECTOR);
             out = true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_F) {
+            TreeSet<Enemy> enemies = model.getRenderedEnemies();
+            killEnemies(enemies);
+            Log.d("attack", "presumably killed enemies");
         }
         if (event.isShiftPressed()) {
             avatar.setMovementStrategy(new SprintStrategy());
@@ -184,12 +200,17 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             avatar.removeVector(StandardVectors.RIGHT_VECTOR);
             out = true;
         }
+        if (keyCode == KeyEvent.KEYCODE_SPACE) {
+            playerSprite = findViewById(R.id.player_sprite);
+
+        }
         if (avatar.isOnExit()) {
             switchRoom();
         }
         return out;
 
     }
+
 
     //Switches to endview once players health reaches 0
     @Override
