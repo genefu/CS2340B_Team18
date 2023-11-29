@@ -161,16 +161,18 @@ public class Avatar implements Movable, Collidable {
         }
     }
 
-    public void checkEnemyCollision(TreeSet<Enemy> enemies) {
+    public boolean checkEnemyCollision(TreeSet<Enemy> enemies) {
         if (invincibilityTime > 0) {
-            return;
+            return false;
         }
         for (Enemy e: enemies) {
             if (e.getDistance(posX, posY) < 60) {
                 invincibilityTime += 40;
                 Player.getInstance().removeHealth(e.getStrength());
+                return true;
             }
         }
+        return false;
     }
 
     public int checkPowerUpCollision(HashSet<PowerUpSprite> powerUps) {
