@@ -10,12 +10,14 @@ public class RangeUpDecorator extends PowerUpDecorator {
     @Override
     public void applyPowerUp() {
         super.applyPowerUp();
+        super.getPlayer().setRange(5);
         Log.d("powerup", "Range up!");
     }
 
     @Override
     public void removePowerUp() {
         super.removePowerUp();
+        super.getPlayer().setRange(3);
         Log.d("powerup", "Range normal");
     }
 }

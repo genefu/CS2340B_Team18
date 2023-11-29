@@ -29,6 +29,7 @@ public class Player {
     private int baseHealth;
     private int baseDefense;
     private int baseStrength;
+    private int range;
     private String name;
     private int enemiesDefeated;
     private double scoreMultiplier;
@@ -42,6 +43,7 @@ public class Player {
         avatar = Avatar.getInstance("sprite1");
         enemiesDefeated = 0;
         scoreMultiplier = 1;
+        range = 3;
     }
 
     //Creates (if not already created) and returns the player instance
@@ -138,6 +140,8 @@ public class Player {
         return baseStrength;
     }
 
+    public int getRange() { return range; }
+
     // Getter for player name
     public String getName() {
         return name;
@@ -160,6 +164,8 @@ public class Player {
     public void setSpeed(double speed) {
         avatar.setSpeed(speed);
     }
+
+    public void setRange(int range) { this.range = range; }
 
     public void setScoreMultiplier(double scoreMultiplier) {
         this.scoreMultiplier = scoreMultiplier;
