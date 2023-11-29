@@ -95,17 +95,18 @@ public class GameViewModel extends BaseObservable {
     }
 
     // Setter for enemies defeated
-    public void setEnemiesDefeated(int enemiesDefeated) {//don't update this outside of GameView
+    public void setEnemiesDefeated(int enemiesDefeated) { //don't update this outside of GameView
         this.enemiesDefeated = enemiesDefeated;
     }
 
     // Getter for enemies defeated
-    public int getEnemiesDefeated() {//don't use this outside of GameView
+    public int getEnemiesDefeated() { //don't use this outside of GameView
         return enemiesDefeated;
     }
 
     public void updateScore(int difference) {
         Log.d("Powerup", "Enemy killed, score multiplier " + player.getScoreMultiplier());
-        model.getScore().addScoreValue(difference, player.getScoreMultiplier()); //adds 4 points for each new enemy defeated
+        model.getScore().addScoreValue(difference, player.getScoreMultiplier());
+        //adds 4 points for each new enemy defeated
     }
 }

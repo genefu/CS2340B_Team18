@@ -230,7 +230,8 @@ public class DevilEnemy extends Enemy implements Movable,
 
     @Override
     public int getDistance(int x, int y) {
-        return (int) Math.sqrt((posX - x) * (posX - x) + (posY - y) * (posY - y)); //gets the distance
+        return (int) Math.sqrt((posX - x) * (posX - x) + (posY - y) * (posY - y));
+        //gets the distance
     }
 
     @Override

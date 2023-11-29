@@ -13,13 +13,7 @@ import com.example.cs2340game.model.MovementStrategies.Movable;
 import com.example.cs2340game.model.MovementStrategies.MovementStrategy;
 import com.example.cs2340game.model.MovementStrategies.Vector;
 import com.example.cs2340game.model.MovementStrategies.WalkStrategy;
-import com.example.cs2340game.model.Powerups.BasicPowerUp;
-import com.example.cs2340game.model.Powerups.PowerUp;
-import com.example.cs2340game.model.Powerups.PowerUpDecorator;
 import com.example.cs2340game.model.Powerups.PowerUpSprite;
-import com.example.cs2340game.model.Powerups.RangeUpDecorator;
-import com.example.cs2340game.model.Powerups.ScoreUpDecorator;
-import com.example.cs2340game.model.Powerups.SpeedUpDecorator;
 import com.example.cs2340game.views.MapLayout;
 
 import java.util.HashSet;
@@ -349,7 +343,8 @@ public class Avatar implements Movable, Collidable {
         movementVector = v;
     }
 
-    public void setSpeed(double speed) { this.speed = speed; }
+    public void setSpeed(double speed) {
+        this.speed = speed; }
 
     public int getInvincibilityTime() {
         return invincibilityTime;

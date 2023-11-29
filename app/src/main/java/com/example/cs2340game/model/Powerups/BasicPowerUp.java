@@ -26,7 +26,7 @@ public class BasicPowerUp extends PowerUp {
         timeRemaining--;
         if (timeRemaining == 0) {
             player.getPowerUp().removePowerUp();
-            player.getAvatar().setSprite(player.getAvatar().getSprite().substring(0,7));
+            player.getAvatar().setSprite(player.getAvatar().getSprite().substring(0, 7));
             player.setPowerUp(new BasicPowerUp(Player.getInstance()));
             return false;
         }

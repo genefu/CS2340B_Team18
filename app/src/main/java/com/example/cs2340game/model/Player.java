@@ -8,12 +8,8 @@ import android.util.Log;
 
 import androidx.core.math.MathUtils;
 
-import com.example.cs2340game.model.Enemies.Enemy;
-import com.example.cs2340game.model.MovementStrategies.Collidable;
-import com.example.cs2340game.views.MapLayout;
 import com.example.cs2340game.model.Powerups.BasicPowerUp;
 import com.example.cs2340game.model.Powerups.PowerUp;
-import com.example.cs2340game.model.Powerups.PowerUpDecorator;
 import com.example.cs2340game.model.Powerups.RangeUpDecorator;
 import com.example.cs2340game.model.Powerups.ScoreUpDecorator;
 import com.example.cs2340game.model.Powerups.SpeedUpDecorator;
@@ -87,9 +83,14 @@ public class Player {
 
     public void applyPowerUp(int type) {
         switch (type) {
-            case 0: powerUp = new SpeedUpDecorator(powerUp); break;
-            case 1: powerUp = new ScoreUpDecorator(powerUp); break;
-            case 2: powerUp = new RangeUpDecorator(powerUp); break;
+        case 0: powerUp = new SpeedUpDecorator(powerUp);
+            break;
+        case 1: powerUp = new ScoreUpDecorator(powerUp);
+            break;
+        case 2: powerUp = new RangeUpDecorator(powerUp);
+            break;
+        default:
+            break;
         }
         Log.d("powerup", "applying powerup up type " + type);
         powerUp.applyPowerUp();
@@ -140,7 +141,8 @@ public class Player {
         return baseStrength;
     }
 
-    public int getRange() { return range; }
+    public int getRange() {
+        return range; }
 
     // Getter for player name
     public String getName() {
@@ -165,7 +167,8 @@ public class Player {
         avatar.setSpeed(speed);
     }
 
-    public void setRange(int range) { this.range = range; }
+    public void setRange(int range) {
+        this.range = range; }
 
     public void setScoreMultiplier(double scoreMultiplier) {
         this.scoreMultiplier = scoreMultiplier;
