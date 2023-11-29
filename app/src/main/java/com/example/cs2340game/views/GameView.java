@@ -3,12 +3,14 @@ package com.example.cs2340game.views;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.icu.text.DateFormat;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,6 +42,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     private int currentRoom;
     private Avatar avatar;
     private Player player;
+    private MediaPlayer mediaPlayer;
 
     //Displays the view
     @Override
@@ -48,7 +51,10 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
         setContentView(R.layout.game_view);
         this.model = Model.getInstance();
         player = Player.getInstance();
-
+        mediaPlayer = MediaPlayer.create(this, R.raw.caretaker);
+        mediaPlayer.setVolume(200.0f, 200.0f);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
         viewModel = new GameViewModel();
         nameTextView = findViewById(R.id.nameReceiver);
         nameTextView.setText(model.getPlayerName());
@@ -90,6 +96,8 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
 
     //Switches view to EndView
     public void toWinView() {
+        gameTimer.stopTimer();
+        mediaPlayer.release();
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
@@ -100,6 +108,7 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
     }
 
     public void toLoseView() {
+        mediaPlayer.release();
         //record score when button is pressed (will later change to when player completes level)
         DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         date = dateFormat.format(Calendar.getInstance().getTime());
@@ -194,5 +203,13 @@ public class GameView extends AppCompatActivity implements GameTimer.TimerListen
             return;
         }
         gameRender.refreshScreen();
+    }
+
+    public void pausePlay(View view) {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        } else {
+            mediaPlayer.start();
+        }
     }
 }
